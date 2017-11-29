@@ -16,30 +16,7 @@ connection.connect(
       console.log(err);
     }
   });
-// require('mysql-queries').init(options);
-// define the home page route
-// router.post('/ambuj', function (req, res) {
-// console.log(req.body);
-// var sqlclient = require('mysql-queries'),
-//   sqls = ['INSERT INTO admin (Name,Email,Mobile,Address,City,Pincode) VALUES(?)',
-//   'INSERT INTO login (role,User,pass,name)VALUES(?)'];
-//
-// sqlclient.queries(sqls,
-//   [[req.body],["Admin",req.body.Mobile,"12345",req.body.Name]],
-//   function(err, results){
-// 	if(!!err) {
-// 	  console.log(err);
-// 	} else {
-// 	//If not error, the "results" is the results of the SQLs as array.
-// 	  console.log(results);
-// 	}
-//   });
-// });
-// middleware that is specific to this router
-// router.use(function timeLog (req, res, next) {
-//   console.log('Time: ', Date.now())
-//   next()
-// })
+
 var date;
 date = new Date();
 date = date.getUTCFullYear() + '-' +
