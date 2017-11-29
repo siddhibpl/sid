@@ -59,15 +59,12 @@ $(document).ready(function() {
   // for profile click function open modal
   $('.profile').click(function() {
     $('#exampleModalLongTitle').html("Profile");
-    // $('.listComDetailsDiv').removeClass('hide');
     $('.modal-body').html("<div style='text-align: center';><img src='img/student.png' style='border-radius: 50%' alt='Profile Image' height='102' width='102'><br><br><table class='myTable table-striped table-bordered'><tr><td>Name</td><td>" + uname + "</td></tr><tr><td>Number</td><td>" + unumber + "</td></tr><tr><td>Role</td><td>" + urole + "</td></tr><table></div>");
-
   });
   // for dashboard click function
   $('.logout').click(function() {
     // $('.listComDetailsDiv').addClass('hide');
     var obj = {};
-
     $.when(Posthandler("/route/logout", obj, true)).done(function(res) {
       console.log(res);
       if (res.resCode === "OK") {
@@ -83,53 +80,27 @@ $(document).ready(function() {
       window.location.replace("login.html");
     });
   });
-  // for add activeA class in comman list component in Navbar on-click function
-  // $('.listCom').click(function() {
-  //   $('.listCom').removeClass('activeA');
-  //   $(this).addClass('activeA');
-  // });
   // for add activeA class in comman list component in Sidebar on-click function
   $('.listComA').click(function() {
     $('.viewDetailsDiv').removeClass('hide');
     $('.listComA').removeClass('activeA');
-    // alert(this.className.split(" ")[0]);
     $(this).addClass('activeA');
   });
   // for Sidebar anch0 click function About ME button
   $('.anch0').click(function() {
     aboutMeFunction();
   });
-  // for Sidebar anch1 click function
+  // for Sidebar anch1 click function Total company View More
   $('.anch1').click(function() {
-    $('.anchLegend').html("Total Companies");
-    $('.anchPara').html("We have registered more then 30 company.<br>Some of them are below.");
-    $('.headerId').html("company ID");
-    $('.headerName').html("company Name");
-    $('.headerArea').html("company Location");
-    $('.headerDetails').html("Year of Establishment");
-    $('#tableBody').html("<tr><td>1,001</td><td>Aakash India Pvt Ltd</td><td>Bhopal</td><td>2011</td></tr><tr><td>1,002</td><td>Raj industries</td><td>Bhopal</td><td>1989</td></tr><tr><td>1,003</td><td>Vijay construction</td><td>Vidish</td><td>2007</td></tr><tr><td>1,004</td><td>Malvin India</td><td>Jabalpur</td><td>2017</td></tr><tr><td>1,005</td><td>Shiva industries</td><td>Indore</td><td>2015</td></tr>");
+    totalCompanyFunction();
   });
-  // for Sidebar anch2 click function
+  // for Sidebar anch2 click function Total ITI College Listed
   $('.anch2').click(function() {
-    $('.anchLegend').html("Total ITI Listed");
-    $('.anchPara').html("We have registered more then 100 ITI.<br>Some of them are below.");
-    $('.headerId').html("college ID");
-    $('.headerName').html("college Name");
-    $('.headerArea').html("college Location");
-    $('.headerDetails').html("Course");
-    $('#tableBody').html("<tr><td>2,001</td><td>SGS collage</td><td>Bhopal</td><td>1 year cource</td></tr><tr><td>2,002</td><td>Raah collage</td><td>Itarsi</td><td>6 Month course</td></tr><tr><td>2,003</td><td>Gov ITI collage</td><td>Vidish</td><td>2 year PG-Diploma coure</td></tr><tr><td>2,004</td><td>Laxmipati institute</td><td>Jabalpur</td><td>! year ITI course</td></tr><tr><td>2,005</td><td>Ashoka collage</td><td>Indore</td><td>1 year course</td></tr>");
-
+    totalCollegeFunction();
   });
-  // for Sidebar anch3 click function
+  // for Sidebar anch3 click function Total Students
   $('.anch3').click(function() {
-    $('.anchLegend').html("Total Students");
-    $('.anchPara').html("We have register more then 500 students.<br>Some of them are below.");
-    $('.headerId').html("Student ID");
-    $('.headerName').html("Student Name");
-    $('.headerArea').html("Student Address");
-    $('.headerDetails').html("Student Qualification");
-    $('#tableBody').html("<tr><td>3,001</td><td>Aakash</td><td>Bhopal</td><td>Diploma</td></tr><tr><td>3,002</td><td>Rahul</td><td>Bhopal</td><td>Diploma</td></tr><tr><td>3,003</td><td>Ajay</td><td>Vidish</td><td>PG-Diploma</td></tr><tr><td>3,004</td><td>Ravi</td><td>Jabalpur</td><td>ITI</td></tr><tr><td>3,005</td><td>Shiva</td><td>Indore</td><td>12th</td></tr>");
-
+totalStudentFunction();
   });
   // for Sidebar anch4 click function
   $('.anch4').click(function() {
