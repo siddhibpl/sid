@@ -1,0 +1,27 @@
+{
+  "name": "node.js",
+  "version": "1.0.0",
+  "description": "ITIJobs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ambuj Dubey",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "consolidate": "^0.14.5",
+    "cors": "^2.8.1",
+    "express": "^4.16.2",
+    "http": "0.0.0",
+    "jsonwebtoken": "~7.2.1",
+    "morgan": "~1.7.0",
+    "mustache": "^2.3.0",
+    "mysql": "^2.15.0",
+    "mysql-queries": "^0.2.0",
+    "nodemailer": "*",
+    "nodemon": "^1.11.0",
+    "passcode": "~1.0.2",
+    "sendmail": "~1.1.1"
+  }
+}

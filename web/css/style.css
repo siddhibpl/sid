@@ -1,0 +1,571 @@
+.myNavbar {
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px !important;
+}
+
+.myContainerCss {
+  margin-top: 70px !important;
+}
+
+.no-margin {
+  margin: 0px !important;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.pull-right {
+  float: right!important;
+}
+
+.iti-Padding5 {
+  padding: 5px;
+}
+
+.padding5 {
+  padding: 5px 0px !important;
+}
+
+.iti-Padding10 {
+  padding: 40px 10px;
+}
+
+.iti-DivBod {
+  border: 1px solid #ccc;
+  border-radius: 15px;
+}
+
+.iti-title {
+  /*border-bottom: 2px solid #ccc;*/
+  color: #71a1ed;
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.margin-top {
+  margin: 20px 0px;
+}
+
+.iti-DivCen {
+  text-align: center;
+}
+
+.iti-stitle {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.iti-fdoc {
+  color: #000 !important;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.total-css {
+  text-align: center;
+  font-size: 30px;
+}
+
+.border {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.borderImage {
+  border: 1px solid #A2A2A2;
+  border-radius: 5px !important;
+}
+
+.iti-Footer {
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  background-color: #292b2c;
+  text-align: center;
+  color: #fff;
+  line-height: 40px;
+  position: relative;
+  bottom: 0;
+}
+
+.footer12 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #292b2c;
+  text-align: center;
+}
+
+/*form css*/
+
+.form-groupcss {
+  padding: 0px 0px;
+  position: relative;
+}
+
+.error {
+  color: red;
+}
+
+.img {
+  height: 15px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
+.img:hover {
+  cursor: pointer;
+}
+
+.submitbuttonCss {
+  padding-right: 0px;
+  padding-left: 10px;
+}
+
+/*Class*/
+
+.hide {
+  visibility: hidden;
+  display: none;
+}
+
+.displayNone {
+  display: none;
+}
+
+.opacityP1 {
+  opacity: 0.1;
+}
+
+.opacity1 {
+  opacity: 1;
+}
+
+/*.carousel-inner{
+  max-height: 280px;
+}*/
+
+/*for SignUp form css */
+
+/*sign up for container*/
+.containerload{
+  min-height: 422px !important;
+}
+
+.login-page {
+  background-color: #f1f1f1 !important;
+}
+
+.containerCss {
+  background-color: #fff !important;
+  margin-bottom: 5px;
+}
+
+.border {
+  border: 1px solid #A2A2A2 !important;
+}
+
+.backgroundColor {
+  background-color: #f1f1f1 !important;
+}
+
+.headerDiv1 {
+  text-align: center;
+  font-size: 24;
+  margin: 10px 0px;
+}
+
+.headerDiv2 {
+  /*text-align: center;*/
+  font-size: 15;
+  background-color: #CAC8C8;
+  padding: 0px 10px;
+}
+
+.headerDiv3 {
+  /*text-align: center;*/
+  font-size: 10;
+  background-color: blue;
+  padding: 2px 10px;
+}
+
+.formTitle {
+  font-size: 14px !important;
+  padding: 5px;
+  margin: 0px 0px;
+}
+
+.marginBottom {
+  margin-bottom: 5px;
+}
+
+.paddingBottom {
+  padding-bottom: 5px !important;
+}
+
+.registration {
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registrationDiv {
+  /*padding-top: 10px;*/
+  display: inline-block;
+}
+
+.radioSex {
+  padding-top: 10px;
+}
+
+.red {
+  color: red;
+}
+
+/*text animation css*/
+
+.textErrorDiv {
+  position: relative;
+  width: 100%;
+  min-height: 20px;
+  overflow-x: hidden;
+}
+
+.textError {
+  font-size: 12px;
+  margin: 0 0 0 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  /*height: 10%;*/
+  position: absolute;
+  -webkit-animation-name: example;
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s;
+  /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  /*animation-duration: 4s;
+  animation-iteration-count: infinite;*/
+  -webkit-animation: mymove 10s infinite;
+  /* Safari 4.0 - 8.0 */
+  animation: mymove 10s infinite;
+}
+
+.textError {
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+.textError {
+  animation-timing-function: ease-in-out;
+}
+
+/* Safari 4.0 - 8.0 */
+
+@-webkit-keyframes mymove {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/* Standard syntax */
+
+@keyframes mymove {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+/*......................................................
+  {Deshboard.Css Its used for all deshboard related css}
+  ......................................................*/
+
+.myNavbar1 {
+  position: relative;
+  min-height: 50px;
+  /* margin-bottom: 20px !important; */
+}
+
+.myDeshboardContainerCss {
+  min-height: 570px !important;
+}
+
+.container-fluid {
+  padding: 0px!important;
+}
+
+.mainDiv {
+  background-color: #f1f1f1 !important;
+  padding: 10px !important;
+}
+
+.page-header {
+  font-size: 25px;
+  margin: 15px 0px;
+}
+
+.username{
+  font-size: 18px;
+}
+
+.myCard {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.img-circle {
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  vertical-align: middle;
+  display: block;
+}
+
+.nav-header {
+  padding: 33px 25px;
+  background-color: #2f4050;
+}
+
+.nav-header a {
+  color: #DFE4ED;
+}
+
+.nav-item a {
+  color: rgba(255, 255, 255, .5);
+}
+
+.nav-item a:hover {
+  color: #DFE4ED;
+}
+
+.activeA {
+  color: #DFE4ED !important;
+  background-color: #292b2c;
+}
+
+.myTable {
+  border: 1px solid #ccc;
+  padding: 5px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-linkImage:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+.listCom:hover {
+  cursor: pointer;
+}
+
+.iti-DivCen {
+  background-color: #f1f1f1;
+}
+
+.animated {
+  min-width: 100px !important;
+}
+
+.btnPara {
+  padding: 0px !important;
+}
+
+.iti-DivCenD {
+  padding: 10px !important;
+}
+
+.anchLegend {
+  border-bottom: 1px solid #ccc;
+}
+
+.total-cssD {
+  text-align: center;
+  font-size: 20px;
+}
+
+.myTableCss {
+  font-size: 12px !important;
+  text-align: center !important;
+}
+
+.myTableCss th {
+  text-align: center !important;
+}
+
+.borderErrorColor{
+    border-color: red;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+/*###################################################################*/
+                        /* loader property*/
+/*###################################################################*/
+  .bodyloading {
+      background: #000000 none repeat scroll 0 0;
+      height: 100%;
+      opacity: 0.5;
+      position: fixed;
+      right: 0;
+      text-align: center;
+      top: 0;
+      width: 100%;
+      z-index: 1050;
+  }
+
+  .boxloading {
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #3498db;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+      z-index: 1051;
+  }
+
+  .boxloading:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #e74c3c;
+      -webkit-animation: spin 3s linear infinite;
+      animation: spin 3s linear infinite
+  }
+
+  .boxloading:after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: #f9c922;
+      -webkit-animation: spin 1.5s linear infinite;
+      animation: spin 1.5s linear infinite
+  }
+
+  @-webkit-keyframes spin {
+      0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg)
+      }
+      100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg)
+      }
+  }
+
+  @keyframes spin {
+      0% {
+          -webkit-transform: rotate(0deg);
+          -ms-transform: rotate(0deg);
+          transform: rotate(0deg)
+      }
+      100% {
+          -webkit-transform: rotate(360deg);
+          -ms-transform: rotate(360deg);
+          transform: rotate(360deg)
+      }
+  }
+
+/*modal css*/
+.modal-header {
+  color: #fff;
+  background-color: #025aa5;
+  border-color: #01549b;
+}
+
+.modal-title {
+    font-size: 12px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    display: inline;
+    width: 100%;
+}
+
+.modal-body{
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.width100{
+  width: 100% !important;
+}
+
+/*select option for registration form*/
+select option {
+  /*border: 1px solid #000; */
+  /*background: #010;*/
+  max-height: 300px !important;
+  overflow-y: scroll !important;
+}
+
+.tableDataDiv{
+  width: 100%;
+  padding: 5px;
+}
+
+/*About Me list css(dashboard page)*/
+
+.aboutMEeTable_header, .aboutMeTable_body {
+    text-align: center;
+    width: auto;
+}
+/*.dataTables_wrapper{overflow-x: scroll !important;}*/
+
+.aboutMEeTable_header thead th {
+    font-size: 12px;
+    text-align: center;
+}
+
+.aboutMEeTable_header tbody td {
+    font-size: 12px;
+    text-align: center;
+}
+
+.editrow {
+    cursor: pointer;
+}
+
+#viewMoreTable tr th {
+  font-size: 10px;
+  text-align: center;
+}
+
+#viewMoreTable tr td {
+  font-size: 10px;
+  text-align: center;
+}
