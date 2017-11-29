@@ -348,7 +348,7 @@ router.post('/aboutMe', function(req, res, next) {
   switch (req.body.Role) {
     case "Admin":
       console.log("Admin");
-      connection.query('SELECT * FROM admin where (Name) = "'+ req.body.Name +'" AND (Mobile) = "'+ req.body.Number +'"', function(err, result, feild) {
+      connection.query('SELECT * FROM admin where (Name) = "' + req.body.Name + '" AND (Mobile) = "' + req.body.Number + '"', function(err, result, feild) {
         if (err) throw err;
         else {
           if (result != '') {
@@ -368,14 +368,24 @@ router.post('/aboutMe', function(req, res, next) {
       break;
     case "Student":
       console.log("Student");
-      connection.query('SELECT * FROM student where (Name) = "'+ req.body.Name +'" AND (Mobile) = "'+ req.body.Number +'"', function(err, result, feild) {
+      connection.query('SELECT * FROM student where (Name) = "' + req.body.Name + '" AND (Mobile) = "' + req.body.Number + '"', function(err, result, feild) {
         if (err) throw err;
         else {
           if (result != '') {
+            console.log(result[0].ExpYear);
             console.log(result);
-            return res.json({
-              "resCode": "OK",
-              "results": result
+            connection.query('SELECT experience FROM experiencelist where (Id) = "' + result[0].ExpYear + '"', function(err, result1, feild) {
+              if (err) throw err;
+              else {
+                console.log(result1);
+                if (result[0].ExpYear != 'NA') {
+                  result[0].ExpYear = result1[0].experience;
+                }
+                return res.json({
+                  "resCode": "OK",
+                  "results": result
+                });
+              }
             });
           } else {
             return res.json({
@@ -388,7 +398,7 @@ router.post('/aboutMe', function(req, res, next) {
       break;
     case "College":
       console.log("College");
-      connection.query('SELECT * FROM college where (Name) = "'+ req.body.Name +'" AND (TPO_Mobile) = "'+ req.body.Number +'"', function(err, result, feild) {
+      connection.query('SELECT * FROM college where (Name) = "' + req.body.Name + '" AND (TPO_Mobile) = "' + req.body.Number + '"', function(err, result, feild) {
         if (err) throw err;
         else {
           if (result != '') {
@@ -408,7 +418,7 @@ router.post('/aboutMe', function(req, res, next) {
       break;
     case "Company":
       console.log("Company");
-      connection.query('SELECT * FROM company where (Name) = "'+ req.body.Name +'" AND (HR_Mobile) = "'+ req.body.Number +'"', function(err, result, feild) {
+      connection.query('SELECT * FROM company where (Name) = "' + req.body.Name + '" AND (HR_Mobile) = "' + req.body.Number + '"', function(err, result, feild) {
         if (err) throw err;
         else {
           if (result != '') {
@@ -429,6 +439,86 @@ router.post('/aboutMe', function(req, res, next) {
     default:
       console.log("Role Is Not Present");
   }
+});
+
+router.get('/totalCompany', function(req, res, next) {
+  connection.query('SELECT * FROM company', function(err, result, feild) {
+    if (err) throw err;
+    else {
+      if (result != '') {
+        console.log(result);
+        return res.json({
+          "resCode": "OK",
+          "results": result
+        });
+      } else {
+        return res.json({
+          "resCode": "Error",
+          "msg": "No Company Available in Database"
+        });
+      }
+    }
+  });
+});
+
+router.post('/viewMoreCompanyByName', function(req, res, next) {
+  connection.query('SELECT * FROM company where (Name) = "'+ req.body.Name +'"', function(err, result, feild) {
+    if (err) throw err;
+    else {
+      if (result != '') {
+        console.log(result);
+        return res.json({
+          "resCode": "OK",
+          "results": result
+        });
+      } else {
+        return res.json({
+          "resCode": "Error",
+          "msg": "Company Not Available in Database"
+        });
+      }
+    }
+  });
+});
+
+router.get('/totalCollege', function(req, res, next) {
+  connection.query('SELECT * FROM college', function(err, result, feild) {
+    if (err) throw err;
+    else {
+      if (result != '') {
+        console.log(result);
+        return res.json({
+          "resCode": "OK",
+          "results": result
+        });
+      } else {
+        return res.json({
+          "resCode": "Error",
+          "msg": "No College Available in Database"
+        });
+      }
+    }
+  });
+});
+
+router.post('/viewMoreCollegeByName', function(req, res, next) {
+  connection.query('SELECT * FROM college where (Name) = "'+ req.body.Name +'"', function(err, result, feild) {
+    if (err) throw err;
+    else {
+      if (result != '') {
+        console.log(result);
+        return res.json({
+          "resCode": "OK",
+          "results": result
+        });
+      } else {
+        return res.json({
+          "resCode": "Error",
+          "msg": "College Not Available in Database"
+        });
+      }
+    }
+  });
 });
 
 module.exports = router

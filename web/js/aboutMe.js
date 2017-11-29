@@ -32,7 +32,7 @@ function aboutMeFunction() {
         $("#aboutMEeTable tbody").append(body);
       });
       create_DatatableAboutMe('#aboutMEeTable');
-      viewMoreFunction(arr,login);
+      viewMoreFunction(arr, login);
     } else {
       swal("Error!", res.msg, "error");
     }
@@ -48,11 +48,11 @@ function aboutMeFunction() {
   });
 };
 
-function viewMoreFunction(arr,login) {
+function viewMoreFunction(arr, login) {
   var viewMore = '<table style="width:100%" id="viewMoreTable" class="table-striped table-bordered"></table>';
   console.log(arr);
   $(".editrow").click(function(e) {
-    $('#exampleModalLongTitle').html("View More About "+ login.Role + " - "+ login.Name);
+    $('#exampleModalLongTitle').html("View More About " + login.Role + " - " + login.Name);
     $('.modal-body').html(viewMore);
     $.each(arr[0], function(key, value) {
       var body = "<tr>";
@@ -63,10 +63,18 @@ function viewMoreFunction(arr,login) {
         key = "Date of Joining in our Portel";
         body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
       } else if (key === "YOI") {
-        key = "Year Of Incarporation";
-        body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-      } else if (key === "Logo") {
-      } else {
+        key = "Year Of Incorporation";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "POY") {
+        key = "Passing Year";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "Per") {
+        key = "Percentage";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "HSPer") {
+        key = "Higher School Percentage";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (value === "NA" || value === "No") {} else if (key === "Logo") {} else {
         body += "<th>" + key + "</th><td>" + value + "</td>";
       }
       body += "</tr>";
