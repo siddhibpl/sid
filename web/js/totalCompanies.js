@@ -1,4 +1,7 @@
 function totalCompanyFunction() {
+  $('.anchLegend').html("Total Companies");
+  $('.anchPara').addClass('hide');
+  $('.tablecontainerDiv').removeClass('hide');
   var totalCompany = {};
   $.when(Gethandler("/route/totalCompany", totalCompany, true)).done(function(res) {
     if (res.resCode == 'OK') {

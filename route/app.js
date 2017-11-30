@@ -521,4 +521,70 @@ router.post('/viewMoreCollegeByName', function(req, res, next) {
   });
 });
 
+router.post('/studentTradeWiseFilter', function(req, res, next) {
+  console.log(req.body.Role);
+  switch (req.body.Role) {
+    case "College":
+      console.log("College");
+      connection.query('SELECT * FROM student where (College) = "' + req.body.Name + '" AND (Trade) = "' + req.body.Trade + '" AND (Experience) = "' + req.body.Experience + '" AND (ExpYear) = "' + req.body.ExpYear + '"', function(err, result, feild) {
+        if (err) throw err;
+        else {
+          if (result != '') {
+            console.log(result);
+            return res.json({
+              "resCode": "OK",
+              "results": result
+            });
+          } else {
+            return res.json({
+              "resCode": "Error",
+              "msg": "Sorry Students List Not Available For This Input, Try With New Input!"
+            });
+          }
+        }
+      });
+      break;
+    default:
+    console.log("Not College");
+    connection.query('SELECT * FROM student where (Trade) = "' + req.body.Trade + '" AND (Experience) = "' + req.body.Experience + '" AND (ExpYear) = "' + req.body.ExpYear + '"', function(err, result, feild) {
+      if (err) throw err;
+      else {
+        if (result != '') {
+          console.log(result);
+          return res.json({
+            "resCode": "OK",
+            "results": result
+          });
+        } else {
+          return res.json({
+            "resCode": "Error",
+            "msg": "Sorry Students List Not Available For This Input, Try With New Input!"
+          });
+        }
+      }
+    });
+  }
+});
+
+router.post('/viewMoreStudentByName', function(req, res, next) {
+  console.log(req.body);
+  connection.query('SELECT * FROM student where (Name) = "'+ req.body.Name +'"', function(err, result, feild) {
+    if (err) throw err;
+    else {
+      if (result != '') {
+        console.log(result);
+        return res.json({
+          "resCode": "OK",
+          "results": result
+        });
+      } else {
+        return res.json({
+          "resCode": "Error",
+          "msg": "College Not Available in Database"
+        });
+      }
+    }
+  });
+});
+
 module.exports = router

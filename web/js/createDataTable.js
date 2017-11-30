@@ -36,3 +36,16 @@ function create_DatatableTOtalCollege(name){
           "autoWidth": true
    });
 }
+
+function create_DatatableTOtalStudent(name){
+  return $(name).DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+           "scrollX":true,
+           scrollCollapse: true,
+          "autoWidth": true
+   });
+}

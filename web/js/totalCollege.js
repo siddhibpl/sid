@@ -1,4 +1,7 @@
 function totalCollegeFunction(){
+  $('.anchLegend').html("Total ITI College");
+  $('.anchPara').addClass('hide');
+  $('.tablecontainerDiv').removeClass('hide');
   var totalCollege = {};
   $.when(Gethandler("/route/totalCollege", totalCollege, true)).done(function(res) {
     if (res.resCode == 'OK') {

@@ -100,7 +100,7 @@ $(document).ready(function() {
   });
   // for Sidebar anch3 click function Total Students
   $('.anch3').click(function() {
-totalStudentFunction();
+    totalStudentFunction();
   });
   // for Sidebar anch4 click function
   $('.anch4').click(function() {

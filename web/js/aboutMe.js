@@ -4,7 +4,8 @@ function aboutMeFunction() {
   var unumber = login.Number;
   var urole = login.Role;
   $('.anchLegend').html("About Me");
-  $('.anchPara').html("");
+  $('.anchPara').addClass('hide');
+  $('.tablecontainerDiv').removeClass('hide');
   aboutMe = {
     "Role": urole,
     "Name": uname,
