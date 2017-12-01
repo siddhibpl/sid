@@ -619,4 +619,26 @@ router.post('/viewMoreStudentByName', function(req, res, next) {
   });
 });
 
+router.post('/contactUs', function(req, res, next) {
+  console.log(req.body);
+  // connection.query('SELECT * FROM student where (Name) = "' + req.body.Name + '"', function(err, result, feild) {
+    // if (err) {
+    //   return next(err);
+    // } else {
+    //   if (result != '') {
+    //     console.log(result);
+        return res.json({
+          "resCode": "OK",
+          "results": "We will send response Your Query!Thanks for Contact Us"
+  //       });
+  //     } else {
+  //       return res.json({
+  //         "resCode": "Error",
+  //         "msg": "Student Not Available in Database"
+  //       });
+  //     }
+  //   }
+  });
+});
+
 module.exports = router;

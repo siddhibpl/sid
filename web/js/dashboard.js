@@ -112,6 +112,116 @@ $(document).ready(function() {
     $('.headerDetails').html("Student Qualification");
     $('#tableBody').html("<tr><td>4,001</td><td>Anita</td><td>Bhopal</td><td>Diploma</td></tr><tr><td>4,002</td><td>Rishabh</td><td>Indore</td><td>PG-Diploma</td></tr><tr><td>4,003</td><td>Ajay</td><td>Vidish</td><td>PG-Diploma</td></tr><tr><td>4,004</td><td>Ravi</td><td>Jabalpur</td><td>ITI</td></tr><tr><td>4,005</td><td>Shivendra</td><td>Indore</td><td>12th</td></tr>");
   });
+  // Validation
+  $.validator.addMethod("pwcheckspechars", function(value) {
+    return /[!@#$%^&*()_=\[\]{};':"\\|,.<>\/?+-]/.test(value)
+  });
+  $.validator.addMethod("pwchecknumber", function(value) {
+    return /\d/.test(value) // has a digit
+  });
+  $.validator.addMethod("onlyLatters", function(value) {
+    return /^[a-zA-Z\s]+$/i.test(value)
+  });
+  $.validator.addMethod("emailformat", function(value) {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
+  });
+
+  // Contact Us Form Validation
+  $("#contact").validate({
+    rules: {
+      contactName: {
+        required: true,
+        onlyLatters: true,
+      },
+      contactEmail: {
+        required: true,
+        emailformat: true,
+      },
+      contactMobile: {
+        digits: true,
+        minlength: 10,
+        maxlength: 10
+      },
+      contactSubject: {
+        required: true,
+      },
+      contactText: {
+        required: true,
+      },
+
+    },
+    messages: {
+      contactName: {
+        required: "Please enter Your Name",
+        onlyLatters: "Name should be text only",
+      },
+      contactEmail: {
+        required: "Please provide Your Email Address",
+        emailformat: "Please Provide Valid Email Address",
+      },
+      contactMobile: {
+        digits: "Please enter a valid Mobile Number",
+        minlength: "Please put 10  digit mobile number",
+        maxlength: "Please put 10  digit mobile number"
+      },
+      contactSubject: {
+        required: "Please provide Subject",
+      },
+      contactText: {
+        required: "Please provide Your Message",
+      },
+    },
+    errorElement: "em",
+    errorPlacement: function(error, element) {
+      // Add the `help-block` class to the error element
+      error.addClass("help-block");
+
+      if (element.prop("type") === "checkbox") {
+        error.insertAfter(element.parent("label"));
+      } else {
+        error.insertAfter(element);
+      }
+    },
+    highlight: function(element, errorClass, validClass) {
+      $(element).parents(".col-sm-5").addClass("has-error").removeClass("has-success");
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
+    }
+  });
+});
+function myFunction() {
+  var contactName = $('#contactName').val();
+  var contactEmail = $('#contactEmail').val();
+  var contactMobile = $('#contactMobile').val();
+  var contactSubject = $('#contactSubject').val();
+  var contactText = $('#contactText').val();
+  var obj = {
+    "contactName": capitalize(contactName),
+    "contactName": contactName,
+    "contactMobile": contactMobile,
+    "contactSubject": contactSubject,
+    "contactText": contactText,
+  };
+  console.log(obj);
+  $.when(Posthandler("/route/contactUs", obj, true)).done(function(res) {
+    console.log(res);
+    if (res.resCode == 'OK') {
+      swal("Ok!", res.msg, "success");
+      window.location.replace("dashboard.html");
+    } else if (res.resCode == 'Error') {
+      swal("Error!", res.msg, "error");
+      window.location.replace("dashboard.html");
+    }
+  }).fail(function() {
+    swal("Error!", "sorry unable to Connect with Server. please check your internet connection", "error");
+    window.location.replace("dashboard.html");
+  });
+};
+$.validator.setDefaults({
+  submitHandler: function() {
+    myFunction();
+  }
 });
 
 var x = '<div class="formTitle border iti-Padding5"><div class="row no-margin headerDiv2"><div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding"><label for="validation1">Name<i class="red"> &#42</i></label><input type="text" class="form-control" id="validation1" placeholder="Your Name" value="" required=""></div><div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding"><label for="validation2">Mobile<i class="red"> &#42</i></label><input type="text" class="form-control" id="validation2" placeholder="Your Number" value="" required=""></div><div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding"><label for="validation2">Email<i class="red"> &#42</i></label><input type="text" class="form-control" id="validation2" placeholder="Your Email" value="" required=""></div><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 no-padding"><label for="validation2">Message<i class="red"> &#42</i></label><textarea class="form-control" rows="2" id="comment" placeholder="Enter Your Message"></textarea></div><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 no-padding"><button type="submit" class="btn btn-primary btn-sm" name="signup" value="Sign up">Submit</button></div></div></div>';
