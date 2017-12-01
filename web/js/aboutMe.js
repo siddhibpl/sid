@@ -6,6 +6,7 @@ function aboutMeFunction() {
   $('.anchLegend').html("About Me");
   $('.anchPara').addClass('hide');
   $('.tablecontainerDiv').removeClass('hide');
+  $('.editDetails').removeClass('hide');
   aboutMe = {
     "Role": urole,
     "Name": uname,
@@ -28,7 +29,7 @@ function aboutMeFunction() {
         body += "<td>" + arr["City"] + "</td>";
         body += "<td>" + arr["Pincode"] + "</td>";
         body += "<td>" + moment(arr["Date"]).format("YYYY-MM-DD") + "</td>";
-        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa fa-windows'  aria-hidden='true'></td>";
+        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa-info-circle'  aria-hidden='true'></i> Info </td>";
         body += "</tr>";
         $("#aboutMEeTable tbody").append(body);
       });

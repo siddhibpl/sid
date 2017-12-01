@@ -2,6 +2,7 @@ function totalCollegeFunction(){
   $('.anchLegend').html("Total ITI College");
   $('.anchPara').addClass('hide');
   $('.tablecontainerDiv').removeClass('hide');
+  $('.editDetails').addClass('hide');
   var totalCollege = {};
   $.when(Gethandler("/route/totalCollege", totalCollege, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -17,7 +18,7 @@ function totalCollegeFunction(){
         body += "<td>" + arr["Address"] + "</td>";
         body += "<td>" + arr["City"] + "</td>";
         body += "<td>" + arr["Pincode"] + "</td>";
-        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa fa-windows'  aria-hidden='true'></td>";
+        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa-info-circle'  aria-hidden='true'></i> Info</td>";
         body += "</tr>";
         $("#totalCollegeTable tbody").append(body);
       });

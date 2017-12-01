@@ -218,11 +218,11 @@ function contactForm() {
   var contactSubject = $('#contactSubject').val();
   var contactText = $('#contactText').val();
   var obj = {
-    "contactName": capitalize(contactName),
-    "contactName": contactName,
+    "contactName": capitalizeFirstLetterEachWordSplitBySpace(contactName),
+    "contactEmail": contactEmail,
     "contactMobile": contactMobile,
-    "contactSubject": contactSubject,
-    "contactText": contactText,
+    "contactSubject": capitalize(contactSubject),
+    "contactText": capitalize(contactText),
   };
   console.log(obj);
   $.when(Posthandler("/route/contactUs", obj, true)).done(function(res) {

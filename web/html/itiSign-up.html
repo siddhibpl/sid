@@ -153,7 +153,7 @@ var trade = JSON.stringify($('#trade').val());
     console.log(itiLogo);
     console.log(file.name);
     newIti = {
-      "Name": capitalize(itiName),
+      "Name": capitalizeFirstLetterEachWordSplitBySpace(itiName),
       "Registration": itiReg,
       "Landline": itiLand,
       "Email": itiEmail,
@@ -161,10 +161,10 @@ var trade = JSON.stringify($('#trade').val());
       "Type": itiType,
       "Address": itiAddress,
       "City": capitalize(itiCity),
-      "State": capitalize(itiState),
+      "State": capitalizeFirstLetterEachWordSplitBySpace(itiState),
       "Pincode": itiPincode,
       "District": capitalize(itiDistrict),
-      "TPO_Name": capitalize(itiTPOName),
+      "TPO_Name": capitalizeFirstLetterEachWordSplitBySpace(itiTPOName),
       "TPO_Email": itiTPOEmail,
       "TPO_Mobile": itiTPOMobile,
       "Logo": file.name,

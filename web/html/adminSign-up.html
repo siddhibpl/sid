@@ -12,15 +12,15 @@
         <div class="row no-margin headerDiv2 paddingBottom">
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation1">Name<i class="red"> *</i></label>
-            <input type="text" class="form-control capitalize" id="adminName" placeholder="Your Name" name="adminName" >
+            <input type="text" class="form-control capitalize" id="adminName" placeholder="Your Name" name="adminName">
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation3">Email<i class="red"> *</i></label>
-            <input type="text" class="form-control" id="adminEmail" name="adminEmail" placeholder="Your Email" >
+            <input type="text" class="form-control" id="adminEmail" name="adminEmail" placeholder="Your Email">
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation5">Mobile<i class="red"> *</i></label>
-            <input type="text" class="form-control" id="adminMobile" name="adminMobile" placeholder="Your Mobile" >
+            <input type="text" class="form-control" id="adminMobile" name="adminMobile" placeholder="Your Mobile">
           </div>
         </div>
       </div>
@@ -28,15 +28,15 @@
         <div class="row no-margin headerDiv2 paddingBottom">
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation3">Address<i class="red"> *</i></label>
-            <input type="text" class="form-control" id="adminAddress" name="adminAddress" placeholder="Your Address" >
+            <input type="text" class="form-control" id="adminAddress" name="adminAddress" placeholder="Your Address">
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation4">City<i class="red"> *</i></label>
-            <input type="text" class="form-control capitalize" id="adminCity" name="adminCity" placeholder="Your City" >
+            <input type="text" class="form-control capitalize" id="adminCity" name="adminCity" placeholder="Your City">
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation5">Pincode<i class="red"> *</i></label>
-            <input type="text" class="form-control" id="adminPincode" name="adminPincode" placeholder="Your Pin" >
+            <input type="text" class="form-control" id="adminPincode" name="adminPincode" placeholder="Your Pin">
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
     $('.firstSubmitButtonAdmin').addClass('hide');
     $('.finalSubmitButtonAdmin').removeClass('hide');
     newAdmin = {
-      "Name": capitalize(adminName),
+      "Name": capitalizeFirstLetterEachWordSplitBySpace(adminName),
       "Email": adminEmail,
       "Mobile": adminMobile,
       "Address": adminAddress,

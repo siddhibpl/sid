@@ -4,15 +4,16 @@
   margin-bottom: 20px !important;
 }
 
-.myNavbar a img, .myNavbar1 a img{
+.myNavbar a img, .myNavbar1 a img {
   height: 30px;
   width: 30px;
 }
 
-.modal-header img{
+.modal-header img {
   width: 30px;
   height: 30px;
 }
+
 .social {
   color: #fff !important;
   padding-left: 0;
@@ -123,7 +124,7 @@
   border-radius: 5px !important;
 }
 
-.form-groupcssContact{
+.form-groupcssContact {
   padding: 3px;
 }
 
@@ -621,4 +622,17 @@ select option {
 #viewMoreTable tr td {
   font-size: 10px;
   text-align: center;
+}
+
+#viewMoreTable tr:nth-child(even) {background-color: #f2f2f2;}
+
+#viewMoreTable tr:hover {background-color: #f2e2e2;}
+
+.leftMargin0{
+  margin-left: 0px !important;
+  left:0px;
+}
+
+.padding5Top{
+  padding: 5px 15px;
 }

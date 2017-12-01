@@ -4,6 +4,7 @@ function totalStudentFunction() {
   $(".anchPara").load("html/totalStudentValidation.html");
   $('.anchPara').removeClass('hide');
   $('.tablecontainerDiv').addClass('hide');
+  $('.editDetails').addClass('hide');
   var obj = {};
 if(login.Role != "College"){
   console.log('Not College Api');
