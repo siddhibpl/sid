@@ -1,4 +1,9 @@
 function totalCompanyFunction() {
+  $('.anchLegend').html("Total Companies");
+  $('.anchPara').addClass('hide');
+  $('.tablecontainerDiv').removeClass('hide');
+  $('.editDetails').addClass('hide');
+  $('.bodyloading').removeClass('hide');
   var totalCompany = {};
   $.when(Gethandler("/route/totalCompany", totalCompany, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -16,11 +21,12 @@ function totalCompanyFunction() {
         body += "<td>" + arr["Address"] + "</td>";
         body += "<td>" + arr["City"] + "</td>";
         body += "<td>" + arr["Pincode"] + "</td>";
-        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa fa-windows'  aria-hidden='true'></td>";
+        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa-info-circle'  aria-hidden='true'></i> Info </td>";
         body += "</tr>";
         $("#totalCompanyTable tbody").append(body);
       });
       create_DatatableTOtalCompany('#totalCompanyTable');
+      $('.bodyloading').addClass('hide');
       viewMoreFunctionForCompany(arr);
     } else {
       swal("Error!", res.msg, "error");
@@ -32,6 +38,7 @@ function totalCompanyFunction() {
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = 'dashboard.html';
       });
   });

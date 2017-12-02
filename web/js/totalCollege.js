@@ -1,4 +1,9 @@
 function totalCollegeFunction(){
+  $('.anchLegend').html("Total ITI College");
+  $('.anchPara').addClass('hide');
+  $('.tablecontainerDiv').removeClass('hide');
+  $('.editDetails').addClass('hide');
+  $('.bodyloading').removeClass('hide');
   var totalCollege = {};
   $.when(Gethandler("/route/totalCollege", totalCollege, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -14,11 +19,12 @@ function totalCollegeFunction(){
         body += "<td>" + arr["Address"] + "</td>";
         body += "<td>" + arr["City"] + "</td>";
         body += "<td>" + arr["Pincode"] + "</td>";
-        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa fa-windows'  aria-hidden='true'></td>";
+        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa-info-circle'  aria-hidden='true'></i> Info</td>";
         body += "</tr>";
         $("#totalCollegeTable tbody").append(body);
       });
       create_DatatableTOtalCollege('#totalCollegeTable');
+      $('.bodyloading').addClass('hide');
       viewMoreFunctionForCollege(arr);
     } else {
       swal("Error!", res.msg, "error");
@@ -30,6 +36,7 @@ function totalCollegeFunction(){
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = 'dashboard.html';
       });
   });

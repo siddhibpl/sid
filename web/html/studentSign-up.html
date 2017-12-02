@@ -27,7 +27,7 @@
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation5">Date of Birth<i class="red"> *</i></label>
-            <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text" />
+            <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text" />
           </div>
           <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4 no-padding">
             <label for="validation4">Sex<i class="red"> *</i></label>
@@ -182,25 +182,25 @@
       studentExpYear = "NA";
     }
     newStudent = {
-      "Name": capitalize(studentName),
-      "Father": capitalize(studentFather),
-      "Mother": capitalize(studentMother),
+      "Name": capitalizeFirstLetterEachWordSplitBySpace(studentName),
+      "Father": capitalizeFirstLetterEachWordSplitBySpace(studentFather),
+      "Mother": capitalizeFirstLetterEachWordSplitBySpace(studentMother),
       "Email": studentEmail,
       "Dob": date,
       "Sex": Sex,
       "Address": studentAddress,
       "City": capitalize(studentCity),
-      "State": capitalize(studentState),
+      "State": capitalizeFirstLetterEachWordSplitBySpace(studentState),
       "Pincode": studentPin,
       "Mobile": studentMobile,
-      "College": capitalize(studentCollege),
+      "College": capitalizeFirstLetterEachWordSplitBySpace(studentCollege),
       "Trade": trade,
       "POY": studentPassY,
       "Per": studentPer,
       "HSPer": studentHSPer,
       "Job": Job,
       "Experience": exCheck,
-      "LastComp": capitalize(studentExpCom),
+      "LastComp": capitalizeFirstLetterEachWordSplitBySpace(studentExpCom),
       "ExpYear": studentExpYear,
     };
     sessionsetItem("newStudent", newStudent);

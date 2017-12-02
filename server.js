@@ -13,8 +13,13 @@ app.use(express.static(path.join(__dirname, './web')));
 app.get('/', function(req, res) {
   res.sendFile(__dirname + "/web/" + "login.html");
 });
-app.listen(8000, function(req, res) {
+app.listen(process.env.PORT || 8000, function(req, res) {
   console.log("server is listening port number 8000");
 });
 var route = require('./route/app');
 app.use('/route', route);
+// error handling for all Restfull Api's
+app.use(function(err,req,res,next){
+  console.log("error hendling");
+  res.status(422).send({"resCode":"Error","msg":err.message});
+});

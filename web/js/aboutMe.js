@@ -4,7 +4,10 @@ function aboutMeFunction() {
   var unumber = login.Number;
   var urole = login.Role;
   $('.anchLegend').html("About Me");
-  $('.anchPara').html("");
+  $('.anchPara').addClass('hide');
+  $('.tablecontainerDiv').removeClass('hide');
+  $('.editDetails').removeClass('hide');
+  $('.bodyloading').removeClass('hide');
   aboutMe = {
     "Role": urole,
     "Name": uname,
@@ -27,11 +30,12 @@ function aboutMeFunction() {
         body += "<td>" + arr["City"] + "</td>";
         body += "<td>" + arr["Pincode"] + "</td>";
         body += "<td>" + moment(arr["Date"]).format("YYYY-MM-DD") + "</td>";
-        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa fa-windows'  aria-hidden='true'></td>";
+        body += "<td class='editrow' data-toggle='modal' data-target='#exampleModalLong' title='Click Here for " + arr["Name"] + " More Details '><i class='fa fa-info-circle'  aria-hidden='true'></i> Info </td>";
         body += "</tr>";
         $("#aboutMEeTable tbody").append(body);
       });
       create_DatatableAboutMe('#aboutMEeTable');
+      $('.bodyloading').addClass('hide');
       viewMoreFunction(arr, login);
     } else {
       swal("Error!", res.msg, "error");
@@ -43,6 +47,7 @@ function aboutMeFunction() {
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = 'dashboard.html';
       });
   });

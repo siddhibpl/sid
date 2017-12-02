@@ -1,4 +1,4 @@
-var login = storagegetItem("login");
+var login = sessiongetItem("login");
 console.log(login);
 if ((login == null) || (login == "") || (login == undefined)) {
   $('.adminRedioDiv').addClass('hide');
@@ -13,6 +13,9 @@ $.validator.addMethod("onlyLatters", function(value) {
 });
 $.validator.addMethod("emailformat", function(value) {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
+});
+$.validator.addMethod("validDate", function(value) {
+  return moment(value,'YYYY-MM-DD',true).isValid()
 });
 var number = /^[0-9]+$/;
 var letters = /^[a-zA-Z\s]+$/;
@@ -44,6 +47,7 @@ $(document).ready(function() {
       },
       date: {
         required: true,
+        validDate: true,
       },
       sex: {
         required: true,
@@ -125,6 +129,7 @@ $(document).ready(function() {
       },
       date: {
         required: "Please provide Your Date of Birth",
+        validDate:"Please enter a valid date in the format YYYY-MM-DD",
       },
       sex: {
         required: "This field it mandatory",
@@ -203,10 +208,12 @@ $(document).ready(function() {
       $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
     }
   });
+  var end = new Date();
   var date_input = $('input[name="date"]'); //our date input has the name "date"
   var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
   var options = {
     format: 'yyyy-mm-dd',
+    endDate: '2010-01-01',
     container: container,
     todayHighlight: true,
     autoclose: true,
@@ -260,7 +267,7 @@ $(document).ready(function() {
         console.log(res.results);
       }
     }).fail(function() {
-      swal("Error!", "sorry unable to load College list. please check your internet connection", "error");
+      swal("Error!", "sorry unable to load College Wise Trade list. please check your internet connection", "error");
     });
   });
 
