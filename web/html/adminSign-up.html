@@ -91,18 +91,41 @@
     if ($('#checkBoxFinal').prop('checked') == true) {
       var newAdmin = sessiongetItem("newAdmin");
       console.log(newAdmin);
+      var secret = sessiongetItem("secret");
+      console.log(secret);
+      if ((secret == null) || (secret == "") || (secret == undefined)) {} else {
+        if (secret.Key == "edit") {
+          newAdmin.Key = "Edit";
+        }
+      }
+      console.log(newAdmin);
       $.when(Posthandler("/route/newAdmin", newAdmin, true)).done(function(res) {
         if (res.resCode == 'OK') {
           console.log(res);
           sessionremoveItem("newAdmin");
-          swal(res.resCode, res.msg, "success");
-          window.location.replace("../login.html");
+          swal({
+              title: res.resCode,
+              text: res.msg,
+              type: "success"
+            },
+            function() {
+              swal.close();
+              var x = sessionremoveItem("secret");
+              console.log(x);
+              window.location.replace("../login.html");
+            });
         } else {
-          swal("Error!", res.msg, "error");
-          // sessionremoveItem("newAdmin");
-          $('#adminMobile').focus().select();
-          $('.firstSubmitButtonAdmin').removeClass('hide');
-          $('.finalSubmitButtonAdmin').addClass('hide');
+          swal({
+              title: res.resCode,
+              text: res.msg,
+              type: "error"
+            },
+            function() {
+              swal.close();
+              $('#adminMobile').focus().select();
+              $('.firstSubmitButtonAdmin').removeClass('hide');
+              $('.finalSubmitButtonAdmin').addClass('hide');
+            });
         }
       });
     } else {

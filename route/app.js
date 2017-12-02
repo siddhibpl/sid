@@ -114,7 +114,7 @@ router.get('/getExperienceLists', function(req, res, next) {
 });
 
 router.post('/getCollegeWiseTradeLists', function(req, res, next) {
-  console.log(req.body);
+  console.log("getCollegeWiseTradeLists>>>>>",req.body);
   connection.query('SELECT * FROM collegewisetrade where (Name) = "' + req.body.Name + '"', function(err, result, feild) {
     if (err) {
       return next(err);
@@ -163,57 +163,72 @@ router.post('/login', function(req, res, next) {
   });
 });
 
-router.post("/logout", function(req, res) {
+router.post("/logout", function(req, res, next) {
   return res.json({
     "resCode": "OK",
     "msg": "logging out"
   });
 });
 
-router.post("/newAdmin", function(req, res) {
+router.post("/newAdmin", function(req, res, next) {
   console.log(req.body);
-  connection.query('SELECT * FROM login WHERE User = "' + req.body.Mobile + '"', function(err, result) {
-    if (err) {
-      return next(err);
-    } else {
-      if (result == '') {
-        connection.query('SELECT * FROM admin WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
-          if (err) {
-            return next(err);
-          } else {
-            if (result1 != '') {
-              console.log(result1);
-              return res.json({
-                "resCode": "Error",
-                "msg": "User Already Register"
-              });
-            } else {
-              connection.query('INSERT INTO admin (Name,Email,Mobile,Address,City,Pincode,Date) VALUES ("' + req.body.Name + '","' + req.body.Email + '","' + req.body.Mobile + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.Pincode + '","' + date + '"); INSERT INTO login VALUES( "Admin","' + req.body.Mobile + '", "12345", "' + req.body.Name + '","' + date + '")', function(err, result2) {
-                if (err) {
-                  return next(err);
-                } else {
-                  console.log("result2New");
-                  return res.json({
-                    "resCode": "OK",
-                    "msg": "New Admin Register"
-                  });
-                }
-              });
-            }
-          }
-        });
-
+  if (req.body.Key == "Edit") {
+    console.log("EDIT");
+    var sql = 'UPDATE admin SET Name = "' + req.body.Name + '",Email ="' + req.body.Email + '", Address ="' + req.body.Address + '",City = "' + req.body.City + '", Pincode = "' + req.body.Pincode + '" WHERE (Mobile)="' + req.body.Mobile + '"; UPDATE login SET Name = "' + req.body.Name + '" WHERE (User)="' + req.body.Mobile + '"';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        return console.log(err);
       } else {
         return res.json({
-          "resCode": "Error",
-          "msg": "Mobile Number Already Register"
+          "resCode": "OK",
+          "msg": "Update Details successfully!"
         });
       }
-    }
-  });
+    });
+  } else {
+    connection.query('SELECT * FROM login WHERE User = "' + req.body.Mobile + '"', function(err, result) {
+      if (err) {
+        return next(err);
+      } else {
+        if (result == '') {
+          connection.query('SELECT * FROM admin WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
+            if (err) {
+              return next(err);
+            } else {
+              if (result1 != '') {
+                console.log(result1);
+                return res.json({
+                  "resCode": "Error",
+                  "msg": "User Already Register"
+                });
+              } else {
+                connection.query('INSERT INTO admin (Name,Email,Mobile,Address,City,Pincode,Date) VALUES ("' + req.body.Name + '","' + req.body.Email + '","' + req.body.Mobile + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.Pincode + '","' + date + '"); INSERT INTO login VALUES( "Admin","' + req.body.Mobile + '", "12345", "' + req.body.Name + '","' + date + '")', function(err, result2) {
+                  if (err) {
+                    return next(err);
+                  } else {
+                    console.log("result2New");
+                    return res.json({
+                      "resCode": "OK",
+                      "msg": "New Admin Register"
+                    });
+                  }
+                });
+              }
+            }
+          });
+
+        } else {
+          return res.json({
+            "resCode": "Error",
+            "msg": "Mobile Number Already Register"
+          });
+        }
+      }
+    });
+  }
 });
 
-router.post("/newStudent", function(req, res) {
+router.post("/newStudent", function(req, res, next) {
   console.log(req.body);
   connection.query('SELECT * FROM login WHERE User = "' + req.body.Mobile + '"', function(err, result) {
     if (err) {
@@ -257,54 +272,83 @@ router.post("/newStudent", function(req, res) {
   });
 });
 
-router.post("/newCompany", function(req, res) {
+router.post("/newCompany", function(req, res, next) {
   console.log(req.body);
-  connection.query('SELECT * FROM login WHERE User = "' + req.body.HR_Mobile + '"', function(err, result) {
-    if (err) {
-      return next(err);
-    } else {
-      if (result == '') {
-        connection.query('SELECT * FROM company WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
-          if (err) {
-            return next(err);
-          } else {
-            if (result1 != '') {
-              console.log(result1);
-              return res.json({
-                "resCode": "Error",
-                "msg": "User Already Register"
-              });
-            } else {
-              var sql = 'INSERT INTO company(Name,Registration,Landline,Email,Website,YOI,Address,City,State,Pincode,District,HR_Name,HR_Email,HR_Mobile,Logo,Date) VALUES ("' + req.body.Name + '","' + req.body.Registration + '","' + req.body.Landline + '","' + req.body.Email + '","' + req.body.Website + '","' + req.body.YOI + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.State + '","' + req.body.Pincode + '","' + req.body.District + '","' + req.body.HR_Name + '","' + req.body.HR_Email + '","' + req.body.HR_Mobile + '","' + req.body.Logo + '","' + date + '");INSERT INTO login VALUES( "Company","' + req.body.HR_Mobile + '", "12345", "' + req.body.Name + '", "' + date + '")';
-              connection.query(sql, req.body, function(err, result2) {
-                if (err) {
-                  return next(err);
-                } else {
-                  // connection.query('INSERT INTO login VALUES( "Company","' + req.body.HR_Mobile + '", "12345", "' + req.body.Name + '")', function(err, result3) {
-                  console.log("result3");
-                  return res.json({
-                    "resCode": "OK",
-                    "msg": "New Company Register"
-                  });
-                  // });
-                }
-              });
-            }
-          }
-        });
-
+  if (req.body.Key == "Edit") {
+    console.log("EDIT");
+    var sql = 'UPDATE company SET Name = "' + req.body.Name + '",Registration = "' + req.body.Registration + '",Landline = "' + req.body.Landline + '",Email = "' + req.body.Email + '",Website = "' + req.body.Website + '",YOI = "' + req.body.YOI + '", Address ="' + req.body.Address + '",City = "' + req.body.City + '",State = "' + req.body.State + '",District ="' + req.body.District + '", Pincode = "' + req.body.Pincode + '", HR_Name = "' + req.body.HR_Name + '", HR_Email = "' + req.body.HR_Email + '", Logo = "' + req.body.Logo + '" WHERE (HR_Mobile)="' + req.body.HR_Mobile + '"; UPDATE login SET Name = "' + req.body.Name + '" WHERE (User)="' + req.body.HR_Mobile + '"';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        return console.log(err);
       } else {
         return res.json({
-          "resCode": "Error",
-          "msg": "Mobile Number Already Register"
+          "resCode": "OK",
+          "msg": "Update Details successfully!"
         });
       }
-    }
-  });
+    });
+  } else {
+    connection.query('SELECT * FROM login WHERE User = "' + req.body.HR_Mobile + '"', function(err, result) {
+      if (err) {
+        return next(err);
+      } else {
+        if (result == '') {
+          connection.query('SELECT * FROM company WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
+            if (err) {
+              return next(err);
+            } else {
+              if (result1 != '') {
+                console.log(result1);
+                return res.json({
+                  "resCode": "Error",
+                  "msg": "User Already Register"
+                });
+              } else {
+                var sql = 'INSERT INTO company(Name,Registration,Landline,Email,Website,YOI,Address,City,State,Pincode,District,HR_Name,HR_Email,HR_Mobile,Logo,Date) VALUES ("' + req.body.Name + '","' + req.body.Registration + '","' + req.body.Landline + '","' + req.body.Email + '","' + req.body.Website + '","' + req.body.YOI + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.State + '","' + req.body.Pincode + '","' + req.body.District + '","' + req.body.HR_Name + '","' + req.body.HR_Email + '","' + req.body.HR_Mobile + '","' + req.body.Logo + '","' + date + '");INSERT INTO login VALUES( "Company","' + req.body.HR_Mobile + '", "12345", "' + req.body.Name + '", "' + date + '")';
+                connection.query(sql, req.body, function(err, result2) {
+                  if (err) {
+                    return next(err);
+                  } else {
+                    // connection.query('INSERT INTO login VALUES( "Company","' + req.body.HR_Mobile + '", "12345", "' + req.body.Name + '")', function(err, result3) {
+                    console.log("result3");
+                    return res.json({
+                      "resCode": "OK",
+                      "msg": "New Company Register"
+                    });
+                    // });
+                  }
+                });
+              }
+            }
+          });
+
+        } else {
+          return res.json({
+            "resCode": "Error",
+            "msg": "Mobile Number Already Register"
+          });
+        }
+      }
+    });
+  }
 });
 
-router.post("/newIti", function(req, res) {
+router.post("/newIti", function(req, res, next) {
   console.log(req.body);
+  if (req.body.Key == "Edit") {
+    console.log("EDIT");
+    var sql = 'UPDATE company SET Name = "' + req.body.Name + '",Registration = "' + req.body.Registration + '",Landline = "' + req.body.Landline + '",Email = "' + req.body.Email + '",Website = "' + req.body.Website + '",YOI = "' + req.body.YOI + '", Address ="' + req.body.Address + '",City = "' + req.body.City + '",State = "' + req.body.State + '",District ="' + req.body.District + '", Pincode = "' + req.body.Pincode + '", HR_Name = "' + req.body.HR_Name + '", HR_Email = "' + req.body.HR_Email + '", Logo = "' + req.body.Logo + '" WHERE (HR_Mobile)="' + req.body.HR_Mobile + '"; UPDATE login SET Name = "' + req.body.Name + '" WHERE (User)="' + req.body.HR_Mobile + '"';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        return console.log(err);
+      } else {
+        return res.json({
+          "resCode": "OK",
+          "msg": "Update Details successfully!"
+        });
+      }
+    });
+  } else {
   connection.query('SELECT * FROM login WHERE User = "' + req.body.TPO_Mobile + '"', function(err, result) {
     if (err) {
       return next(err);
@@ -361,6 +405,7 @@ router.post("/newIti", function(req, res) {
       }
     }
   });
+}
 });
 
 router.post('/aboutMe', function(req, res, next) {
@@ -434,7 +479,7 @@ router.post('/aboutMe', function(req, res, next) {
           } else {
             return res.json({
               "resCode": "Error",
-              "msg": "This College Trades List empty"
+              "msg": "This College Data empty Now"
             });
           }
         }

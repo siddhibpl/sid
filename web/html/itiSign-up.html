@@ -4,7 +4,7 @@
   <div class="boxloading"></div>
 </div>
 <!-- For ITI Institute Registration -->
-<form class="container no-padding" id="itiForm" method="post"  novalidate="">
+<form class="container no-padding" id="itiForm" method="post" novalidate="">
   <div id="formITI" class="container containerCss containerCssForm border hide">
     <div class="headerDiv1 backgroundColor">
       <div class="formTitle  border">ITI College Details
@@ -146,10 +146,10 @@
     var file = document.getElementById('itiLogo').files[0];
     var itiLogo = $('#itiLogo').val();
     var reader = new FileReader();
-reader.readAsText(file, 'UTF-8');
-reader.onload = shipOff;
-var trade = JSON.stringify($('#trade').val());
-// console.log(">>>>",trade);
+    reader.readAsText(file, 'UTF-8');
+    reader.onload = shipOff;
+    var trade = JSON.stringify($('#trade').val());
+    // console.log(">>>>",trade);
     console.log(itiLogo);
     console.log(file.name);
     newIti = {
@@ -177,17 +177,40 @@ var trade = JSON.stringify($('#trade').val());
     if ($('#checkBoxFinal').prop('checked') == true) {
       var newIti = sessiongetItem("newIti");
       console.log(newIti);
+      if ((secret == null) || (secret == "") || (secret == undefined)) {} else {
+        if (secret.Key == "edit") {
+          newIti.Key = "Edit";
+        }
+      }
+      console.log(newIti);
+
       $.when(Posthandler("/route/newIti", newIti, true)).done(function(res) {
         if (res.resCode == 'OK') {
           console.log(res);
           sessionremoveItem("newIti");
-          swal(res.resCode, res.msg, "success");
-          window.location.replace("../login.html");
+          swal({
+              title: res.resCode,
+              text: res.msg,
+              type: "success"
+            },
+            function() {
+              swal.close();
+              var x = sessionremoveItem("secret");
+              console.log(x);
+              window.location.replace("../login.html");
+            });
         } else {
-          swal("Error!", res.msg, "error");
-          // sessionremoveItem("newIti");
-          $('.firstSubmitButtonIti').removeClass('hide');
-          $('.finalSubmitButtonIti').addClass('hide');
+          swal({
+              title: res.resCode,
+              text: res.msg,
+              type: "error"
+            },
+            function() {
+              swal.close();
+              $('#itiTPOMobile').focus().select();
+              $('.firstSubmitButtonIti').removeClass('hide');
+              $('.finalSubmitButtonIti').addClass('hide');
+            });
         }
       });
     } else {
@@ -198,5 +221,5 @@ var trade = JSON.stringify($('#trade').val());
   function shipOff(event) {
     var fileName = document.getElementById('itiLogo').files[0].name; //Should be 'picture.jpg'
     console.log(fileName);
-}
+  }
 </script>

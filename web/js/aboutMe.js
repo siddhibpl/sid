@@ -7,6 +7,7 @@ function aboutMeFunction() {
   $('.anchPara').addClass('hide');
   $('.tablecontainerDiv').removeClass('hide');
   $('.editDetails').removeClass('hide');
+  $('.bodyloading').removeClass('hide');
   aboutMe = {
     "Role": urole,
     "Name": uname,
@@ -34,6 +35,7 @@ function aboutMeFunction() {
         $("#aboutMEeTable tbody").append(body);
       });
       create_DatatableAboutMe('#aboutMEeTable');
+      $('.bodyloading').addClass('hide');
       viewMoreFunction(arr, login);
     } else {
       swal("Error!", res.msg, "error");
@@ -45,6 +47,7 @@ function aboutMeFunction() {
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = 'dashboard.html';
       });
   });

@@ -1,8 +1,9 @@
 function totalCompanyFunction() {
   $('.anchLegend').html("Total Companies");
   $('.anchPara').addClass('hide');
-  $('.tablecontainerDiv').removeClass('hide');  
+  $('.tablecontainerDiv').removeClass('hide');
   $('.editDetails').addClass('hide');
+  $('.bodyloading').removeClass('hide');
   var totalCompany = {};
   $.when(Gethandler("/route/totalCompany", totalCompany, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -25,6 +26,7 @@ function totalCompanyFunction() {
         $("#totalCompanyTable tbody").append(body);
       });
       create_DatatableTOtalCompany('#totalCompanyTable');
+      $('.bodyloading').addClass('hide');
       viewMoreFunctionForCompany(arr);
     } else {
       swal("Error!", res.msg, "error");
@@ -36,6 +38,7 @@ function totalCompanyFunction() {
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = 'dashboard.html';
       });
   });

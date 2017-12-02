@@ -3,6 +3,7 @@ function totalCollegeFunction(){
   $('.anchPara').addClass('hide');
   $('.tablecontainerDiv').removeClass('hide');
   $('.editDetails').addClass('hide');
+  $('.bodyloading').removeClass('hide');
   var totalCollege = {};
   $.when(Gethandler("/route/totalCollege", totalCollege, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -23,6 +24,7 @@ function totalCollegeFunction(){
         $("#totalCollegeTable tbody").append(body);
       });
       create_DatatableTOtalCollege('#totalCollegeTable');
+      $('.bodyloading').addClass('hide');
       viewMoreFunctionForCollege(arr);
     } else {
       swal("Error!", res.msg, "error");
@@ -34,6 +36,7 @@ function totalCollegeFunction(){
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = 'dashboard.html';
       });
   });

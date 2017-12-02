@@ -21,6 +21,7 @@
   <link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="static/css/sweetalert.css" />
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/custom_Media.css">
   <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
 
 </head>
@@ -36,9 +37,16 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a id="dashboard" class="nav-link dashboard listCom active">Dashboard</a></li>
         <li class="nav-item"><a id="addNewUser" class="nav-link addNewUser hide listCom">Add New User</a></li>
-        <li class="nav-item"><a id="help" class="nav-link help listCom" href="#contact-form">Contact Us</a></li>
+        <li class="nav-item"><a id="help" class="nav-link help listCom">Contact Us</a></li>
         <li class="nav-item"><a id="profile" class="nav-link profile listCom" data-toggle="modal" data-target="#exampleModalLong">Profile</a></li>
         <li class="nav-item"><a id="logout" class="nav-link logout listCom">Logout</a></li>
+      </ul>
+      <ul class="social pullRightCustom">
+        <li class="facebook"><a href="#" data-toggle="tooltip" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+        <li class="twitter"><a href="#" data-toggle="tooltip" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+        <li class="google+"><a href="#" data-toggle="tooltip" title="" data-original-title="Google"><i class="fa fa-google-plus"></i></a></li>
+        <li class="linkedin"><a href="#" data-toggle="tooltip" title="" data-original-title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+        <li class="rss"><a href="#" data-toggle="tooltip" title="" data-original-title="Rss"><i class="fa fa-rss"></i></a></li>
       </ul>
     </div>
   </nav>
@@ -59,41 +67,11 @@
           <div class="row no-margin no-padding">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-12 no-padding">
               <legend class="anchLegend"></legend>
-              <div class="anchPara no-margin no-padding"></div>
+              <div class="anchPara no-margin paddingAnchPara iti-DivCen iti-DivBod"></div>
             </div>
-
-            <!-- <div class="table-responsive col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-12 table-bordered no-padding myTableCss"> -->
-              <!-- <table class="table table-striped"> -->
-              <div id="tablecontainerDiv" class="tableDataDiv tablecontainerDiv">
-                <!-- <table id="example" class="display" width="100%" cellspacing="0">
-                  <thead>
-                  <tr>
-                    <th class="headerID">ID</th>
-                    <th class="headerName">Name</th>
-                    <th class="headerArea">Area</th>
-                    <th class="headerDetails">Details</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th class="headerID">ID</th>
-                    <th class="headerName">Name</th>
-                    <th class="headerArea">Area</th>
-                    <th class="headerDetails">Details</th>
-                  </tr>
-                </tfoot>
-                <tbody id="tableBody">
-                </tbody>
-              </table>
-            </div> -->
-
-<!-- <section class='content'><div class='boxC'><table id='employee_listTable' class='cell-border display employeeListTable_header hide'  cellspacing=0 width=100%><thead class='leaveTable_header'><tr><th>Employee No</th><th>Employee Name</th><th>Contact No</th><th>Designation</th><th>Email ID</th><th>Status</th><th>Date Of Joining</th><th>Supervisor</th><th>Edit</th></tr></thead><tbody class='employeeListTable_body'></tbody></table></div></section> -->
-
-
+          <div id="tablecontainerDiv" class="tableDataDiv tablecontainerDiv">
           </div>
         </div>
-
-
       </div>
       <!-- chet with us -->
       <div class="myCard viewDetailsDiv">
@@ -138,8 +116,10 @@
       <!-- contact us closed -->
     </div>
   </div>
-  <!-- Modal -->
-
+  <!-- back-to-top -->
+  <div id="back-top" style="display: block;">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i> <a href="#top"> Back to Top</a>
+  </div>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -177,6 +157,7 @@
   <script type="text/javascript" src="static/js/sweetalert.min.js"></script>
   <script type="text/javascript" src="static/js/moment.min.js"></script>
   <script type="text/javascript" src="js/storage.js"></script>
+  <script type="text/javascript" src="js/backToTopFunction.js"></script>
   <script type="text/javascript" src="js/ajaxHandler.js"></script>
   <script type="text/javascript" src="js/createDataTable.js"></script>
   <script type="text/javascript" src="js/aboutMe.js"></script>

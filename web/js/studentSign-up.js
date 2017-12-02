@@ -1,4 +1,4 @@
-var login = storagegetItem("login");
+var login = sessiongetItem("login");
 console.log(login);
 if ((login == null) || (login == "") || (login == undefined)) {
   $('.adminRedioDiv').addClass('hide');

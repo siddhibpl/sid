@@ -69,6 +69,10 @@
   padding: 5px;
 }
 
+.paddingAnchPara {
+  padding: 15px 5px;
+}
+
 .padding5 {
   padding: 5px 0px !important;
 }
@@ -198,7 +202,7 @@
 /*sign up for container*/
 
 .containerload {
-  min-height: 422px !important;
+  min-height: 422px;
 }
 
 .login-page {
@@ -392,6 +396,7 @@
 
 .nav-item a:hover {
   color: #DFE4ED;
+  cursor: pointer;
 }
 
 .activeA {
@@ -614,6 +619,10 @@ select option {
   cursor: pointer;
 }
 
+.editrow:hover {
+  text-decoration: underline;
+}
+
 #viewMoreTable tr th {
   font-size: 10px;
   text-align: center;
@@ -624,15 +633,50 @@ select option {
   text-align: center;
 }
 
-#viewMoreTable tr:nth-child(even) {background-color: #f2f2f2;}
-
-#viewMoreTable tr:hover {background-color: #f2e2e2;}
-
-.leftMargin0{
-  margin-left: 0px !important;
-  left:0px;
+#viewMoreTable tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.padding5Top{
+#viewMoreTable tr:hover {
+  background-color: #f2e2e2;
+}
+
+.leftMargin0 {
+  margin-left: 0px !important;
+  left: 0px;
+}
+
+.padding5Top {
   padding: 5px 15px;
+}
+
+/*###$$$-- back-to-top -$$$####*/
+
+#back-top {
+  position: fixed;
+  bottom: 50%;
+  margin-left: 0;
+  right: 3px;
+  z-index: 500;
+  border: 1px solid #000;
+  width: auto;
+  padding: 10px;
+  background-color: darkolivegreen;
+  color: #fff;
+}
+
+#back-top a {
+  display: none;
+}
+
+#back-top:hover a {
+  display: inline-block;
+}
+
+#back-top a:link {
+  color: #fff !important;
+}
+
+#back-top a:visited {
+  color: #fff !important;
 }

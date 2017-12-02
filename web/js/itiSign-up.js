@@ -1,12 +1,56 @@
-var login = storagegetItem("login");
+var secret = sessiongetItem("secret");
+console.log(secret);
+var login = sessiongetItem("login");
 console.log(login);
-if ((login == null) || (login == "") || (login == undefined)) {
-  $('.adminRedioDiv').addClass('hide');
-  $('.bodyloading').addClass('hide');
-  $('#formITI').removeClass('hide');
+if ((secret == null) || (secret == "") || (secret == undefined)) {
+  if ((login == null) || (login == "") || (login == undefined)) {
+    $('.adminRedioDiv').addClass('hide');
+    $('.bodyloading').addClass('hide');
+    $('#formITI').removeClass('hide');
+  } else {
+    $('.bodyloading').addClass('hide');
+    $('#formITI').removeClass('hide');
+  }
 } else {
-  $('.bodyloading').addClass('hide');
-  $('#formITI').removeClass('hide');
+  $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
+    if (res.resCode == 'OK') {
+      var arr = {};
+      arr = res.results;
+      console.log(">>>>>>formCompany>>>res", res);
+      $('.containerload').css('min-height', '550px');
+      $('#itiName').val(arr[0]["Name"]);
+      $('#itiReg').val(arr[0]["Registration"]);
+      $('#itiLand').val(arr[0]["Landline"]);
+      $('#itiEmail').val(arr[0]["Email"]);
+      $('#itiMobile').val(arr[0]["Mobile"]);
+      // $('input[name=itiType]:checked').val(arr[0]["YOI"]);
+      $("input[name=itiType][value=" + arr[0]["Type"] + "]").attr('checked', 'checked');
+      $('#itiAddress').val(arr[0]["Address"]);
+      $('#itiCity').val(arr[0]["City"]);
+      $('#itiState').val(arr[0]["State"]);
+      $('#itiPincode').val(arr[0]["Pincode"]);
+      $('#itiDistrict').val(arr[0]["District"]);
+      // $('#datepicker').val(moment(arr["dob"]).format("YYYY-MM-DD"));
+      $('#itiTPOName').val(arr[0]["TPO_Name"]);
+      $('#itiTPOEmail').val(arr[0]["TPO_Email"]);
+      $('#itiTPOMobile').val(arr[0]["TPO_Mobile"]);
+      $("#itiTPOMobile").attr("disabled", "disabled");
+
+      // $('.bodyloading').addClass('hide');
+      $('#formITI').removeClass('hide');
+    } else {
+      swal("Error!", res.msg, "error");
+    }
+  }).fail(function() {
+    swal({
+        title: "Error!",
+        text: "fail to connect",
+        type: "error"
+      },
+      function() {
+        window.location.href = '../login.html';
+      });
+  });
 }
 $.validator.addMethod("onlyLatters", function(value) {
   return /^[a-zA-Z\s]+$/i.test(value)
@@ -211,6 +255,7 @@ $(document).ready(function() {
       $('.btn-group').addClass('form-control no-padding');
       $('.multiselect').addClass('width100');
       $('.multiselect-container').addClass('width100');
+      multiSelectorCheck();
     } else {
       console.log(res.results);
     }
@@ -218,3 +263,28 @@ $(document).ready(function() {
     swal("Error!", "sorry unable to load Trade list. please check your internet connection", "error");
   });
 });
+
+function multiSelectorCheck() {
+  if (secret.Key == "edit") {
+    $.when(Posthandler("/route/getCollegeWiseTradeLists", {
+      "Name": login.Name
+    }, true)).done(function(res) {
+      if (res.resCode == 'OK') {
+        console.log("getCollegeWiseTradeLists>>>>>>>>>>", res);
+        $("#trade").append('<option selected disabled>None</option>');
+        for (var i = 0; i < res.results.length; i++) {
+          console.log(res.results[i]['Trade']);
+          // $("#trade").append('<option value="' + res.results[i]['Trade'] + '">' + res.results[i]['Trade'] + '</option>');
+          // $("input[name=trade][value=" + res.results[i]['Trade'] + "]").attr('checked', 'checked');
+          $("#trade option[value=" + res.results[i]['Trade'] + "]").prop('selected', true);
+        }
+        $('#trade').multiselect('refresh');
+        $('.bodyloading').addClass('hide');
+      } else {
+        swal("Error!", res.msg, "error");
+      }
+    }).fail(function() {
+      swal("Error!", "sorry unable to load College Wise Trade list. please check your internet connection", "error");
+    });
+  }
+};

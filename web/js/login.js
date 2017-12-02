@@ -27,7 +27,10 @@ $(document).ready(function() {
     $('.nav-item').removeClass("active")
     $(this).addClass("active");
   });
-
+  $('.contactUs').click(function() {
+    $('html,body').animate({
+    scrollTop: $("#contact-form").offset().top}, 800);
+  });
   /* Password Image settings*/
   $('.img').addClass('hide');
   $('#password').hover(function() {
@@ -164,6 +167,8 @@ $(document).ready(function() {
       $(element).parents(".col-sm-5").addClass("has-success").removeClass("has-error");
     }
   });
+  // Back to Top
+backToTop();
 });
 
 function mDown() {

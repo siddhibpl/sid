@@ -1,12 +1,55 @@
-var login = storagegetItem("login");
+var secret = sessiongetItem("secret");
+console.log(secret);
+var login = sessiongetItem("login");
 console.log(login);
-if ((login == null) || (login == "") || (login == undefined)) {
-  $('.adminRedioDiv').addClass('hide');
-  $('.bodyloading').addClass('hide');
-  $('#formCompany').removeClass('hide');
-} else {
-  $('.bodyloading').addClass('hide');
-  $('#formCompany').removeClass('hide');
+if((secret == null)||(secret == "")||(secret == undefined)){
+  if ((login == null) || (login == "") || (login == undefined)) {
+    $('.adminRedioDiv').addClass('hide');
+    $('.bodyloading').addClass('hide');
+    $('#formCompany').removeClass('hide');
+  } else {
+    $('.bodyloading').addClass('hide');
+    $('#formCompany').removeClass('hide');
+  }
+}else{
+  $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
+    if (res.resCode == 'OK') {
+      var arr = {};
+      arr = res.results;
+      console.log(">>>>>>formCompany>>>res",res);
+      $('.containerload').css('min-height', '550px');
+      $('#comName').val(arr[0]["Name"]);
+      $('#comReg').val(arr[0]["Registration"]);
+      $('#comLand').val(arr[0]["Landline"]);
+      $('#comEmail').val(arr[0]["Email"]);
+      $('#comWeb').val(arr[0]["Website"]);
+      $('#comYear').val(arr[0]["YOI"]);
+      $('#comAddress').val(arr[0]["Address"]);
+      $('#comCity').val(arr[0]["City"]);
+      $('#comState').val(arr[0]["State"]);
+      $('#comPincode').val(arr[0]["Pincode"]);
+      $('#comDistrict').val(arr[0]["District"]);
+            // $('#datepicker').val(moment(arr["dob"]).format("YYYY-MM-DD"));
+      $('#comHRName').val(arr[0]["HR_Name"]);
+      $('#comHREmail').val(arr[0]["HR_Email"]);
+      $('#comHRMobile').val(arr[0]["HR_Mobile"]);
+      $("#comHRMobile").attr("disabled", "disabled");
+
+      $('.bodyloading').addClass('hide');
+      $('#formCompany').removeClass('hide');
+    } else {
+      swal("Error!", res.msg, "error");
+    }
+  }).fail(function() {
+    swal({
+        title: "Error!",
+        text: "fail to connect",
+        type: "error"
+      },
+      function() {
+        window.location.href = '../login.html';
+      });
+  });
 }
 $.validator.addMethod("onlyLatters", function(value) {
   return /^[a-zA-Z\s]+$/i.test(value)

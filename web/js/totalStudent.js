@@ -3,7 +3,7 @@ function totalStudentFunction() {
   $('.anchLegend').html("Total Student");
   $(".anchPara").load("html/totalStudentValidation.html");
   $('.anchPara').removeClass('hide');
-  $('.tablecontainerDiv').addClass('hide');
+  $('.tablecontainerDiv').html('');
   $('.editDetails').addClass('hide');
   var obj = {};
 if(login.Role != "College"){

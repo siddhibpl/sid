@@ -1,13 +1,48 @@
-var login = storagegetItem("login");
+var secret = sessiongetItem("secret");
+console.log(secret);
+var login = sessiongetItem("login");
 console.log(login);
-if ((login == null) || (login == "") || (login == undefined)) {
-  $('.adminRedioDiv').addClass('hide');
-  $('.bodyloading').addClass('hide');
-  $('#formAdmin').removeClass('hide');
-} else {
-  $('.bodyloading').addClass('hide');
-  $('#formAdmin').removeClass('hide');
+if((secret == null)||(secret == "")||(secret == undefined)){
+  if ((login == null) || (login == "") || (login == undefined)) {
+    $('.bodyloading').addClass('hide');
+    $('#formAdmin').removeClass('hide');
+  } else {
+    $('.bodyloading').addClass('hide');
+    $('#formAdmin').removeClass('hide');
+  }
+}else{
+  $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
+    if (res.resCode == 'OK') {
+      var arr = {};
+      arr = res.results;
+      console.log(">>>>>>admin>>>res",res);
+      $('.containerload').css('min-height', '550px');
+      $('#adminName').val(arr[0]["Name"]);
+      $('#adminEmail').val(arr[0]["Email"]);
+      $('#adminMobile').val(arr[0]["Mobile"]);
+      // $('#datepicker').val(moment(arr["dob"]).format("YYYY-MM-DD"));
+      $('#adminAddress').val(arr[0]["Address"]);
+      $('#adminCity').val(arr[0]["City"]);
+      $('#adminPincode').val(arr[0]["Pincode"]);
+      $("#adminMobile").attr("disabled", "disabled");
+
+      $('.bodyloading').addClass('hide');
+      $('#formAdmin').removeClass('hide');
+    } else {
+      swal("Error!", res.msg, "error");
+    }
+  }).fail(function() {
+    swal({
+        title: "Error!",
+        text: "fail to connect",
+        type: "error"
+      },
+      function() {
+        window.location.href = '../login.html';
+      });
+  });
 }
+
 $.validator.addMethod("onlyLatters", function(value) {
   return /^[a-zA-Z\s]+$/i.test(value)
 });
