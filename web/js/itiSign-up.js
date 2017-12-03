@@ -265,7 +265,7 @@ $(document).ready(function() {
 });
 
 function multiSelectorCheck() {
-  if (secret.Key == "edit") {
+  if (secret.Key == "Edit") {
     $.when(Posthandler("/route/getCollegeWiseTradeLists", {
       "Name": login.Name
     }, true)).done(function(res) {

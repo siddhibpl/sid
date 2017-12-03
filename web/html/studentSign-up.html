@@ -130,12 +130,12 @@
     <div class="headerDiv1 backgroundColor">
       <div class="formTitle border">
         <div class="row no-margin headerDiv2 padding5">
-          <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8 no-padding registration">
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 no-padding registration">
             <div class="registrationDiv hide"></div>
           </div>
           <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 no-padding registration firstRegistration">
-            <button type="submit" class="btn btn-secondary btn-sm firstSubmitButtonStudent" name="signup" value="Sign up">Submit</button>
-            <button type="button" class="btn btn-secondary btn-sm submitButton finalSubmitButtonStudent hide" name="button">Submit</button>
+            <button type="submit" class="btn btn-primary btn-sm firstSubmitButtonStudent" name="signup" value="Sign up">Submit</button>
+            <button type="button" class="btn btn-primary btn-sm submitButton finalSubmitButtonStudent hide" name="button">Submit</button>
           </div>
         </div>
       </div>
@@ -208,6 +208,12 @@
   $(".finalSubmitButtonStudent").on("click", function() {
     if ($('#checkBoxFinal').prop('checked') == true) {
       var newStudent = sessiongetItem("newStudent");
+      console.log(newStudent);
+      if ((secret == null) || (secret == "") || (secret == undefined)) {} else {
+        if (secret.Key == "Edit") {
+          newStudent.Key = "Edit";
+        }
+      }
       console.log(newStudent);
       $.when(Posthandler("/route/newStudent", newStudent, true)).done(function(res) {
         if (res.resCode == 'OK') {

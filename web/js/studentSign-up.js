@@ -1,12 +1,60 @@
+var secret = sessiongetItem("secret");
+console.log(secret);
 var login = sessiongetItem("login");
 console.log(login);
-if ((login == null) || (login == "") || (login == undefined)) {
-  $('.adminRedioDiv').addClass('hide');
-  $('.bodyloading').addClass('hide');
-  $('#formStudent').removeClass('hide');
+if ((secret == null) || (secret == "") || (secret == undefined)) {
+  if ((login == null) || (login == "") || (login == undefined)) {
+    $('.adminRedioDiv').addClass('hide');
+    $('.bodyloading').addClass('hide');
+    $('#formStudent').removeClass('hide');
+  } else {
+    $('.bodyloading').addClass('hide');
+    $('#formStudent').removeClass('hide');
+  }
 } else {
-  $('.bodyloading').addClass('hide');
-  $('#formStudent').removeClass('hide');
+  $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
+    if (res.resCode == 'OK') {
+      var arr = {};
+      arr = res.results;
+      sessionsetItem("secretData",arr);
+      console.log(">>>>>>formStudent>>>res", res);
+      $('.containerload').css('min-height', '550px');
+      $('#studentName').val(arr[0]["Name"]);
+      $('#studentFather').val(arr[0]["Father"]);
+      $('#studentMother').val(arr[0]["Mother"]);
+      $('#studentEmail').val(arr[0]["Email"]);
+      $('#date').val(moment(arr[0]["Dob"]).format("YYYY-MM-DD"));
+      $('#studentAddress').val(arr[0]["Address"]);
+      $('#studentCity').val(arr[0]["City"]);
+      $('#studentState').val(arr[0]["State"]);
+      $('#studentPin').val(arr[0]["Pincode"]);
+      $('#studentMobile').val(arr[0]["Mobile"]);
+      // $('#datepicker').val(moment(arr["dob"]).format("YYYY-MM-DD"));
+      $('#studentCollege').val(arr[0]["College"]);
+      $('#trade').val(arr[0]["Trade"]);
+      $('#studentPassY').val(arr[0]["POY"]);
+      $("#studentPer").val(arr[0]["Per"]);
+      $('#studentHSPer').val(arr[0]["HSPer"]);
+      $('#studentExpCom').val(arr[0]["LastComp"]);
+      $("#studentExpYear").val(arr[0]["TPO_Mobile"]);
+      $("input[name=sex][value=" + arr[0]["Sex"] + "]").attr('checked', 'checked');
+      $("input[name=jobs][value=" + arr[0]["Job"] + "]").attr('checked', 'checked');
+      $("#studentMobile").attr("disabled", "disabled");
+      $('.bodyloading').addClass('hide');
+      $('#formStudent').removeClass('hide');
+    } else {
+      swal("Error!", res.msg, "error");
+    }
+  }).fail(function() {
+    swal({
+        title: "Error!",
+        text: "fail to connect",
+        type: "error"
+      },
+      function() {
+        window.location.href = '../login.html';
+      });
+  });
 }
 $.validator.addMethod("onlyLatters", function(value) {
   return /^[a-zA-Z\s]+$/i.test(value)
@@ -224,7 +272,6 @@ $(document).ready(function() {
   $('input:radio[name="jobs"]').change(function() {
     if ($(this).val() == 'Yes') {
       $('.showExperienceCheckbox').removeClass('hide');
-
     } else {
       $('.showExperienceCheckbox').addClass('hide');
     }
@@ -278,6 +325,7 @@ $(document).ready(function() {
       for (var i = 0; i < res.results.length; i++) {
         $("#studentExpYear").append('<option value="' + res.results[i]['Id'] + '">' + res.results[i]['experience'] + '</option>');
       }
+      extraInputWhileUpdateStudent();
     } else {
       console.log(res.results);
     }
@@ -285,3 +333,36 @@ $(document).ready(function() {
     swal("Error!", "sorry unable to load Experience list. please check your internet connection", "error");
   });
 });
+function extraInputWhileUpdateStudent() {
+    if (secret.Key == "Edit") {
+      alert("cccc");
+      var secretData = sessiongetItem("secretData");
+      console.log(secretData[0]['College']);
+      $("#studentCollege option[value=" + secretData[0]['College'] + "]").prop('selected', true);
+      $.when(Posthandler("/route/getCollegeWiseTradeLists", {
+        "Name": secretData[0]['College']
+      }, true)).done(function(res) {
+        if (res.resCode == 'OK') {
+          $("#trade").append('<option selected disabled>None</option>');
+          for (var i = 0; i < res.results.length; i++) {
+            $("#trade").append('<option value="' + res.results[i]['Trade'] + '">' + res.results[i]['Trade'] + '</option>');
+          }
+          $("#trade option[value=" + secretData[0]['Trade'] + "]").prop('selected', true);
+          $("#studentCollege").attr("disabled", "disabled");
+          if(secretData[0]['Job'] == "Yes"){
+            if(secretData[0]['Experience'] != "Fresher"){
+              $('input[name="checkedEx"]').prop("checked", true);
+              $('.showExperienceDiv').removeClass('hide');
+            }
+            $('.showExperienceCheckbox').removeClass('hide');
+            $("#studentExpYear option[value=" + secretData[0]['ExpYear'] + "]").prop('selected', true);
+            // }
+          }
+        } else {
+          console.log(res.results);
+        }
+      }).fail(function() {
+        swal("Error!", "sorry unable to load College Wise Trade list. please check your internet connection", "error");
+      });
+    }
+}

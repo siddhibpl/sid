@@ -116,7 +116,7 @@ function viewMoreFunctionForStudent1(arr) {
   var viewMore = '<table style="width:100%" id="viewMoreTable" class="table-striped table-bordered"></table>';
   console.log(arr);
   $(".editrow").click(function(e) {
-    var Name = $(this).parents('tr').find('td:nth-child(2)').html();
+    var Name = $(this).parents('tr').find('td:first').html();
     console.log(Name);
     $('#exampleModalLongTitle').html("View More About " + Name);
     $('.modal-body').html(viewMore);

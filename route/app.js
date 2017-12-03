@@ -114,7 +114,7 @@ router.get('/getExperienceLists', function(req, res, next) {
 });
 
 router.post('/getCollegeWiseTradeLists', function(req, res, next) {
-  console.log("getCollegeWiseTradeLists>>>>>",req.body);
+  console.log("getCollegeWiseTradeLists>>>>>", req.body);
   connection.query('SELECT * FROM collegewisetrade where (Name) = "' + req.body.Name + '"', function(err, result, feild) {
     if (err) {
       return next(err);
@@ -230,46 +230,61 @@ router.post("/newAdmin", function(req, res, next) {
 
 router.post("/newStudent", function(req, res, next) {
   console.log(req.body);
-  connection.query('SELECT * FROM login WHERE User = "' + req.body.Mobile + '"', function(err, result) {
-    if (err) {
-      return next(err);
-    } else {
-      if (result == '') {
-        connection.query('SELECT * FROM student WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
-          if (err) {
-            return next(err);
-          } else {
-            if (result1 != '') {
-              console.log(result1);
-              return res.json({
-                "resCode": "Error",
-                "msg": "User Already Register"
-              });
-            } else {
-              var sql = 'INSERT INTO student(Name,Father,Mother,Email,Dob,Sex,Address,City,State,Pincode,Mobile,College,Trade,POY,Per,HSPer,Job,Experience,LastComp,ExpYear,Date) VALUES ("' + req.body.Name + '","' + req.body.Father + '","' + req.body.Mother + '","' + req.body.Email + '","' + req.body.Dob + '","' + req.body.Sex + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.State + '","' + req.body.Pincode + '","' + req.body.Mobile + '","' + req.body.College + '","' + req.body.Trade + '","' + req.body.POY + '","' + req.body.Per + '","' + req.body.HSPer + '","' + req.body.Job + '","' + req.body.Experience + '","' + req.body.LastComp + '","' + req.body.ExpYear + '","' + date + '");INSERT INTO login VALUES( "Student","' + req.body.Mobile + '", "12345", "' + req.body.Name + '", "' + date + '")';
-              connection.query(sql, function(err, result2) {
-                if (err) {
-                  return next(err);
-                } else {
-                  console.log("result2");
-                  return res.json({
-                    "resCode": "OK",
-                    "msg": "New Student Register"
-                  });
-                }
-              });
-            }
-          }
-        });
-
+  if (req.body.Key == "Edit") {
+    console.log("EDIT");
+    var sql = 'UPDATE student SET Name = "' + req.body.Name + '",Father = "' + req.body.Father + '",Mother = "' + req.body.Mother + '",Email = "' + req.body.Email + '",Dob = "' + req.body.Dob + '",Sex = "' + req.body.Sex + '", Address ="' + req.body.Address + '",City = "' + req.body.City + '",State = "' + req.body.State + '", Pincode = "' + req.body.Pincode + '", College = "' + req.body.College + '", Trade = "' + req.body.Trade + '", POY = "' + req.body.POY + '", Per = "' + req.body.Per + '", HSPer = "' + req.body.HSPer + '", Job = "' + req.body.Job + '", Experience = "' + req.body.Experience + '", LastComp = "' + req.body.LastComp + '", ExpYear = "' + req.body.ExpYear + '" WHERE (Mobile)="' + req.body.Mobile + '"; UPDATE login SET Name = "' + req.body.Name + '" WHERE (User)="' + req.body.Mobile + '"';
+    connection.query(sql, function(err, result) {
+      if (err) {
+        return console.log(err);
       } else {
         return res.json({
-          "resCode": "Error",
-          "msg": "Mobile Number Already Register"
+          "resCode": "OK",
+          "msg": "Update Details successfully!"
         });
       }
-    }
-  });
+    });
+  } else {
+    connection.query('SELECT * FROM login WHERE User = "' + req.body.Mobile + '"', function(err, result) {
+      if (err) {
+        return next(err);
+      } else {
+        if (result == '') {
+          connection.query('SELECT * FROM student WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
+            if (err) {
+              return next(err);
+            } else {
+              if (result1 != '') {
+                console.log(result1);
+                return res.json({
+                  "resCode": "Error",
+                  "msg": "User Already Register"
+                });
+              } else {
+                var sql = 'INSERT INTO student(Name,Father,Mother,Email,Dob,Sex,Address,City,State,Pincode,Mobile,College,Trade,POY,Per,HSPer,Job,Experience,LastComp,ExpYear,Date) VALUES ("' + req.body.Name + '","' + req.body.Father + '","' + req.body.Mother + '","' + req.body.Email + '","' + req.body.Dob + '","' + req.body.Sex + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.State + '","' + req.body.Pincode + '","' + req.body.Mobile + '","' + req.body.College + '","' + req.body.Trade + '","' + req.body.POY + '","' + req.body.Per + '","' + req.body.HSPer + '","' + req.body.Job + '","' + req.body.Experience + '","' + req.body.LastComp + '","' + req.body.ExpYear + '","' + date + '");INSERT INTO login VALUES( "Student","' + req.body.Mobile + '", "12345", "' + req.body.Name + '", "' + date + '")';
+                connection.query(sql, function(err, result2) {
+                  if (err) {
+                    return next(err);
+                  } else {
+                    console.log("result2");
+                    return res.json({
+                      "resCode": "OK",
+                      "msg": "New Student Register"
+                    });
+                  }
+                });
+              }
+            }
+          });
+
+        } else {
+          return res.json({
+            "resCode": "Error",
+            "msg": "Mobile Number Already Register"
+          });
+        }
+      }
+    });
+  }
 });
 
 router.post("/newCompany", function(req, res, next) {
@@ -349,67 +364,67 @@ router.post("/newIti", function(req, res, next) {
       }
     });
   } else {
-  connection.query('SELECT * FROM login WHERE User = "' + req.body.TPO_Mobile + '"', function(err, result) {
-    if (err) {
-      return next(err);
-    } else {
-      if (result == '') {
-        connection.query('SELECT * FROM college WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
-          if (err) {
-            return next(err);
-          } else {
-            if (result1 != '') {
-              console.log(result1);
-              return res.json({
-                "resCode": "Error",
-                "msg": "User Already Register"
-              });
-            } else {
-              connection.query('INSERT INTO college(Name,Registration,Landline,Email,Mobile,Type,Address,City,State,Pincode,District,TPO_Name,TPO_Email,TPO_Mobile,Logo,Date) VALUES ("' + req.body.Name + '","' + req.body.Registration + '","' + req.body.Landline + '","' + req.body.Email + '","' + req.body.Mobile + '","' + req.body.Type + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.State + '","' + req.body.Pincode + '","' + req.body.District + '","' + req.body.TPO_Name + '","' + req.body.TPO_Email + '","' + req.body.TPO_Mobile + '","' + req.body.Logo + '","' + date + '")', function(err, result2) {
-                if (err) {
-                  return next(err);
-                } else {
-                  console.log("result2");
-                  connection.query('INSERT INTO login VALUES( "College","' + req.body.TPO_Mobile + '", "12345", "' + req.body.Name + '","' + date + '");INSERT INTO collegenamelist (Name) VALUES("' + req.body.Name + '")', function(err, result3) {
-                    if (err) {
-                      return next(err);
-                    } else {
-                      console.log("result3");
-                      var trade = JSON.parse(req.body.Trade);
-                      trade.forEach(function(x) {
-                        connection.query('INSERT INTO collegewisetrade (Name,Trade) VALUES("' + req.body.Name + '","' + x + '")', function(err, result4) {
-                          if (err) {
-                            return next(err);
-                          } else {
-                            console.log("------");
-                          }
-                        });
-                      });
-                      return res.json({
-                        "resCode": "OK",
-                        "msg": "New ITI College Register"
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          }
-        });
-
+    connection.query('SELECT * FROM login WHERE User = "' + req.body.TPO_Mobile + '"', function(err, result) {
+      if (err) {
+        return next(err);
       } else {
-        return res.json({
-          "resCode": "Error",
-          "msg": "Mobile Number Already Register"
-        });
+        if (result == '') {
+          connection.query('SELECT * FROM college WHERE Name = "' + req.body.Name + '" AND ( City = "' + req.body.City + '" OR Pincode = "' + req.body.Pincode + '")', function(err, result1) {
+            if (err) {
+              return next(err);
+            } else {
+              if (result1 != '') {
+                console.log(result1);
+                return res.json({
+                  "resCode": "Error",
+                  "msg": "User Already Register"
+                });
+              } else {
+                connection.query('INSERT INTO college(Name,Registration,Landline,Email,Mobile,Type,Address,City,State,Pincode,District,TPO_Name,TPO_Email,TPO_Mobile,Logo,Date) VALUES ("' + req.body.Name + '","' + req.body.Registration + '","' + req.body.Landline + '","' + req.body.Email + '","' + req.body.Mobile + '","' + req.body.Type + '","' + req.body.Address + '","' + req.body.City + '","' + req.body.State + '","' + req.body.Pincode + '","' + req.body.District + '","' + req.body.TPO_Name + '","' + req.body.TPO_Email + '","' + req.body.TPO_Mobile + '","' + req.body.Logo + '","' + date + '")', function(err, result2) {
+                  if (err) {
+                    return next(err);
+                  } else {
+                    console.log("result2");
+                    connection.query('INSERT INTO login VALUES( "College","' + req.body.TPO_Mobile + '", "12345", "' + req.body.Name + '","' + date + '");INSERT INTO collegenamelist (Name) VALUES("' + req.body.Name + '")', function(err, result3) {
+                      if (err) {
+                        return next(err);
+                      } else {
+                        console.log("result3");
+                        var trade = JSON.parse(req.body.Trade);
+                        trade.forEach(function(x) {
+                          connection.query('INSERT INTO collegewisetrade (Name,Trade) VALUES("' + req.body.Name + '","' + x + '")', function(err, result4) {
+                            if (err) {
+                              return next(err);
+                            } else {
+                              console.log("------");
+                            }
+                          });
+                        });
+                        return res.json({
+                          "resCode": "OK",
+                          "msg": "New ITI College Register"
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            }
+          });
+
+        } else {
+          return res.json({
+            "resCode": "Error",
+            "msg": "Mobile Number Already Register"
+          });
+        }
       }
-    }
-  });
-}
+    });
+  }
 });
 
 router.post('/aboutMe', function(req, res, next) {
-  console.log(req.body.Role);
+  console.log(req.body);
   switch (req.body.Role) {
     case "Admin":
       console.log("Admin");
@@ -447,7 +462,9 @@ router.post('/aboutMe', function(req, res, next) {
               } else {
                 console.log(result1);
                 if (result[0].ExpYear != 'NA') {
-                  result[0].ExpYear = result1[0].experience;
+                  if (req.body.Key != "Edit") {
+                    result[0].ExpYear = result1[0].experience;
+                  }
                 }
                 return res.json({
                   "resCode": "OK",

@@ -31,9 +31,9 @@ if((secret == null)||(secret == "")||(secret == undefined)){
   }else{
     $('.adminRedioDiv').removeClass('hide');
   }
-}else if(secret.Key == "edit"){
+}else if(secret.Key == "Edit"){
   $('.containerCssHeader').addClass('hide');
-  console.log("If-edit>>>>>>",secret);
+  console.log("If-Edit>>>>>>",secret);
   if(secret.Role == "Admin"){
     console.log("if admin>>",secret);
     $("#containerload").load("adminSign-up.html");
