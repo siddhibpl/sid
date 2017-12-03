@@ -125,7 +125,7 @@ backToTop();
       "Name" : login.Name,
       "Number" : login.Number,
       "Role" : login.Role,
-      "Key" : "edit"
+      "Key" : "Edit"
     };
     console.log(secret);
     sessionsetItem("secret", secret);
