@@ -2,20 +2,27 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var moment = require('moment');
+var config = require('../config/config.js');
 const fileUpload = require('express-fileupload');
 // default options
 router.use(fileUpload());
-
 // var multer  = require('multer')
 // var upload = multer({ dest: 'uploads/' })
-
+console.log(config);
 // mysql connection
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: 'root',
+//   database: 'itijobs',
+//   multipleStatements: true
+// });
 var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'itijobs',
-  multipleStatements: true
+  host: config.mongodb.host,
+  user: config.mongodb.user,
+  password: config.mongodb.password,
+  database: config.mongodb.database,
+  multipleStatements: config.mongodb.multipleStatements
 });
 // mysql connection
 connection.connect(

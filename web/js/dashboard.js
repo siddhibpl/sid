@@ -55,7 +55,8 @@ $(document).ready(function() {
     // $('.listComDetailsDiv').removeClass('hide');
     $('.modal-body').html(x);
     $('html,body').animate({
-    scrollTop: $("#contact-form").offset().top}, 800);
+      scrollTop: $("#contact-form").offset().top
+    }, 800);
   });
   // for profile click function open modal
   $('.profile').click(function() {
@@ -89,7 +90,8 @@ $(document).ready(function() {
     $('.listComA').removeClass('activeA');
     $(this).addClass('activeA');
     $('html,body').animate({
-    scrollTop: $(".viewDetailsDiv").offset().top}, 800);
+      scrollTop: $(".viewDetailsDiv").offset().top
+    }, 800);
   });
   // for Sidebar anch0 click function About ME button
   $('.anch0').click(function() {
@@ -118,15 +120,15 @@ $(document).ready(function() {
     $('#tableBody').html("<tr><td>4,001</td><td>Anita</td><td>Bhopal</td><td>Diploma</td></tr><tr><td>4,002</td><td>Rishabh</td><td>Indore</td><td>PG-Diploma</td></tr><tr><td>4,003</td><td>Ajay</td><td>Vidish</td><td>PG-Diploma</td></tr><tr><td>4,004</td><td>Ravi</td><td>Jabalpur</td><td>ITI</td></tr><tr><td>4,005</td><td>Shivendra</td><td>Indore</td><td>12th</td></tr>");
   });
 
-// Back to Top
-backToTop();
-// editDetails in modal Table for only about me!
-  $('.editDetails').click(function(){
-      secret = {
-      "Name" : login.Name,
-      "Number" : login.Number,
-      "Role" : login.Role,
-      "Key" : "Edit"
+  // Back to Top
+  backToTop();
+  // editDetails in modal Table for only about me!
+  $('.editDetails').click(function() {
+    secret = {
+      "Name": login.Name,
+      "Number": login.Number,
+      "Role": login.Role,
+      "Key": "Edit"
     };
     console.log(secret);
     sessionsetItem("secret", secret);
@@ -210,6 +212,7 @@ backToTop();
     }
   });
 });
+
 function myFunction() {
   var contactName = $('#contactName').val();
   var contactEmail = $('#contactEmail').val();
@@ -227,8 +230,15 @@ function myFunction() {
   $.when(Posthandler("/contact/contactUs", obj, true)).done(function(res) {
     console.log(res);
     if (res.resCode == 'OK') {
-      swal("Ok!", res.msg, "success");
-      window.location.replace("dashboard.html");
+      swal({
+          title: res.resCode,
+          text: res.msg,
+          type: "success"
+        },
+        function() {
+          swal.close();
+          window.location.replace("login.html");
+        });
     } else if (res.resCode == 'Error') {
       swal("Error!", res.msg, "error");
       window.location.replace("dashboard.html");

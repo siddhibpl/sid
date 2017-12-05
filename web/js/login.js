@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#gallery").unitegallery();
+  // $("#gallery").unitegallery();
   var obj;
   $.when(Gethandler("/route/total", obj, true)).done(function(res) {
     console.log(res);
@@ -30,7 +30,8 @@ $(document).ready(function() {
   });
   $('.contactUs').click(function() {
     $('html,body').animate({
-    scrollTop: $("#contact-form").offset().top}, 800);
+      scrollTop: $("#contact-form").offset().top
+    }, 800);
   });
   /* Password Image settings*/
   $('.img').addClass('hide');
@@ -169,7 +170,7 @@ $(document).ready(function() {
     }
   });
   // Back to Top
-backToTop();
+  backToTop();
 });
 
 function mDown() {
@@ -234,8 +235,15 @@ function contactForm() {
   $.when(Posthandler("/contact/contactUs", obj, true)).done(function(res) {
     console.log(res);
     if (res.resCode == 'OK') {
-      swal("Ok!", res.msg, "success");
-      window.location.replace("login.html");
+      swal({
+          title: res.resCode,
+          text: res.msg,
+          type: "success"
+        },
+        function() {
+          swal.close();
+          window.location.replace("login.html");
+        });
     } else if (res.resCode == 'Error') {
       swal("Error!", res.msg, "error");
     }
