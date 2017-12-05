@@ -29,7 +29,6 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
       $('#studentState').val(arr[0]["State"]);
       $('#studentPin').val(arr[0]["Pincode"]);
       $('#studentMobile').val(arr[0]["Mobile"]);
-      // $('#datepicker').val(moment(arr["dob"]).format("YYYY-MM-DD"));
       $('#studentCollege').val(arr[0]["College"]);
       $('#trade').val(arr[0]["Trade"]);
       $('#studentPassY').val(arr[0]["POY"]);
@@ -43,7 +42,15 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
       $('.bodyloading').addClass('hide');
       $('#formStudent').removeClass('hide');
     } else {
-      swal("Error!", res.msg, "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   }).fail(function() {
     swal({
@@ -52,22 +59,11 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = '../login.html';
       });
   });
 }
-$.validator.addMethod("onlyLatters", function(value) {
-  return /^[a-zA-Z\s]+$/i.test(value)
-});
-$.validator.addMethod("emailformat", function(value) {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
-});
-$.validator.addMethod("validDate", function(value) {
-  return moment(value,'YYYY-MM-DD',true).isValid()
-});
-var number = /^[0-9]+$/;
-var letters = /^[a-zA-Z\s]+$/;
-var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 $(document).ready(function() {
   $('#studentName').focus().select();
@@ -76,22 +72,22 @@ $(document).ready(function() {
       studentName: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       studentFather: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       studentMother: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       studentEmail: {
         required: true,
         emailformat: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       date: {
         required: true,
@@ -103,17 +99,17 @@ $(document).ready(function() {
       },
       studentAddress: {
         required: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       studentCity: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       studentState: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       studentPin: {
         required: true,
@@ -129,7 +125,7 @@ $(document).ready(function() {
       },
       studentCollege: {
         required: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       trade: {
         required: true,
@@ -157,23 +153,23 @@ $(document).ready(function() {
     messages: {
       studentName: {
         required: "Please enter Your Name",
-        onlyLatters: "Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        onlyLatters: "Name should be text only( . and Special characters are not allowed)",
+        maxlength: "Field should not more then 50 characters",
       },
       studentFather: {
         required: "Please provide Your Father's Name",
-        onlyLatters: "Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        onlyLatters: "Name should be text only( . and Special characters are not allowed)",
+        maxlength: "Field should not more then 50 characters",
       },
       studentMother: {
         required: "Please provide Your Mother's Name",
-        onlyLatters: "Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        onlyLatters: "Name should be text only( . and Special characters are not allowed)",
+        maxlength: "Field should not more then 50 characters",
       },
       studentEmail: {
         required: "Please provide Your Email Address",
         emailformat: "Please Provide Valid Email Address",
-        maxlength: "Field should not more then 25 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       date: {
         required: "Please provide Your Date of Birth",
@@ -185,17 +181,17 @@ $(document).ready(function() {
       },
       studentAddress: {
         required: "Please provide Your Address",
-        maxlength: "Field should not more then 25 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       studentCity: {
         required: "Please provide Your City",
         onlyLatters: "City Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       studentState: {
         required: "Please provide Your State",
         onlyLatters: "State Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       studentPin: {
         required: "Please provide Your PinCode",
@@ -211,7 +207,7 @@ $(document).ready(function() {
       },
       studentCollege: {
         required: "Please provide Your College Name",
-        maxlength: "Field should not more then 25 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       trade: {
         required: "Please Select Your Trade",
