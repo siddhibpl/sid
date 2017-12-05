@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $("#gallery").unitegallery();
   var obj;
   $.when(Gethandler("/route/total", obj, true)).done(function(res) {
     console.log(res);
@@ -230,7 +231,7 @@ function contactForm() {
     "contactText": capitalize(contactText),
   };
   console.log(obj);
-  $.when(Posthandler("/route/contactUs", obj, true)).done(function(res) {
+  $.when(Posthandler("/contact/contactUs", obj, true)).done(function(res) {
     console.log(res);
     if (res.resCode == 'OK') {
       swal("Ok!", res.msg, "success");

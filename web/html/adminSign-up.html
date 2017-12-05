@@ -102,7 +102,10 @@
       $.when(Posthandler("/route/newAdmin", newAdmin, true)).done(function(res) {
         if (res.resCode == 'OK') {
           console.log(res);
+          sessionremoveItem("login");
+          var x = sessionremoveItem("secret");
           sessionremoveItem("newAdmin");
+          console.log(x);
           swal({
               title: res.resCode,
               text: res.msg,
@@ -110,8 +113,6 @@
             },
             function() {
               swal.close();
-              var x = sessionremoveItem("secret");
-              console.log(x);
               window.location.replace("../login.html");
             });
         } else {

@@ -325,9 +325,12 @@ $(document).ready(function() {
       for (var i = 0; i < res.results.length; i++) {
         $("#studentExpYear").append('<option value="' + res.results[i]['Id'] + '">' + res.results[i]['experience'] + '</option>');
       }
-      extraInputWhileUpdateStudent();
+      if ((secret == null) || (secret == "") || (secret == undefined)) {}
+      else{
+        extraInputWhileUpdateStudent();
+      }
     } else {
-      console.log(res.results);
+      swal("Error!", res.msg, "error");
     }
   }).fail(function() {
     swal("Error!", "sorry unable to load Experience list. please check your internet connection", "error");
@@ -335,7 +338,6 @@ $(document).ready(function() {
 });
 function extraInputWhileUpdateStudent() {
     if (secret.Key == "Edit") {
-      alert("cccc");
       var secretData = sessiongetItem("secretData");
       console.log(secretData[0]['College']);
       $("#studentCollege option[value=" + secretData[0]['College'] + "]").prop('selected', true);

@@ -93,8 +93,12 @@
       <div class="formTitle border">Upload college Logo
         <div class="row no-margin headerDiv2 paddingBottom">
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 no-padding">
-            <label for="validation1">select College Logo<i class="red"> *</i></label>
-            <input type="file" class="form-control" id="itiLogo" name="itiLogo" accept="image/*">
+            <label for="validation1">Select College Logo<i class="red"> *</i></label>
+            <input type="file" class="form-control" id="itiLogo" name="itiLogo" accept="image/*" onchange="loadFile(event)">
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 no-padding registration">
+            <div class="photLoader hide" style="position: relative;">loading......<i class="fa-li fa fa-spinner fa-spin"></i></div>
+            <div class="photPreview hide" style="position: relative;"><img id="img" src="#" alt="your image" width="100px" height="100px" /></div>
           </div>
         </div>
       </div>
@@ -145,13 +149,7 @@
     var itiTPOMobile = $('#itiTPOMobile').val();
     var file = document.getElementById('itiLogo').files[0];
     var itiLogo = $('#itiLogo').val();
-    var reader = new FileReader();
-    reader.readAsText(file, 'UTF-8');
-    reader.onload = shipOff;
     var trade = JSON.stringify($('#trade').val());
-    // console.log(">>>>",trade);
-    console.log(itiLogo);
-    console.log(file.name);
     newIti = {
       "Name": capitalizeFirstLetterEachWordSplitBySpace(itiName),
       "Registration": itiReg,
@@ -186,18 +184,11 @@
       $.when(Posthandler("/route/newIti", newIti, true)).done(function(res) {
         if (res.resCode == 'OK') {
           console.log(res);
+          sessionremoveItem("login");
           sessionremoveItem("newIti");
-          swal({
-              title: res.resCode,
-              text: res.msg,
-              type: "success"
-            },
-            function() {
-              swal.close();
-              var x = sessionremoveItem("secret");
-              console.log(x);
-              window.location.replace("../login.html");
-            });
+          var x = sessionremoveItem("secret");
+          console.log(x);
+          uploadImage();
         } else {
           swal({
               title: res.resCode,
@@ -216,9 +207,36 @@
       swal("Error!", "Please Check Checkbox before final Submission!", "error");
     }
   });
+  var loadFile = function(event) {
+    $('.photLoader').removeClass('hide');
+    var output = document.getElementById('img');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    setTimeout(function() {
+      $('.photLoader').addClass('hide');
+      $('.photPreview').removeClass('hide');
+    }, 1000);
+  };
 
-  function shipOff(event) {
-    var fileName = document.getElementById('itiLogo').files[0].name; //Should be 'picture.jpg'
-    console.log(fileName);
-  }
+  function uploadImage() {
+    var file = document.getElementById('itiLogo').files[0];
+    console.log(file);
+    var img = {
+      "avatar": file
+    };
+    console.log(img);
+    var fd = new FormData();
+    fd.append('college', $('#itiLogo')[0].files[0]);
+    console.log("fd>>>>>>>", fd);
+    $.ajax({
+      url: '/route/uploadCollegeLogo',
+      data: fd,
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      success: function(data) {
+        console.log(data);
+        window.location.replace("../login.html");
+      }
+    });
+  };
 </script>

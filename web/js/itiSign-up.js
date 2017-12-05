@@ -58,6 +58,9 @@ $.validator.addMethod("onlyLatters", function(value) {
 $.validator.addMethod("emailformat", function(value) {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
 });
+$.validator.addMethod("photoformat", function(value) {
+  return (value).match(/\.(png)$/)
+});
 $(document).ready(function() {
   $('#itiName').focus().select();
   $("#itiForm").validate({
@@ -135,6 +138,7 @@ $(document).ready(function() {
       itiLogo: {
         required: true,
         maxlength: 18,
+        photoformat: true,
       },
       trade: {
         required: true,
@@ -213,7 +217,8 @@ $(document).ready(function() {
       },
       itiLogo: {
         required: "This field it mandatory",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field Name should not more then 18 characters",
+        photoformat: "This field only support .png extention",
       },
       trade: {
         required: "Please Select Your Trade",
@@ -255,9 +260,12 @@ $(document).ready(function() {
       $('.btn-group').addClass('form-control no-padding');
       $('.multiselect').addClass('width100');
       $('.multiselect-container').addClass('width100');
-      multiSelectorCheck();
+      if ((secret == null) || (secret == "") || (secret == undefined)) {}
+      else{
+        multiSelectorCheck();
+      }
     } else {
-      console.log(res.results);
+      swal("Error!", res.msg , "error");
     }
   }).fail(function() {
     swal("Error!", "sorry unable to load Trade list. please check your internet connection", "error");

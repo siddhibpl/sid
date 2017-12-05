@@ -31,7 +31,9 @@ if((secret == null)||(secret == "")||(secret == undefined)){
   }else{
     $('.adminRedioDiv').removeClass('hide');
   }
-}else if(secret.Key == "Edit"){
+}else if(secret != null){
+  console.log(secret);
+  if(secret.Key == "Edit"){
   $('.containerCssHeader').addClass('hide');
   console.log("If-Edit>>>>>>",secret);
   if(secret.Role == "Admin"){
@@ -47,6 +49,7 @@ if((secret == null)||(secret == "")||(secret == undefined)){
     console.log("if company>>",secret);
     $("#containerload").load("companySign-up.html");
   }
+}
 }else{
   $('.containerCssHeader').removeClass('hide');
   var login = sessiongetItem("login");

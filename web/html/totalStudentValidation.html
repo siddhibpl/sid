@@ -29,14 +29,13 @@
   $('input:radio[name="experience"]').change(function() {
     if ($(this).val() == 'Yes') {
       $('.showExperienceDiv').removeClass('hide');
-
     } else {
       $('.showExperienceDiv').addClass('hide');
     }
   });
 
   function myFunctionSubmit() {
-    $(".tablecontainerDiv").html(" ");
+    $(".tablecontainerDiv").html('');
     $('.bodyloading').removeClass('hide');
     var trd = $('#trade').val();
     var exp1 = $('input[name=experience]:checked').val();
@@ -55,10 +54,10 @@
       "ExpYear": exp2
     };
     console.log(obj);
-    getTableDiv();
     if (trd != null) {
       $.when(Posthandler("/route/studentTradeWiseFilter", obj, true)).done(function(res) {
         if (res.resCode == 'OK') {
+          getTableDiv();
           console.log(res);
           var arr = res.results;
           if (login.Role != "Company") {
