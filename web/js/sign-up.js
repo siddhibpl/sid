@@ -1,23 +1,25 @@
 $(document).ready(function() {
-  // $("#containerload").load("studentSign-up.html");
+  $('input:radio[name="inlineRadioOptions"]').change(function() {
+    if ($(this).val() == 's') {
+      $("#containerload").load("studentSign-up.html");
+      $('.headerSpan1').html('Student Registration Form');
+    } else if ($(this).val() == 'i') {
+      $("#containerload").load("itiSign-up.html");
+      $('.headerSpan1').html('ITI Institute Registration Form');
+    } else if ($(this).val() == 'c') {
+      $("#containerload").load("companySign-up.html");
+      $('.headerSpan1').html('Company Registration Form');
+    } else if ($(this).val() == 'a') {
+      $("#containerload").load("adminSign-up.html");
+      $('.headerSpan1').html('Admin Registration Form');
+    }
+  });
+  // $('input:radio[name="inlineRadioOptions"]').load("studentSign-up.html");
+  $('input:radio[name="inlineRadioOptions"]').attr('checked',false);
   // backToTop
   backToTop();
 });
-$('input:radio[name="inlineRadioOptions"]').change(function() {
-  if ($(this).val() == 's') {
-    $("#containerload").load("studentSign-up.html");
-    $('.headerSpan1').html('Student Registration Form');
-  } else if ($(this).val() == 'i') {
-    $("#containerload").load("itiSign-up.html");
-    $('.headerSpan1').html('ITI Institute Registration Form');
-  } else if ($(this).val() == 'c') {
-    $("#containerload").load("companySign-up.html");
-    $('.headerSpan1').html('Company Registration Form');
-  } else if ($(this).val() == 'a') {
-    $("#containerload").load("adminSign-up.html");
-    $('.headerSpan1').html('Admin Registration Form');
-  }
-});
+
 // var login = storagegetItem("login");
 var secret = sessiongetItem("secret");
 console.log(secret);
@@ -27,8 +29,10 @@ if((secret == null)||(secret == "")||(secret == undefined)){
   var login = sessiongetItem("login");
   console.log("else>>>>>>",login);
   if((login == null)||(login == "")||(login == undefined)){
+    $('.adminRedioDiv').html('')
     $('.adminRedioDiv').addClass('hide');
   }else{
+    $('.adminRedioDiv').html('<label class="form-check-label"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="a">Admin</label>')
     $('.adminRedioDiv').removeClass('hide');
   }
 }else if(secret != null){
@@ -55,8 +59,10 @@ if((secret == null)||(secret == "")||(secret == undefined)){
   var login = sessiongetItem("login");
   console.log("else>>>>>>",login);
   if((login == null)||(login == "")||(login == undefined)){
+    $('.adminRedioDiv').html('')
     $('.adminRedioDiv').addClass('hide');
   }else{
+    $('.adminRedioDiv').html('<label class="form-check-label"><input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="a">Admin</label>')
     $('.adminRedioDiv').removeClass('hide');
   }
 }

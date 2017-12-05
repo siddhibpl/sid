@@ -6,9 +6,7 @@ var config = require('../config/config.js');
 const fileUpload = require('express-fileupload');
 // default options
 router.use(fileUpload());
-// var multer  = require('multer')
-// var upload = multer({ dest: 'uploads/' })
-console.log(config);
+// console.log(config);
 // mysql connection
 // var connection = mysql.createConnection({
 //   host: 'localhost',
@@ -718,51 +716,6 @@ router.post('/viewMoreStudentByName', function(req, res, next) {
     }
   });
 });
-
-router.post('/contactUs', function(req, res, next) {
-  console.log(req.body);
-  // connection.query('SELECT * FROM student where (Name) = "' + req.body.Name + '"', function(err, result, feild) {
-  // if (err) {
-  //   return next(err);
-  // } else {
-  //   if (result != '') {
-  //     console.log(result);
-  return res.json({
-    "resCode": "OK",
-    "results": "We will send response Your Query!Thanks for Contact Us"
-    //       });
-    //     } else {
-    //       return res.json({
-    //         "resCode": "Error",
-    //         "msg": "Student Not Available in Database"
-    //       });
-    //     }
-    //   }
-  });
-});
-
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'web/img/logo/company')
-//   },
-//   filename: function (req, file, cb) {
-//     if(file.originalname.match(/\.(jpeg|png|jpg|wav)$/))
-//     {
-//     cb(null, file.originalname);
-//   }else{
-//      // var err = New Error();
-//      // err.code='filetype';
-//      // return cb(err)}
-//   }
-// }
-// });
-// var upload = multer({ dest: 'web/img/logo/company/'},
-// filename: function (req, file, cb) {
-//   cb(null, file.name + '.jpg');
-// });
-// var upload = multer({ storage: storage,
-// limits:{filesize:10000000}
-//  }).single('avatar');
 
 router.post('/uploadCompanyLogo', function(req, res, next) {
   if (!req.files)

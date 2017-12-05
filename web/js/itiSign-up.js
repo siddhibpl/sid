@@ -39,7 +39,15 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
       // $('.bodyloading').addClass('hide');
       $('#formITI').removeClass('hide');
     } else {
-      swal("Error!", res.msg, "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   }).fail(function() {
     swal({
@@ -48,19 +56,12 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = '../login.html';
       });
   });
 }
-$.validator.addMethod("onlyLatters", function(value) {
-  return /^[a-zA-Z\s]+$/i.test(value)
-});
-$.validator.addMethod("emailformat", function(value) {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
-});
-$.validator.addMethod("photoformat", function(value) {
-  return (value).match(/\.(png)$/)
-});
+
 $(document).ready(function() {
   $('#itiName').focus().select();
   $("#itiForm").validate({
@@ -68,7 +69,7 @@ $(document).ready(function() {
       itiName: {
         required: true,
         onlyLatters: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       itiReg: {
         required: true,
@@ -82,7 +83,7 @@ $(document).ready(function() {
       itiEmail: {
         required: true,
         emailformat: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       itiMobile: {
         required: true,
@@ -96,17 +97,17 @@ $(document).ready(function() {
       },
       itiAddress: {
         required: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       itiCity: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       itiState: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       itiPincode: {
         required: true,
@@ -117,17 +118,17 @@ $(document).ready(function() {
       itiDistrict: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       itiTPOName: {
         required: true,
         onlyLatters: true,
-        maxlength: 18,
+        maxlength: 50,
       },
       itiTPOEmail: {
         required: true,
         emailformat: true,
-        maxlength: 25,
+        maxlength: 50,
       },
       itiTPOMobile: {
         required: true,
@@ -139,6 +140,7 @@ $(document).ready(function() {
         required: true,
         maxlength: 18,
         photoformat: true,
+        maxfilesize: true,
       },
       trade: {
         required: true,
@@ -147,8 +149,8 @@ $(document).ready(function() {
     messages: {
       itiName: {
         required: "Please enter College Name",
-        onlyLatters: "Name should be text only",
-        maxlength: "Field should not more then 25 characters",
+        onlyLatters: "Name should be text only( . and Special characters are not allowed)",
+        maxlength: "Field should not more then 50 characters",
       },
       itiReg: {
         required: "Please provide College Registration Number",
@@ -162,7 +164,7 @@ $(document).ready(function() {
       itiEmail: {
         required: "Please provide college Email Address",
         emailformat: "Please Provide Valid Email Address",
-        maxlength: "Field should not more then 25 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiMobile: {
         required: "Please provide College office Mobile Number",
@@ -176,17 +178,17 @@ $(document).ready(function() {
       },
       itiAddress: {
         required: "Please provide College Address",
-        maxlength: "Field should not more then 25 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiCity: {
         required: "Please provide College City Name",
         onlyLatters: "City Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiState: {
         required: "Please provide College State Name",
         onlyLatters: "State Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiPincode: {
         required: "Please provide college PinCode",
@@ -197,17 +199,17 @@ $(document).ready(function() {
       itiDistrict: {
         required: "Please provide College District Name",
         onlyLatters: "District Name Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiTPOName: {
         required: "Please enter College TPO Name",
         onlyLatters: "Name should be text only",
-        maxlength: "Field should not more then 18 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiTPOEmail: {
         required: "Please provide TPO Email Address",
         emailformat: "Please Provide Valid Email Address",
-        maxlength: "Field should not more then 25 characters",
+        maxlength: "Field should not more then 50 characters",
       },
       itiTPOMobile: {
         required: "Please provide College TPO Mobile number",
@@ -219,6 +221,7 @@ $(document).ready(function() {
         required: "This field it mandatory",
         maxlength: "Field Name should not more then 18 characters",
         photoformat: "This field only support .png extention",
+        maxfilesize:"The file size can not exceed 200KB",
       },
       trade: {
         required: "Please Select Your Trade",

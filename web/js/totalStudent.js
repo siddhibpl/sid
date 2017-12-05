@@ -162,6 +162,7 @@ function viewMoreFunctionForStudent1(arr) {
           type: "error"
         },
         function() {
+          swal.close();
           window.location.href = 'dashboard.html';
         });
     });

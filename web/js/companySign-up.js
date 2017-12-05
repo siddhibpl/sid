@@ -29,7 +29,6 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       $('#comState').val(arr[0]["State"]);
       $('#comPincode').val(arr[0]["Pincode"]);
       $('#comDistrict').val(arr[0]["District"]);
-            // $('#datepicker').val(moment(arr["dob"]).format("YYYY-MM-DD"));
       $('#comHRName').val(arr[0]["HR_Name"]);
       $('#comHREmail').val(arr[0]["HR_Email"]);
       $('#comHRMobile').val(arr[0]["HR_Mobile"]);
@@ -38,7 +37,15 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       $('.bodyloading').addClass('hide');
       $('#formCompany').removeClass('hide');
     } else {
-      swal("Error!", res.msg, "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   }).fail(function() {
     swal({
@@ -47,19 +54,12 @@ if((secret == null)||(secret == "")||(secret == undefined)){
         type: "error"
       },
       function() {
+        swal.close();
         window.location.href = '../login.html';
       });
   });
 }
-$.validator.addMethod("onlyLatters", function(value) {
-  return /^[a-zA-Z\s]+$/i.test(value)
-});
-$.validator.addMethod("emailformat", function(value) {
-  return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
-});
-$.validator.addMethod("photoformat", function(value) {
-  return (value).match(/\.(png)$/)
-});
+
 $(document).ready(function() {
 $('#comName').focus().select();
 $("#companyForm").validate({
@@ -67,7 +67,7 @@ $("#companyForm").validate({
     comName: {
       required: true,
       onlyLatters: true,
-      maxlength: 25,
+      maxlength: 50,
     },
     comReg: {
       required: true,
@@ -81,11 +81,11 @@ $("#companyForm").validate({
     comEmail: {
       required: true,
       emailformat: true,
-      maxlength: 25,
+      maxlength: 50,
     },
     comWeb: {
       required: true,
-      maxlength: 18,
+      maxlength: 50,
     },
     comYear: {
       required: true,
@@ -93,17 +93,17 @@ $("#companyForm").validate({
     },
     comAddress: {
       required: true,
-      maxlength: 25,
+      maxlength: 50,
     },
     comCity: {
       required: true,
       onlyLatters: true,
-      maxlength: 18,
+      maxlength: 50,
     },
     comState: {
       required: true,
       onlyLatters: true,
-      maxlength: 18,
+      maxlength: 50,
     },
     comPincode: {
       required: true,
@@ -114,17 +114,17 @@ $("#companyForm").validate({
     comDistrict: {
       required: true,
       onlyLatters: true,
-      maxlength: 18,
+      maxlength: 50,
     },
     comHRName: {
       required: true,
       onlyLatters: true,
-      maxlength: 18,
+      maxlength: 50,
     },
     comHREmail: {
       required: true,
       emailformat: true,
-      maxlength: 25,
+      maxlength: 50,
     },
     comHRMobile: {
       required: true,
@@ -136,13 +136,14 @@ $("#companyForm").validate({
       required: true,
       maxlength: 18,
       photoformat: true,
+      maxfilesize: true,
     },
   },
   messages: {
     comName: {
       required: "Please enter Company Name",
-      onlyLatters: "Name should be text only",
-      maxlength: "Field should not more then 25 characters",
+      onlyLatters: "Name should be text only( . and Special characters are not allowed)",
+      maxlength: "Field should not more then 50 characters",
     },
     comReg: {
       required: "Please provide Company Registration Number",
@@ -156,11 +157,11 @@ $("#companyForm").validate({
     comEmail: {
       required: "Please provide Company Email Address",
       emailformat: "Please Provide Valid Email Address",
-      maxlength: "Field should not more then 25 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comWeb: {
       required: "Please provide Company Website",
-      maxlength: "Field should not more then 25 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comYear: {
       required: "This field it mandatory",
@@ -168,17 +169,17 @@ $("#companyForm").validate({
     },
     comAddress: {
       required: "Please provide Company Address",
-      maxlength: "Field should not more then 25 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comCity: {
       required: "Please provide Company City Name",
       onlyLatters: "City Name should be text only",
-      maxlength: "Field should not more then 18 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comState: {
       required: "Please provide Company State Name",
       onlyLatters: "State Name should be text only",
-      maxlength: "Field should not more then 18 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comPincode: {
       required: "Please provide Company PinCode",
@@ -189,17 +190,17 @@ $("#companyForm").validate({
     comDistrict: {
       required: "Please provide Company District Name",
       onlyLatters: "District Name Name should be text only",
-      maxlength: "Field should not more then 18 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comHRName: {
       required: "Please enter Company HR Name",
       onlyLatters: "Name should be text only",
-      maxlength: "Field should not more then 18 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comHREmail: {
       required: "Please provide HR Email Address",
       emailformat: "Please Provide Valid Email Address",
-      maxlength: "Field should not more then 25 characters",
+      maxlength: "Field should not more then 50 characters",
     },
     comHRMobile: {
       required: "Please provide Company HR Mobile number",
@@ -211,6 +212,7 @@ $("#companyForm").validate({
       required: "This field it mandatory",
       maxlength: "Field Name should not more then 18 characters",
       photoformat: "This field only support .png extention",
+      maxfilesize:"The file size can not exceed 200KB",
     },
   },
   errorElement: "em",
