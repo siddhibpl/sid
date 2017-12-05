@@ -57,6 +57,9 @@ $.validator.addMethod("onlyLatters", function(value) {
 $.validator.addMethod("emailformat", function(value) {
   return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
 });
+$.validator.addMethod("photoformat", function(value) {
+  return (value).match(/\.(png)$/)
+});
 $(document).ready(function() {
 $('#comName').focus().select();
 $("#companyForm").validate({
@@ -131,6 +134,8 @@ $("#companyForm").validate({
     },
     comLogo: {
       required: true,
+      maxlength: 18,
+      photoformat: true,
     },
   },
   messages: {
@@ -204,6 +209,8 @@ $("#companyForm").validate({
     },
     comLogo: {
       required: "This field it mandatory",
+      maxlength: "Field Name should not more then 18 characters",
+      photoformat: "This field only support .png extention",
     },
   },
   errorElement: "em",

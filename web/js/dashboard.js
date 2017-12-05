@@ -72,6 +72,7 @@ $(document).ready(function() {
       if (res.resCode === "OK") {
         sessionremoveItem("login");
         sessionremoveItem("newAdmin");
+        sessionremoveItem("secret");
         window.location.replace("login.html");
       } else {
         console.log(res.msg + "else");
@@ -223,7 +224,7 @@ function myFunction() {
     "contactText": capitalize(contactText),
   };
   console.log(obj);
-  $.when(Posthandler("/route/contactUs", obj, true)).done(function(res) {
+  $.when(Posthandler("/contact/contactUs", obj, true)).done(function(res) {
     console.log(res);
     if (res.resCode == 'OK') {
       swal("Ok!", res.msg, "success");

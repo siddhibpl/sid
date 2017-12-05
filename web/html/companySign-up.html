@@ -84,8 +84,12 @@
       <div class="formTitle border">Upload Company Logo
         <div class="row no-margin headerDiv2 paddingBottom">
           <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 no-padding">
-            <label for="validation1">select Company Logo<i class="red"> *</i></label>
-            <input type="file" class="form-control" id="comLogo" name="comLogo" value="">
+            <label for="validation1">Select Company Logo<i class="red"> *</i></label>
+            <input type="file" class="form-control" id="comLogo" name="comLogo" accept="image/*" onchange="loadFile(event)">
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 no-padding registration">
+            <div class="photLoader hide" style="position: relative;">loading......<i class="fa-li fa fa-spinner fa-spin"></i></div>
+            <div class="photPreview hide" style="position: relative;"><img id="img" src="#" alt="your image" width="100px" height="100px" /></div>
           </div>
         </div>
       </div>
@@ -170,18 +174,11 @@
       $.when(Posthandler("/route/newCompany", newCompany, true)).done(function(res) {
         if (res.resCode == 'OK') {
           console.log(res);
+          sessionremoveItem("login");
           sessionremoveItem("newCompany");
-          swal({
-              title: res.resCode,
-              text: res.msg,
-              type: "success"
-            },
-            function() {
-              swal.close();
-              var x = sessionremoveItem("secret");
-              console.log(x);
-              window.location.replace("../login.html");
-            });
+          var x = sessionremoveItem("secret");
+          console.log("XXXXXXXXXXXXXXXXXX>>>>>>",x);
+          uploadImage();
         } else {
           swal({
               title: res.resCode,
@@ -200,4 +197,35 @@
       swal("Error!", "Please Check Checkbox before final Submission!", "error");
     }
   });
+  var loadFile = function(event) {
+    $('.photLoader').removeClass('hide');
+    var output = document.getElementById('img');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    setTimeout(function() {
+      $('.photLoader').addClass('hide');
+      $('.photPreview').removeClass('hide');
+    }, 1000);
+  };
+  function uploadImage(){
+    var file = document.getElementById('comLogo').files[0];
+    console.log(file);
+    var img = {
+      "avatar":file
+    };
+    console.log(img);
+    var fd = new FormData();
+    fd.append( 'company', $('#comLogo')[0].files[0] );
+    console.log("fd>>>>>>>",fd);
+    $.ajax({
+      url: '/route/uploadCompanyLogo',
+      data: fd,
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      success: function(data){
+        console.log(data);
+        window.location.replace("../login.html");
+      }
+    });
+  };
 </script>

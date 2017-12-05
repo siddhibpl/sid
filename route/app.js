@@ -1,6 +1,14 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
 var mysql = require('mysql');
+var moment = require('moment');
+const fileUpload = require('express-fileupload');
+// default options
+router.use(fileUpload());
+
+// var multer  = require('multer')
+// var upload = multer({ dest: 'uploads/' })
+
 // mysql connection
 var connection = mysql.createConnection({
   host: 'localhost',
@@ -145,14 +153,37 @@ router.post('/login', function(req, res, next) {
       return next(err);
     } else {
       if (result != '') {
-        console.log(result[0]);
-        return res.json({
-          "resCode": "OK",
-          "msg": "Validation successful!",
-          "role": result[0].Role,
-          "name": result[0].Name,
-          "number": result[0].User
-        });
+        if ((result[0].Role == "College") || (result[0].Role == "Company")) {
+          console.log("validationSubscription:Before");
+          var y = validationSubscription(result);
+          console.log("validationSubscription:After   And y====", y);
+          if (y < 0) {
+            console.log("y----", y);
+            return res.json({
+              "resCode": "Error",
+              "msg": "your subscription has expired, please renew your account!",
+            });
+          } else {
+            console.log("y----", y);
+            return res.json({
+              "resCode": "OK",
+              "msg": "Validation successful!",
+              "role": result[0].Role,
+              "name": result[0].Name,
+              "number": result[0].User,
+              "Date": result[0].Date
+            });
+          }
+        } else {
+          console.log("Else Part without Validation");
+          return res.json({
+            "resCode": "OK",
+            "msg": "Validation successful!",
+            "role": result[0].Role,
+            "name": result[0].Name,
+            "number": result[0].User,
+          });
+        }
       } else {
         return res.json({
           "resCode": "Error",
@@ -702,5 +733,91 @@ router.post('/contactUs', function(req, res, next) {
     //   }
   });
 });
+
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'web/img/logo/company')
+//   },
+//   filename: function (req, file, cb) {
+//     if(file.originalname.match(/\.(jpeg|png|jpg|wav)$/))
+//     {
+//     cb(null, file.originalname);
+//   }else{
+//      // var err = New Error();
+//      // err.code='filetype';
+//      // return cb(err)}
+//   }
+// }
+// });
+// var upload = multer({ dest: 'web/img/logo/company/'},
+// filename: function (req, file, cb) {
+//   cb(null, file.name + '.jpg');
+// });
+// var upload = multer({ storage: storage,
+// limits:{filesize:10000000}
+//  }).single('avatar');
+
+router.post('/uploadCompanyLogo', function(req, res, next) {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+  // get file name
+  var photo = getTimeForPhotoName();
+  console.log("photo>>>>", photo);
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = req.files.company;
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('web/img/logo/company/' + photo, function(err) {
+    if (err) {
+      return next(err);
+    } else {
+      return res.json({
+        "resCode": "OK",
+        "results": "Upload successfully!"
+      });
+    }
+  });
+});
+// router.post('/profile', upload.single('avatar'), function (req, res, next) {
+router.post('/uploadCollegeLogo', function(req, res, next) {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+  // get file name
+  var photo = getTimeForPhotoName();
+  console.log("photo>>>>", photo);
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = req.files.college;
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('web/img/logo/college/' + photo, function(err) {
+    if (err) {
+      return next(err);
+    } else {
+      return res.json({
+        "resCode": "OK",
+        "results": "Upload successfully!"
+      });
+    }
+  });
+});
+
+
+function validationSubscription(result) {
+  var check = moment(date, 'YYYY-MM-DD');
+  var check1 = moment(result[0].Date, 'YYYY-MM-DD');
+  var Next = check1.add(365, 'day');
+  var NextSubc = moment(Next, 'YYYY-MM-DD');
+  var y = NextSubc.diff(check, 'days');
+  // console.log("YYYYYYYYYYYYY>>>>",y,  "NextSubc>>>>>>>>>>>>>>>>>>>", NextSubc,"result[0].Date>>>>>",result[0].Date,"check1>>>>>",check1);
+  return y;
+}
+
+function getTimeForPhotoName() {
+  var d = new Date();
+  var getSec = d.getSeconds();
+  var getMin = d.getMinutes();
+  var getHor = d.getHours();
+  var photoName = 'photo' + getHor + '_' + getMin + '_' + getSec + '.png';
+  console.log(photoName);
+  return photoName
+}
 
 module.exports = router;

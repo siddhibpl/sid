@@ -219,8 +219,18 @@
         if (res.resCode == 'OK') {
           console.log(res);
           sessionremoveItem("newStudent");
-          swal(res.resCode, res.msg, "success");
-          window.location.replace("../login.html");
+          sessionremoveItem("login");
+          var x = sessionremoveItem("secret");
+          console.log(x);
+          swal({
+              title: res.resCode,
+              text: res.msg,
+              type: "success"
+            },
+            function() {
+              swal.close();
+              window.location.replace("../login.html");
+            });
         } else {
           swal("Error!", res.msg, "error");
           // sessionremoveItem("newStudent");

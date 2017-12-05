@@ -598,49 +598,6 @@ select option {
 
 /*About Me list css(dashboard page)*/
 
-.aboutMEeTable_header, .aboutMeTable_body {
-  text-align: center;
-  width: auto;
-}
-
-/*.dataTables_wrapper{overflow-x: scroll !important;}*/
-
-.aboutMEeTable_header thead th {
-  font-size: 12px;
-  text-align: center;
-}
-
-.aboutMEeTable_header tbody td {
-  font-size: 12px;
-  text-align: center;
-}
-
-.editrow {
-  cursor: pointer;
-}
-
-.editrow:hover {
-  text-decoration: underline;
-}
-
-#viewMoreTable tr th {
-  font-size: 10px;
-  text-align: center;
-}
-
-#viewMoreTable tr td {
-  font-size: 10px;
-  text-align: center;
-}
-
-#viewMoreTable tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-#viewMoreTable tr:hover {
-  background-color: #f2e2e2;
-}
-
 .leftMargin0 {
   margin-left: 0px !important;
   left: 0px;
@@ -679,4 +636,8 @@ select option {
 
 #back-top a:visited {
   color: #fff !important;
+}
+
+#back-top:hover{
+  cursor: pointer;
 }
