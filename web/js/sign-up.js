@@ -1,15 +1,19 @@
 $(document).ready(function() {
   $('input:radio[name="inlineRadioOptions"]').change(function() {
     if ($(this).val() == 's') {
+      $('.bodyloading').removeClass('hide');
       $("#containerload").load("studentSign-up.html");
       $('.headerSpan1').html('Student Registration Form');
     } else if ($(this).val() == 'i') {
+      $('.bodyloading').removeClass('hide');
       $("#containerload").load("itiSign-up.html");
       $('.headerSpan1').html('ITI Institute Registration Form');
     } else if ($(this).val() == 'c') {
+      $('.bodyloading').removeClass('hide');
       $("#containerload").load("companySign-up.html");
       $('.headerSpan1').html('Company Registration Form');
     } else if ($(this).val() == 'a') {
+      $('.bodyloading').removeClass('hide');
       $("#containerload").load("adminSign-up.html");
       $('.headerSpan1').html('Admin Registration Form');
     }
@@ -18,6 +22,12 @@ $(document).ready(function() {
   $('input:radio[name="inlineRadioOptions"]').attr('checked',false);
   // backToTop
   backToTop();
+  if((secret == null)||(secret == "")||(secret == undefined)){
+  setTimeout(function() {
+    $('#containerDiv').removeClass('hide');
+    $('.bodyloading').addClass('hide');
+  }, 500);
+}
 });
 
 // var login = storagegetItem("login");

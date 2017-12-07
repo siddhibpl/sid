@@ -1,8 +1,8 @@
 <script type="text/javascript" src="../js/companySign-up.js"></script>
 <!-- Content Wrapper. Contains page content -->
-<div class='bodyloading'>
+<!-- <div class='bodyloading'>
   <div class="boxloading"></div>
-</div>
+</div> -->
 <!-- For Company Registration -->
 <form class="container no-padding" id="companyForm" method="post" novalidate="">
   <div id="formCompany" class="container containerCss containerCssForm border hide">
@@ -194,8 +194,7 @@
         }
       });
     } else {
-      swal("Error!", "Please Check Checkbox before final Submission!", "error");
-    }
+      swal("Error!", "Please Check Checkbox before final Submission!", "error");    }
   });
   var loadFile = function(event) {
     $('.photLoader').removeClass('hide');
@@ -225,7 +224,15 @@
       type: 'POST',
       success: function(data){
         console.log(data);
-        window.location.replace("../login.html");
+        swal({
+            title: "OK!",
+            text: "Update Successfully",
+            type: "success"
+          },
+          function() {
+            swal.close();
+            window.location.href = '../login.html';
+          });
       }
     });
   };

@@ -20,8 +20,11 @@ app.listen(process.env.PORT || 8000, function(req, res) {
 var route = require('./route/app');
 app.use('/route', route);
 // contact us API
-var contact = require('./route/contactUs');
-app.use('/contact', contact);
+// var contact = require('./route/contactUs');
+// app.use('/contact', contact);
+// image Upload us API
+var image = require('./route/imageUpload');
+app.use('/route', image);
 // error handling for all Restfull Api's
 app.use(function(err,req,res,next){
   console.log("error hendling");

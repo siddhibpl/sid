@@ -5,12 +5,12 @@ console.log(login);
 if((secret == null)||(secret == "")||(secret == undefined)){
   if ((login == null) || (login == "") || (login == undefined)) {
     $('.adminRedioDiv').addClass('hide');
-    $('.bodyloading').addClass('hide');
-    $('#formCompany').removeClass('hide');
-  } else {
-    $('.bodyloading').addClass('hide');
-    $('#formCompany').removeClass('hide');
   }
+  setTimeout(function() {
+    $('#formCompany').removeClass('hide');
+    $('#containerDiv').removeClass('hide');
+    $('.bodyloading').addClass('hide');
+  }, 500);
 }else{
   $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -34,8 +34,9 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       $('#comHRMobile').val(arr[0]["HR_Mobile"]);
       $("#comHRMobile").attr("disabled", "disabled");
 
-      $('.bodyloading').addClass('hide');
       $('#formCompany').removeClass('hide');
+      $('#containerDiv').removeClass('hide');
+      $('.bodyloading').addClass('hide');
     } else {
       swal({
           title: "Error!",

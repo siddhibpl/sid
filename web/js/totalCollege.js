@@ -4,6 +4,7 @@ function totalCollegeFunction(){
   $('.tablecontainerDiv').removeClass('hide');
   $('.editDetails').addClass('hide');
   $('.bodyloading').removeClass('hide');
+  $('.modal-content').removeClass('resumeModal');
   var totalCollege = {};
   $.when(Gethandler("/route/totalCollege", totalCollege, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -58,25 +59,23 @@ function viewMoreFunctionForCollege(arr) {
         console.log(res.results[0]);
         $.each(res.results[0], function(key, value) {
           var body = "<tr>";
-          if (key === "Dob") {
-            key = "Date of Birth";
-            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "Date") {
+          if (key === "Date") {
             key = "Date of Joining in our Portel";
             body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "YOI") {
-            key = "Year Of Incorporation";
+          } else if (key === "TPO_Name") {
+            key = "TPO Name";
             body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "POY") {
-            key = "Passing Year";
+          } else if (key === "TPO_Email") {
+            key = "TPO Email";
             body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "Per") {
-            key = "Percentage";
+          } else if (key === "TPO_Mobile") {
+            key = "TPO Mobile";
             body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "HSPer") {
-            key = "Higher School Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (value === "NA" || value === "No") {} else if (key === "Logo") {} else {
+          } else if (value === "NA" || value === "No") {
+
+          } else if (key === "Logo") {
+
+          } else {
             body += "<th>" + key + "</th><td>" + value + "</td>";
           }
           body += "</tr>";

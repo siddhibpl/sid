@@ -42,8 +42,17 @@ $(document).ready(function() {
     $('#insertMyCard').append(stuMyCard);
   }
   // for dashboard click function
-  $('#dashboard').click(function() {
-    $('.viewDetailsDiv').addClass('hide');
+  $('#changepass').click(function() {
+    change = {
+      "Name": login.Name,
+      "Number": login.Number,
+      "Role": login.Role,
+      "Email": login.Email,
+      "Key": "Change"
+    };
+    console.log(change);
+    sessionsetItem("change", change);
+    window.location.replace("html/forgot-Password.html");
   });
   // for addNewUser click function
   $('#addNewUser').click(function() {
@@ -53,13 +62,14 @@ $(document).ready(function() {
   $('.help').click(function() {
     $('#exampleModalLongTitle').html("Help");
     // $('.listComDetailsDiv').removeClass('hide');
-    $('.modal-body').html(x);
+    // $('.modal-body').html(x);
     $('html,body').animate({
       scrollTop: $("#contact-form").offset().top
     }, 800);
   });
   // for profile click function open modal
   $('.profile').click(function() {
+    $('.modal-content').removeClass('resumeModal');
     $('.editDetails').addClass('hide');
     $('#exampleModalLongTitle').html("Profile");
     $('.modal-body').html("<div style='text-align: center';><img src='img/student.png' style='border-radius: 50%' alt='Profile Image' height='102' width='102'><br><br><table class='myTable table-striped table-bordered'><tr><td>Name</td><td>" + uname + "</td></tr><tr><td>Number</td><td>" + unumber + "</td></tr><tr><td>Role</td><td>" + urole + "</td></tr><table></div>");
@@ -227,7 +237,7 @@ function myFunction() {
     "contactText": capitalize(contactText),
   };
   console.log(obj);
-  $.when(Posthandler("/contact/contactUs", obj, true)).done(function(res) {
+  $.when(Posthandler("/route/contactUs", obj, true)).done(function(res) {
     console.log(res);
     if (res.resCode == 'OK') {
       swal({

@@ -2,15 +2,15 @@ var secret = sessiongetItem("secret");
 console.log(secret);
 var login = sessiongetItem("login");
 console.log(login);
-if ((secret == null) || (secret == "") || (secret == undefined)) {
+if((secret == null)||(secret == "")||(secret == undefined)){
   if ((login == null) || (login == "") || (login == undefined)) {
     $('.adminRedioDiv').addClass('hide');
-    $('.bodyloading').addClass('hide');
-    $('#formStudent').removeClass('hide');
-  } else {
-    $('.bodyloading').addClass('hide');
-    $('#formStudent').removeClass('hide');
   }
+  setTimeout(function() {
+    $('#formStudent').removeClass('hide');
+    $('#containerDiv').removeClass('hide');
+    $('.bodyloading').addClass('hide');
+  }, 500);
 } else {
   $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -39,7 +39,7 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
       $("input[name=sex][value=" + arr[0]["Sex"] + "]").attr('checked', 'checked');
       $("input[name=jobs][value=" + arr[0]["Job"] + "]").attr('checked', 'checked');
       $("#studentMobile").attr("disabled", "disabled");
-      $('.bodyloading').addClass('hide');
+      // $('.bodyloading').addClass('hide');
       $('#formStudent').removeClass('hide');
     } else {
       swal({
@@ -289,10 +289,26 @@ $(document).ready(function() {
         $("#studentCollege").append('<option value="' + res.results[i]['Name'] + '">' + res.results[i]['Name'] + '</option>');
       }
     } else {
-      console.log(res.results);
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   }).fail(function() {
-    swal("Error!", "sorry unable to load College list. please check your internet connection", "error");
+    swal({
+        title: "Error!",
+        text: "fail to connect",
+        type: "error"
+      },
+      function() {
+        swal.close();
+        window.location.href = '../login.html';
+      });
   });
 
   $('#studentCollege').on('change', function() {
@@ -307,10 +323,26 @@ $(document).ready(function() {
           $("#trade").append('<option value="' + res.results[i]['Trade'] + '">' + res.results[i]['Trade'] + '</option>');
         }
       } else {
-        console.log(res.results);
+        swal({
+            title: "Error!",
+            text: "fail to connect",
+            type: "error"
+          },
+          function() {
+            swal.close();
+            window.location.href = '../login.html';
+          });
       }
     }).fail(function() {
-      swal("Error!", "sorry unable to load College Wise Trade list. please check your internet connection", "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     });
   });
 
@@ -326,10 +358,26 @@ $(document).ready(function() {
         extraInputWhileUpdateStudent();
       }
     } else {
-      swal("Error!", res.msg, "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   }).fail(function() {
-    swal("Error!", "sorry unable to load Experience list. please check your internet connection", "error");
+    swal({
+        title: "Error!",
+        text: "fail to connect",
+        type: "error"
+      },
+      function() {
+        swal.close();
+        window.location.href = '../login.html';
+      });
   });
 });
 function extraInputWhileUpdateStudent() {
@@ -356,11 +404,29 @@ function extraInputWhileUpdateStudent() {
             $("#studentExpYear option[value=" + secretData[0]['ExpYear'] + "]").prop('selected', true);
             // }
           }
+          $('#containerDiv').removeClass('hide');
+          $('.bodyloading').addClass('hide');
         } else {
-          console.log(res.results);
+          swal({
+              title: "Error!",
+              text: "fail to connect",
+              type: "error"
+            },
+            function() {
+              swal.close();
+              window.location.href = '../login.html';
+            });
         }
       }).fail(function() {
-        swal("Error!", "sorry unable to load College Wise Trade list. please check your internet connection", "error");
+        swal({
+            title: "Error!",
+            text: "fail to connect",
+            type: "error"
+          },
+          function() {
+            swal.close();
+            window.location.href = '../login.html';
+          });
       });
     }
 }

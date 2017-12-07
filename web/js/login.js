@@ -46,19 +46,6 @@ $(document).ready(function() {
     $('.img').removeClass('hide');
   });
 
-  // Validation
-  $.validator.addMethod("pwcheckspechars", function(value) {
-    return /[!@#$%^&*()_=\[\]{};':"\\|,.<>\/?+-]/.test(value)
-  });
-  $.validator.addMethod("pwchecknumber", function(value) {
-    return /\d/.test(value) // has a digit
-  });
-  $.validator.addMethod("onlyLatters", function(value) {
-    return /^[a-zA-Z\s]+$/i.test(value)
-  });
-  $.validator.addMethod("emailformat", function(value) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
-  });
   $("#signupForm").validate({
     rules: {
       mobi: {
@@ -197,13 +184,15 @@ function myFunction() {
     $.when(Posthandler("/route/login", obj, true)).done(function(res) {
       console.log(res);
       if (res.resCode == 'OK') {
-        var role = res.role;
-        var name = res.name;
-        var number = res.number;
+        var role = res.Role;
+        var name = res.Name;
+        var number = res.Number;
+        var email = res.Email;
         login = {
           "Role": role,
           "Name": name,
-          "Number": number
+          "Number": number,
+          "Email": email,
         };
         // storagesetItem("login", login);
         sessionsetItem("login", login);
@@ -232,7 +221,7 @@ function contactForm() {
     "contactText": capitalize(contactText),
   };
   console.log(obj);
-  $.when(Posthandler("/contact/contactUs", obj, true)).done(function(res) {
+  $.when(Posthandler("/route/contactUs", obj, true)).done(function(res) {
     console.log(res);
     if (res.resCode == 'OK') {
       swal({

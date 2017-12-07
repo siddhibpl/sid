@@ -1,11 +1,11 @@
 <script type="text/javascript" src="../js/studentSign-up.js"></script>
 <!-- Content Wrapper. Contains page content -->
-<div class='bodyloading'>
+<!-- <div class='bodyloading'>
   <div class="boxloading"></div>
-</div>
+</div> -->
 <!-- student sign up form -->
 <form class="container no-padding" id="studentForm" method="post" novalidate="">
-  <div id="formStudent" class="container containerCss containerCssForm border">
+  <div id="formStudent" class="container containerCss containerCssForm border hide">
     <div class="headerDiv1 backgroundColor">
       <div class="formTitle  border">Student Details
         <div class="row no-margin headerDiv2 paddingBottom">
@@ -232,14 +232,29 @@
               window.location.replace("../login.html");
             });
         } else {
-          swal("Error!", res.msg, "error");
-          // sessionremoveItem("newStudent");
-          $('.firstSubmitButtonStudent').removeClass('hide');
-          $('.finalSubmitButtonStudent').addClass('hide');
+          swal({
+              title: res.resCode,
+              text: res.msg,
+              type: "error"
+            },
+            function() {
+              swal.close();
+              $('#studentMobile').focus().select();
+              $('.firstSubmitButtonStudent').removeClass('hide');
+              $('.finalSubmitButtonStudent').addClass('hide');
+            });
         }
       });
     } else {
-      swal("Error!", "Please Check Checkbox before final Submission!", "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   });
 </script>

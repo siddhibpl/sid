@@ -1,3 +1,4 @@
+// Validation
 $.validator.addMethod("onlyLatters", function(value) {
   return /^[a-zA-Z\s]+$/i.test(value)
 });
@@ -16,6 +17,12 @@ $.validator.addMethod("maxfilesize",function (value, element) {
 });
 $.validator.addMethod("validDate", function(value) {
   return moment(value,'YYYY-MM-DD',true).isValid()
+});
+$.validator.addMethod("pwcheckspechars", function(value) {
+  return /[!@#$%^&*()_=\[\]{};':"\\|,.<>\/?+-]/.test(value)
+});
+$.validator.addMethod("pwchecknumber", function(value) {
+  return /\d/.test(value) // has a digit
 });
 var number = /^[0-9]+$/;
 var letters = /^[a-zA-Z\s]+$/;

@@ -4,6 +4,7 @@ function totalCompanyFunction() {
   $('.tablecontainerDiv').removeClass('hide');
   $('.editDetails').addClass('hide');
   $('.bodyloading').removeClass('hide');
+  $('.modal-content').removeClass('resumeModal');
   var totalCompany = {};
   $.when(Gethandler("/route/totalCompany", totalCompany, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -60,25 +61,26 @@ function viewMoreFunctionForCompany(arr) {
         console.log(res.results[0]);
         $.each(res.results[0], function(key, value) {
           var body = "<tr>";
-          if (key === "Dob") {
-            key = "Date of Birth";
-            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "Date") {
+          if (key === "Date") {
             key = "Date of Joining in our Portel";
             body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
+          } else if (key === "HR_Name") {
+            key = "HR Name";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "HR_Email") {
+            key = "HR Email";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "HR_Mobile") {
+            key = "HR Mobile";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
           } else if (key === "YOI") {
             key = "Year Of Incorporation";
             body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "POY") {
-            key = "Passing Year";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "Per") {
-            key = "Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "HSPer") {
-            key = "Higher School Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (value === "NA" || value === "No") {} else if (key === "Logo") {} else {
+          } else if (value === "NA" || value === "No") {
+
+          } else if (key === "Logo") {
+
+          } else {
             body += "<th>" + key + "</th><td>" + value + "</td>";
           }
           body += "</tr>";

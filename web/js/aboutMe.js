@@ -8,6 +8,7 @@ function aboutMeFunction() {
   $('.tablecontainerDiv').removeClass('hide');
   $('.editDetails').removeClass('hide');
   $('.bodyloading').removeClass('hide');
+  $('.modal-content').removeClass('resumeModal');
   aboutMe = {
     "Role": urole,
     "Name": uname,
@@ -43,7 +44,7 @@ function aboutMeFunction() {
   }).fail(function() {
     swal({
         title: "Error!",
-        text: "fail to connect",
+        text: "fail to connect, Plese check your internet connection!",
         type: "error"
       },
       function() {
@@ -79,7 +80,38 @@ function viewMoreFunction(arr, login) {
       } else if (key === "HSPer") {
         key = "Higher School Percentage";
         body += "<th>" + key + "</th><td>" + value + "</td>";
-      } else if (value === "NA" || value === "No") {} else if (key === "Logo") {} else {
+      } else if (key === "TPO_Name") {
+        key = "TPO Name";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "TPO_Email") {
+        key = "TPO Email";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "TPO_Mobile") {
+        key = "TPO Mobile";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "HR_Name") {
+        key = "HR Name";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "HR_Email") {
+        key = "HR Email";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "HR_Mobile") {
+        key = "HR Mobile";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "Job") {
+        key = "Job Required";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "ExpYear") {
+        key = "Total Year Of Experience";
+        if(value='NA')value = "Not Applicable";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "LastComp") {
+        key = "Present Company";
+        if(value='NA')value = "Not Applicable";
+        body += "<th>" + key + "</th><td>" + value + "</td>";
+      } else if (key === "Logo") {
+
+      } else {
         body += "<th>" + key + "</th><td>" + value + "</td>";
       }
       body += "</tr>";

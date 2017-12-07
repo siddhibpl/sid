@@ -4,12 +4,13 @@ var login = sessiongetItem("login");
 console.log(login);
 if((secret == null)||(secret == "")||(secret == undefined)){
   if ((login == null) || (login == "") || (login == undefined)) {
-    $('.bodyloading').addClass('hide');
-    $('#formAdmin').removeClass('hide');
-  } else {
-    $('.bodyloading').addClass('hide');
-    $('#formAdmin').removeClass('hide');
+    $('.adminRedioDiv').addClass('hide');
   }
+  setTimeout(function() {
+    $('#formAdmin').removeClass('hide');
+    $('#containerDiv').removeClass('hide');
+    $('.bodyloading').addClass('hide');
+  }, 500);
 }else{
   $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -25,8 +26,9 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       $('#adminPincode').val(arr[0]["Pincode"]);
       $("#adminMobile").attr("disabled", "disabled");
 
-      $('.bodyloading').addClass('hide');
       $('#formAdmin').removeClass('hide');
+      $('#containerDiv').removeClass('hide');
+      $('.bodyloading').addClass('hide');
     } else {
       swal({
           title: "Error!",

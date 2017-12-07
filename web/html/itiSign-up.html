@@ -1,8 +1,8 @@
 <script type="text/javascript" src="../js/itiSign-up.js"></script>
 <!-- Content Wrapper. Contains page content -->
-<div class='bodyloading'>
+<!-- <div class='bodyloading'>
   <div class="boxloading"></div>
-</div>
+</div> -->
 <!-- For ITI Institute Registration -->
 <form class="container no-padding" id="itiForm" method="post" novalidate="">
   <div id="formITI" class="container containerCss containerCssForm border hide">
@@ -202,6 +202,16 @@
               $('.finalSubmitButtonIti').addClass('hide');
             });
         }
+      }).fail(function() {
+        swal({
+            title: "Error!",
+            text: "sorry fail to connect. please check your internet connection",
+            type: "error"
+          },
+          function() {
+            swal.close();
+            window.location.href = '../login.html';
+          });
       });
     } else {
       swal("Error!", "Please Check Checkbox before final Submission!", "error");
@@ -236,7 +246,15 @@
       type: 'POST',
       success: function(data) {
         console.log(data);
-        window.location.replace("../login.html");
+        swal({
+            title: "OK!",
+            text: "Update Successfully",
+            type: "success"
+          },
+          function() {
+            swal.close();
+            window.location.href = '../login.html';
+          });
       }
     });
   };

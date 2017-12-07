@@ -1,8 +1,8 @@
 <script type="text/javascript" src="../js/adminSign-up.js"></script>
 <!-- Content Wrapper. Contains page content -->
-<div class='bodyloading'>
+<!-- <div class='bodyloading'>
   <div class="boxloading"></div>
-</div>
+</div> -->
 <!-- For Admin Registration -->
 
 <form class="container no-padding" id="adminForm" method="post" action="">
@@ -130,7 +130,15 @@
         }
       });
     } else {
-      swal("Error!", "Please Check Checkbox before final Submission!", "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   });
 </script>
