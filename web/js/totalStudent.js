@@ -5,6 +5,7 @@ function totalStudentFunction() {
   $('.anchPara').removeClass('hide');
   $('.tablecontainerDiv').html('');
   $('.editDetails').addClass('hide');
+  $('.modal-content').removeClass('resumeModal');
   var obj = {};
 if(login.Role != "College"){
   console.log('Not College Api');
@@ -90,7 +91,18 @@ function viewMoreFunctionForStudent(arr) {
           } else if (key === "HSPer") {
             key = "Higher School Percentage";
             body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (value === "NA" || value === "No") {} else if (key === "Logo") {} else {
+          }  else if (key === "Job") {
+            key = "Job Required";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "ExpYear") {
+            key = "Total Year Of Experience";
+            if(value='NA')value = "Not Applicable";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "LastComp") {
+            key = "Present Company";
+            if(value='NA')value = "Not Applicable";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          }else {
             body += "<th>" + key + "</th><td>" + value + "</td>";
           }
           body += "</tr>";
@@ -113,45 +125,74 @@ function viewMoreFunctionForStudent(arr) {
 };
 
 function viewMoreFunctionForStudent1(arr) {
-  var viewMore = '<table style="width:100%" id="viewMoreTable" class="table-striped table-bordered"></table>';
+  // var viewMore = '<table style="width:100%" id="viewMoreTable" class="table-striped table-bordered"></table>';
   console.log(arr);
   $(".editrow").click(function(e) {
     var Name = $(this).parents('tr').find('td:first').html();
     console.log(Name);
-    $('#exampleModalLongTitle').html("View More About " + Name);
-    $('.modal-body').html(viewMore);
+    $('#exampleModalLongTitle').html("My Resume -" + Name);
+    $('.modal-body').load("html/resume.html");
     viewMoreStudentByName = {
       "Name": Name,
     };
     $.when(Posthandler("/route/viewMoreStudentByName", viewMoreStudentByName, true)).done(function(res) {
       if (res.resCode == 'OK') {
-        console.log(res.results[0]);
-        $.each(res.results[0], function(key, value) {
-          var body = "<tr>";
-          if (key === "Dob") {
-            key = "Date of Birth";
-            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "Date") {
-            key = "Date of Joining in our Portel";
-            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "YOI") {
-            key = "Year Of Incorporation";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "POY") {
-            key = "Passing Year";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "Per") {
-            key = "Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "HSPer") {
-            key = "Higher School Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (value === "NA" || value === "No") {} else if (key === "Logo") {} else {
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          }
-          body += "</tr>";
-          $("#viewMoreTable").append(body);
-        });
+        console.log(res.results[0]);arr=res.results[0];
+        console.log(arr["Name"])
+                $('.resumeName').html(arr["Name"]);
+                $('.resumeName').html(arr["Name"]);
+                $('.resumeFather').html(arr["Father"]);
+                $('.resumeMother').html(arr["Mother"]);
+                $('.resumeAddress').html(arr["Address"]);
+                $('.resumeCity').html(arr["City"]);
+                $('.resumeState').html(arr["State"]);
+                $('.resumePincode').html(arr["Pincode"]);
+                $('.resumeMobile').html(arr["Mobile"]);
+                $('.resumeDob').html(moment(arr["Dob"]).format("YYYY-MM-DD"));
+                $('.resumeEmail').html(arr["Email"]);
+                $('.resumeCollege').html(arr["College"]);
+                $('.resumeTrade').html(arr["Trade"]);
+                $('.resumePOY').html(arr["POY"]);
+                $('.resumePer').html(arr['Per']);
+                $('.resumeHSPer').html(arr["HSPer"]);
+                $('.resumeStatus').html(arr["Experience"]);
+                $('.resumeCompany').html(arr["LastComp"]);
+                $('.resumeYOE').html(arr["ExpYear"]);
+                $('.resumeJob').html(arr["Job"]);
+        // $.each(res.results[0], function(key, value) {
+        //   var body = "<tr>";
+        //   if (key === "Dob") {
+        //     key = "Date of Birth";
+        //     body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
+        //   } else if (key === "Date") {
+        //     key = "Date of Joining in our Portel";
+        //     body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
+        //   } else if (key === "POY") {
+        //     key = "Passing Year";
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   } else if (key === "Per") {
+        //     key = "Percentage";
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   } else if (key === "HSPer") {
+        //     key = "Higher School Percentage";
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   } else if (key === "Job") {
+        //     key = "Job Required";
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   } else if (key === "ExpYear") {
+        //     key = "Total Year Of Experience";
+        //     if(value='NA')value = "Not Applicable";
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   } else if (key === "LastComp") {
+        //     key = "Present Company";
+        //     if(value='NA')value = "Not Applicable";
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   } else {
+        //     body += "<th>" + key + "</th><td>" + value + "</td>";
+        //   }
+        //   body += "</tr>";
+        //   $("#viewMoreTable").append(body);
+        // });
       } else {
         swal("Error!", res.msg, "error");
       }

@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+// var express = require('express');
+// var router = express.Router();
 const nodemailer = require('nodemailer');
 const xoauth2 = require('xoauth2');
 var config = require('../config/config.js');
@@ -17,10 +17,10 @@ var transporter = nodemailer.createTransport({
 })
 var maillist = [
   config.maillist.admin1,
-  config.maillist.admin4,
+  config.maillist.admin2,
   config.maillist.admin3,
 ];
-router.post('/contactUs', function(req, res, next) {
+var contactUs = function(req, res, next) {
   console.log(req.body);
 
   var mailOptions = {
@@ -45,6 +45,8 @@ router.post('/contactUs', function(req, res, next) {
       });
     };
   });
-});
+};
 
-module.exports = router;
+module.exports = {
+  contactUs : contactUs,
+}

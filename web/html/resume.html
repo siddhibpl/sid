@@ -1,0 +1,261 @@
+<style>
+  .modal-body{
+    padding: 0px !important;
+    font-size: 11px !important
+  }
+  .myResumeNavbar {
+    background-color: #4267a3!important;
+    color: #fff;
+    padding: 5px!important;
+  }
+
+  .imgResume {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    display: block;
+    text-align: middle;
+    background-color: #fff;
+    color: #fff;
+  }
+
+  .navResume {
+    text-align: center !important;
+    margin: 0 auto !important;
+    padding: 10px !important;
+    background-color: #4267a3!important;
+  }
+
+  .resumeTable th,
+  td {
+    /*border: 1px solid black;*/
+    border-collapse: collapse;
+  }
+
+  .resumeTable th,
+  td {
+    /*padding: 5px;*/
+    text-align: left;
+  }
+  .resumeTableTop th, td {
+    text-align: center !important;
+  }
+    .resumeTable > th >a{
+      font-size: 15px !important;
+    }
+.page-header{
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0px;
+}
+img
+{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto auto;
+}
+</style>
+<div class="container-fluid">
+  <div class="row no-margin">
+    <nav class="col-sm-4 col-md-4 col-lg-4 col-xl-4 myResumeNavbar">
+      <ul class="nav nav-pills flex-column">
+        <li class="nav-header navResume DivCen">
+          <div class="DivCen width100">
+                <img alt="image" class="imgResume" src="../img/student.png">
+              </div>
+          <span class="clear DivCen">
+              <span class="resumeName"><strong class="font-bold">Ambuj Dubey</strong>
+              </span>
+          </span>
+        </li>
+      </ul>
+      <table style="width:100%;margin-top: 10px;" class="resumeTable resumeTableTop">
+        <tr>
+          <th>Father</th>
+          <td class="resumeFather">Bill Gates</td>
+        </tr>
+        <tr>
+          <th>Mother</th>
+          <td class="resumeMother">Loren</td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td class="resumeAddress">Bill Gates</td>
+        </tr>
+        <tr>
+          <th>City</th>
+          <td class="resumeCity">Loren</td>
+        </tr>
+        <tr>
+          <th>State</th>
+          <td class="resumeState">555 77 855</td>
+        </tr>
+        <tr>
+          <th>Pincode</th>
+          <td class="resumePincode">555 77 855</td>
+        </tr>
+        <tr>
+          <th><a class="fa fa-address-book" aria-hidden="true" title="Mobile Number"></a></th>
+          <td class="resumeMobile">555 77 855</td>
+        </tr>
+        <tr>
+          <th><a class="fa fa-birthday-cake" aria-hidden="true" title="Birth Date"></a></th>
+          <td class="resumeDob">555 77 855</td>
+        </tr>
+        <tr>
+          <th><i class="fa fa-envelope" aria-hidden="true" title="Email"></i></th>
+          <td class="resumeEmail">555 77 855</td>
+        </tr>
+      </table>
+    </nav>
+    <div class="col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xs-8 mainDiv">
+      <div id="page-header" class="page-header">Education and Experience</div>
+      <div class="myCard">
+        <div class="row no-margin no-padding">
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 iti-Padding5">
+            <div class="iti-DivBod iti-Padding10 iti-DivCen iti-DivCenD">
+              <img class="img-rounded borderImage" src="../img/education.jpg" alt="education image" width="65" height="65">
+              <table style="width:100%;margin-top: 10px;" class="resumeTable">
+                <tr>
+                  <th title="Name of College">College</th>
+                  <td class="resumeCollege">Bill Gates</td>
+                </tr>
+                <tr>
+                  <th title="Name of Trade">Trade</th>
+                  <td class="resumeTrade">Loren</td>
+                </tr>
+                <tr>
+                  <th title="Passout Year">Passout</th>
+                  <td class="resumePOY">555 77 855</td>
+                </tr>
+                <tr>
+                  <th title="Percentage">Percentage</th>
+                  <td class="resumePer">555 77 855</td>
+                </tr>
+                <tr>
+                  <th title="High School Percentage">High School(%)</th>
+                  <td class="resumeHSPer">555 77 855</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 iti-Padding5">
+            <div class="iti-DivBod iti-Padding10 iti-DivCen iti-DivCenD">
+              <img class="img-rounded borderImage" src="../img/Company1.jpg" alt="Company image" width="65" height="65">
+              <table style="width:100%;margin-top: 10px;" class="resumeTable">
+                <tr>
+                  <th>Experience</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th>Status</th>
+                  <td class="resumeStatus">Bill Gates</td>
+                </tr>
+                <tr>
+                  <th>Present Company</th>
+                  <td class="resumeCompany">Loren</td>
+                </tr>
+                <tr>
+                  <th title="Total Year of Experience">Experience in Year</th>
+                  <td class="resumeYOE">555 77 855</td>
+                </tr>
+                <tr>
+                  <th>Willing to job</th>
+                  <td class="resumeJob">555 77 855</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+function viewMoreFunctionForStudent1(arr) {
+  console.log("Ambuj>>>>>>>>>>>>>>>",arr);
+  $(".editrow").click(function(e) {
+    var Name = $(this).parents('tr').find('td:first').html();
+    console.log(Name);
+    $('#exampleModalLongTitle').html("My Resume -" + Name);
+    $('.modal-body').load("html/resume.html");
+    viewMoreStudentByName = {
+      "Name": Name,
+    };
+    $.when(Posthandler("/route/viewMoreStudentByName", viewMoreStudentByName, true)).done(function(res) {
+      if (res.resCode == 'OK') {
+        console.log(res.results[0]);arr=res.results[0]
+        $('.resumeName').html(arr["Name"]);
+        $('.resumeFather').html(arr["Father"]);
+        $('.resumeMother').html(arr["Mother"]);
+        $('.resumeAddress').html(arr["Address"]);
+        $('.resumeCity').html(arr["City"]);
+        $('.resumeState').html(arr["State"]);
+        $('.resumePincode').html(arr["Pincode"]);
+        $('.resumeMobile').html(arr["Mobile"]);
+        $('.resumeDob').html(arr["Dob"]);
+        $('.resumeEmail').html(arr["Email"]);
+        $('.resumeCollege').html(arr["College"]);
+        $('.resumeTrade').html(arr["Trade"]);
+        $('.resumePOY').html(arr["POY"]);
+        $('.resumePer').html(arr['Per']);
+        $('.resumeHSPer').html(arr["HSPer"]);
+        $('.resumeStatus').html(arr["Experience"]);
+        $('.resumeCompany').html(arr["LastComp"]);
+        $('.resumeYOE').html(arr["ExpYear"]);
+        $('.resumeJob').html(arr["Job"]);
+        $.each(res.results[0], function(key, value) {
+          var body = "<tr>";
+          if (key === "Dob") {
+            key = "Date of Birth";
+            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
+          } else if (key === "Date") {
+            key = "Date of Joining in our Portel";
+            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
+          } else if (key === "POY") {
+            key = "Passing Year";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "Per") {
+            key = "Percentage";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "HSPer") {
+            key = "Higher School Percentage";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "Job") {
+            key = "Job Required";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "ExpYear") {
+            key = "Total Year Of Experience";
+            if(value='NA')value = "Not Applicable";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else if (key === "LastComp") {
+            key = "Present Company";
+            if(value='NA')value = "Not Applicable";
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          } else {
+            body += "<th>" + key + "</th><td>" + value + "</td>";
+          }
+          body += "</tr>";
+          $("#viewMoreTable").append(body);
+        });
+      } else {
+        swal("Error!", res.msg, "error");
+      }
+    }).fail(function() {
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = 'dashboard.html';
+        });
+    });
+  });
+};
+
+</script>

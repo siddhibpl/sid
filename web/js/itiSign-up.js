@@ -2,15 +2,15 @@ var secret = sessiongetItem("secret");
 console.log(secret);
 var login = sessiongetItem("login");
 console.log(login);
-if ((secret == null) || (secret == "") || (secret == undefined)) {
+if((secret == null)||(secret == "")||(secret == undefined)){
   if ((login == null) || (login == "") || (login == undefined)) {
     $('.adminRedioDiv').addClass('hide');
-    $('.bodyloading').addClass('hide');
-    $('#formITI').removeClass('hide');
-  } else {
-    $('.bodyloading').addClass('hide');
-    $('#formITI').removeClass('hide');
   }
+  setTimeout(function() {
+    $('#formITI').removeClass('hide');
+    $('#containerDiv').removeClass('hide');
+    $('.bodyloading').addClass('hide');
+  }, 500);
 } else {
   $.when(Posthandler("/route/aboutMe", secret, true)).done(function(res) {
     if (res.resCode == 'OK') {
@@ -52,7 +52,7 @@ if ((secret == null) || (secret == "") || (secret == undefined)) {
   }).fail(function() {
     swal({
         title: "Error!",
-        text: "fail to connect",
+        text: "sorry fail to connect. please check your internet connection",
         type: "error"
       },
       function() {
@@ -268,10 +268,26 @@ $(document).ready(function() {
         multiSelectorCheck();
       }
     } else {
-      swal("Error!", res.msg , "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     }
   }).fail(function() {
-    swal("Error!", "sorry unable to load Trade list. please check your internet connection", "error");
+    swal({
+        title: "Error!",
+        text: "sorry fail to connect. please check your internet connection",
+        type: "error"
+      },
+      function() {
+        swal.close();
+        window.location.href = '../login.html';
+      });
   });
 });
 
@@ -290,12 +306,29 @@ function multiSelectorCheck() {
           $("#trade option[value=" + res.results[i]['Trade'] + "]").prop('selected', true);
         }
         $('#trade').multiselect('refresh');
+        $('#containerDiv').removeClass('hide');
         $('.bodyloading').addClass('hide');
       } else {
-        swal("Error!", res.msg, "error");
+        swal({
+            title: "Error!",
+            text: "fail to connect",
+            type: "error"
+          },
+          function() {
+            swal.close();
+            window.location.href = '../login.html';
+          });
       }
     }).fail(function() {
-      swal("Error!", "sorry unable to load College Wise Trade list. please check your internet connection", "error");
+      swal({
+          title: "Error!",
+          text: "fail to connect, Please check your internet connection!",
+          type: "error"
+        },
+        function() {
+          swal.close();
+          window.location.href = '../login.html';
+        });
     });
   }
 };
