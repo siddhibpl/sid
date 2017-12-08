@@ -175,14 +175,16 @@ body {
   float: right !important;
 }
 
-.img {
+.img,
+.img1,
+.img2 {
   height: 15px;
   position: absolute;
   right: 20px;
   top: 10px;
 }
 
-.img:hover {
+.img:hover, .img1:hover {
   cursor: pointer;
 }
 
@@ -415,11 +417,6 @@ body {
   color: #fff !important;
   cursor: pointer;
   font-size: 17px !important;
-}
-
-.activeA {
-  color: #DFE4ED !important;
-  background-color: #292b2c;
 }
 
 .myTable {
@@ -664,4 +661,51 @@ select option {
 
 #back-top:hover{
   cursor: pointer;
+}
+
+.btn-primary {
+  padding: 5px 5px;
+  font-size: 14px;
+}
+
+.activeA {
+  background-color: #025aa5;
+  border-color: #01549b;
+}
+
+/*####################################################
+########Forgot password/ reset password#############
+####################################################*/
+.login-box-body {
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+
+.login-box {
+  width: 360px;
+  margin: 7% auto;
+}
+
+.login-logo a {
+  color: #444;
+}
+
+.login-logo {
+  font-size: 35px;
+  text-align: center;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+
+}
+
+.form-groupcss {
+  padding: 0px 0px;
+}
+
+.has-feedback {
+  position: relative !important;
 }

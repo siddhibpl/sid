@@ -24,10 +24,10 @@ $(document).ready(function() {
     $('#exampleModalLongTitle').html("About ITI Jobs");
     $('.modal-body').html(y);
   });
-  $(".nav-item").click(function() {
-    $('.nav-item').removeClass("active")
-    $(this).addClass("active");
-  });
+  // $(".nav-item").click(function() {
+  //   $('.nav-item').removeClass("active")
+  //   $(this).addClass("active");
+  // });
   $('.contactUs').click(function() {
     $('html,body').animate({
       scrollTop: $("#contact-form").offset().top

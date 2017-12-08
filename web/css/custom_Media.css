@@ -15,8 +15,8 @@
   .form-control {
     display: block;
     width: 100%;
-    padding: 1px;
-    font-size: 8px;
+    padding: 4px;
+    font-size: 10px;
     line-height: 1;
     color: #464a4c;
     background-color: #fff;
@@ -49,6 +49,21 @@
   }
   .containerload {
     min-height: 250px;
+  }
+  .btn-primary {
+    padding: 3px 5px;
+    font-size: 10px;
+  }
+  .img, .img1, .img2{
+    top:3px;
+    right:7px;
+  }
+  .login-box {
+    width: 90%;
+    margin-top: 60px;
+  }
+  .login-logo {
+    font-size: 20px;
   }
 }
 
