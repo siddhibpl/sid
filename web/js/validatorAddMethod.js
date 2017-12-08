@@ -27,3 +27,4 @@ $.validator.addMethod("pwchecknumber", function(value) {
 var number = /^[0-9]+$/;
 var letters = /^[a-zA-Z\s]+$/;
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+// Validation

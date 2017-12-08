@@ -66,7 +66,7 @@ img
                 <img alt="image" class="imgResume" src="../img/student.png">
               </div>
           <span class="clear DivCen">
-              <span class="resumeName"><strong class="font-bold">Ambuj Dubey</strong>
+              <span class="resumeName"><strong class="font-bold"></strong>
               </span>
           </span>
         </li>
@@ -74,39 +74,39 @@ img
       <table style="width:100%;margin-top: 10px;" class="resumeTable resumeTableTop">
         <tr>
           <th>Father</th>
-          <td class="resumeFather">Bill Gates</td>
+          <td class="resumeFather"></td>
         </tr>
         <tr>
           <th>Mother</th>
-          <td class="resumeMother">Loren</td>
+          <td class="resumeMother"></td>
         </tr>
         <tr>
           <th>Address</th>
-          <td class="resumeAddress">Bill Gates</td>
+          <td class="resumeAddress"></td>
         </tr>
         <tr>
           <th>City</th>
-          <td class="resumeCity">Loren</td>
+          <td class="resumeCity"></td>
         </tr>
         <tr>
           <th>State</th>
-          <td class="resumeState">555 77 855</td>
+          <td class="resumeState"></td>
         </tr>
         <tr>
           <th>Pincode</th>
-          <td class="resumePincode">555 77 855</td>
+          <td class="resumePincode"></td>
         </tr>
         <tr>
-          <th><a class="fa fa-address-book" aria-hidden="true" title="Mobile Number"></a></th>
-          <td class="resumeMobile">555 77 855</td>
+          <th>Mobile</th>
+          <td class="resumeMobile"></td>
         </tr>
         <tr>
-          <th><a class="fa fa-birthday-cake" aria-hidden="true" title="Birth Date"></a></th>
-          <td class="resumeDob">555 77 855</td>
+          <th>Birth Date</th>
+          <td class="resumeDob"></td>
         </tr>
         <tr>
-          <th><i class="fa fa-envelope" aria-hidden="true" title="Email"></i></th>
-          <td class="resumeEmail">555 77 855</td>
+          <th>Email ID</th>
+          <td class="resumeEmail"></td>
         </tr>
       </table>
     </nav>
@@ -120,23 +120,23 @@ img
               <table style="width:100%;margin-top: 10px;" class="resumeTable">
                 <tr>
                   <th title="Name of College">College</th>
-                  <td class="resumeCollege">Bill Gates</td>
+                  <td class="resumeCollege"></td>
                 </tr>
                 <tr>
                   <th title="Name of Trade">Trade</th>
-                  <td class="resumeTrade">Loren</td>
+                  <td class="resumeTrade"></td>
                 </tr>
                 <tr>
                   <th title="Passout Year">Passout</th>
-                  <td class="resumePOY">555 77 855</td>
+                  <td class="resumePOY"></td>
                 </tr>
                 <tr>
                   <th title="Percentage">Percentage</th>
-                  <td class="resumePer">555 77 855</td>
+                  <td class="resumePer"></td>
                 </tr>
                 <tr>
                   <th title="High School Percentage">High School(%)</th>
-                  <td class="resumeHSPer">555 77 855</td>
+                  <td class="resumeHSPer"></td>
                 </tr>
               </table>
             </div>
@@ -151,19 +151,19 @@ img
                 </tr>
                 <tr>
                   <th>Status</th>
-                  <td class="resumeStatus">Bill Gates</td>
+                  <td class="resumeStatus"></td>
                 </tr>
                 <tr>
                   <th>Present Company</th>
-                  <td class="resumeCompany">Loren</td>
+                  <td class="resumeCompany"></td>
                 </tr>
                 <tr>
                   <th title="Total Year of Experience">Experience in Year</th>
-                  <td class="resumeYOE">555 77 855</td>
+                  <td class="resumeYOE"></td>
                 </tr>
                 <tr>
                   <th>Willing to job</th>
-                  <td class="resumeJob">555 77 855</td>
+                  <td class="resumeJob"></td>
                 </tr>
               </table>
             </div>
@@ -173,89 +173,3 @@ img
     </div>
   </div>
 </div>
-<script>
-
-function viewMoreFunctionForStudent1(arr) {
-  console.log("Ambuj>>>>>>>>>>>>>>>",arr);
-  $(".editrow").click(function(e) {
-    var Name = $(this).parents('tr').find('td:first').html();
-    console.log(Name);
-    $('#exampleModalLongTitle').html("My Resume -" + Name);
-    $('.modal-body').load("html/resume.html");
-    viewMoreStudentByName = {
-      "Name": Name,
-    };
-    $.when(Posthandler("/route/viewMoreStudentByName", viewMoreStudentByName, true)).done(function(res) {
-      if (res.resCode == 'OK') {
-        console.log(res.results[0]);arr=res.results[0]
-        $('.resumeName').html(arr["Name"]);
-        $('.resumeFather').html(arr["Father"]);
-        $('.resumeMother').html(arr["Mother"]);
-        $('.resumeAddress').html(arr["Address"]);
-        $('.resumeCity').html(arr["City"]);
-        $('.resumeState').html(arr["State"]);
-        $('.resumePincode').html(arr["Pincode"]);
-        $('.resumeMobile').html(arr["Mobile"]);
-        $('.resumeDob').html(arr["Dob"]);
-        $('.resumeEmail').html(arr["Email"]);
-        $('.resumeCollege').html(arr["College"]);
-        $('.resumeTrade').html(arr["Trade"]);
-        $('.resumePOY').html(arr["POY"]);
-        $('.resumePer').html(arr['Per']);
-        $('.resumeHSPer').html(arr["HSPer"]);
-        $('.resumeStatus').html(arr["Experience"]);
-        $('.resumeCompany').html(arr["LastComp"]);
-        $('.resumeYOE').html(arr["ExpYear"]);
-        $('.resumeJob').html(arr["Job"]);
-        $.each(res.results[0], function(key, value) {
-          var body = "<tr>";
-          if (key === "Dob") {
-            key = "Date of Birth";
-            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "Date") {
-            key = "Date of Joining in our Portel";
-            body += "<th>" + key + "</th><td>" + moment(value).format("YYYY-MM-DD") + "</td>";
-          } else if (key === "POY") {
-            key = "Passing Year";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "Per") {
-            key = "Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "HSPer") {
-            key = "Higher School Percentage";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "Job") {
-            key = "Job Required";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "ExpYear") {
-            key = "Total Year Of Experience";
-            if(value='NA')value = "Not Applicable";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else if (key === "LastComp") {
-            key = "Present Company";
-            if(value='NA')value = "Not Applicable";
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          } else {
-            body += "<th>" + key + "</th><td>" + value + "</td>";
-          }
-          body += "</tr>";
-          $("#viewMoreTable").append(body);
-        });
-      } else {
-        swal("Error!", res.msg, "error");
-      }
-    }).fail(function() {
-      swal({
-          title: "Error!",
-          text: "fail to connect",
-          type: "error"
-        },
-        function() {
-          swal.close();
-          window.location.href = 'dashboard.html';
-        });
-    });
-  });
-};
-
-</script>
