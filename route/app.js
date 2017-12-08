@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var pool = require('../config/dbconfig.js');
 var moment = require('moment');
-const nodemailer = require('nodemailer');
-const xoauth2 = require('xoauth2');
 var config = require('../config/config.js');
 var date;
 date = new Date();
@@ -807,9 +805,19 @@ router.post('/viewMoreStudentByName', function(req, res, next) {
       } else {
         if (result != '') {
           console.log(result);
-          return res.json({
-            "resCode": "OK",
-            "results": result
+          connection.query('SELECT experience FROM experiencelist where (Id) = "' + result[0].ExpYear + '"', function(err, result1, feild) {
+            if (err) {
+              return next(err);
+            } else {
+              console.log(result1);
+              if (result[0].ExpYear != 'NA') {
+                  result[0].ExpYear = result1[0].experience;
+              }
+              return res.json({
+                "resCode": "OK",
+                "results": result
+              });
+            }
           });
         } else {
           return res.json({

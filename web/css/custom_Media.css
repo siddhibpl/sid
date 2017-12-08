@@ -31,12 +31,7 @@
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
   }
-  .iti-Footer {
-    line-height: 100% !important;
-    height: auto;
-    padding-top: 5px;
-  }
-  .social {
+ .social {
     display: inline-block;
     float: none;
     border: 1px solid dimgray;
@@ -51,6 +46,9 @@
     width: 100%; /* desired relative width */
     margin-left:auto;
     margin-right:auto;
+  }
+  .containerload {
+    min-height: 250px;
   }
 }
 

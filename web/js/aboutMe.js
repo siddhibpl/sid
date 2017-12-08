@@ -103,11 +103,11 @@ function viewMoreFunction(arr, login) {
         body += "<th>" + key + "</th><td>" + value + "</td>";
       } else if (key === "ExpYear") {
         key = "Total Year Of Experience";
-        if(value='NA')value = "Not Applicable";
+        if(value==='NA')value = "Not Applicable";
         body += "<th>" + key + "</th><td>" + value + "</td>";
       } else if (key === "LastComp") {
         key = "Present Company";
-        if(value='NA')value = "Not Applicable";
+        if(value==='NA')value = "Not Applicable";
         body += "<th>" + key + "</th><td>" + value + "</td>";
       } else if (key === "Logo") {
 

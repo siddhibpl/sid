@@ -29,7 +29,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse myNavbar1">
+  <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top myNavBgColor myNavbar1">
     <a class="navbar-brand" href="dashboard.html"><img src="img/itiLogo.jpg"> ITI JOBS</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -55,8 +55,8 @@
   <div class='bodyloading'>
     <div class="boxloading"></div>
   </div>
-  <div id="containerDiv" class="hide">
-  <div class="container-fluid">
+<div id="containerDiv" class="hide">
+  <div class="container-fluid marginTop60">
     <div class="row no-padding no-margin myDeshboardContainerCss">
       <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-12 mainDiv">
         <div id="page-header" class="page-header">Dashboard</div>
@@ -135,6 +135,7 @@
         <div class="modal-body">
         </div>
         <div class="modal-footer padding5Top">
+          <button type="button" class="btn btn-primary resumePdf hide">Save As PDF</button>
           <button type="button" class="btn btn-primary leftMargin0 editDetails">Edit</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
@@ -145,6 +146,7 @@
     Built by <a href="#" target="_blank">Ambuj Dubey</a> <span>All Rights Reserved, &copy; 2017 ITI JOBS</span>
   </footer>
   </div>
+</div>
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
@@ -155,13 +157,12 @@
   <script type="text/javascript" src="static/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="static/js/dataTables.bootstrap4.min.js"></script>
   <script type="text/javascript" src="static/js/dataTables.select.min.js"></script>
-  <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
   <script type="text/javascript" src="static/js/dataTables.buttons.min.js"></script>
-  <!-- <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script> -->
   <script type="text/javascript" src="static/js/buttons.flash.min.js"></script>
   <script type="text/javascript" src="static/js/jszip.min.js"></script>
   <script type="text/javascript" src="static/js/pdfmake.min.js"></script>
   <script type="text/javascript" src="static/js/vfs_fonts.js"></script>
+  <script type="text/javascript" src="static/js/html2canvas.js"></script>
   <script type="text/javascript" src="static/js/buttons.html5.min.js"></script>
   <script type="text/javascript" src="static/js/buttons.print.min.js"></script>
   <script type="text/javascript" src="static/js/bootstrap.min.js"></script>
@@ -175,6 +176,7 @@
   <script type="text/javascript" src="js/totalCompanies.js"></script>
   <script type="text/javascript" src="js/totalCollege.js"></script>
   <script type="text/javascript" src="js/totalStudent.js"></script>
+  <script type="text/javascript" src="js/validatorAddMethod.js"></script>
   <script type="text/javascript" src="js/dashboard.js"></script>
 </head>
 

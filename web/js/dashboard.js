@@ -144,20 +144,6 @@ $(document).ready(function() {
     sessionsetItem("secret", secret);
     window.location.replace("html/sign-up.html");
   });
-  // Validation
-  $.validator.addMethod("pwcheckspechars", function(value) {
-    return /[!@#$%^&*()_=\[\]{};':"\\|,.<>\/?+-]/.test(value)
-  });
-  $.validator.addMethod("pwchecknumber", function(value) {
-    return /\d/.test(value) // has a digit
-  });
-  $.validator.addMethod("onlyLatters", function(value) {
-    return /^[a-zA-Z\s]+$/i.test(value)
-  });
-  $.validator.addMethod("emailformat", function(value) {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value)
-  });
-
   // Contact Us Form Validation
   $("#contact").validate({
     rules: {

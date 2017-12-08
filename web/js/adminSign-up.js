@@ -17,6 +17,7 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       var arr = {};
       arr = res.results;
       console.log(">>>>>>admin>>>res",res);
+      $('.containerload').css('margin-top', '60px');
       $('.containerload').css('min-height', '550px');
       $('#adminName').val(arr[0]["Name"]);
       $('#adminEmail').val(arr[0]["Email"]);

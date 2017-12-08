@@ -94,8 +94,8 @@
               body += "</tr>";
               $("#totalStudentTable1 tbody").append(body);
             });
-            create_DatatableTOtalStudent('#totalStudentTable1');
-            // create_DatatableTOtalStudentTradeWiseValidationAndPrintPdf();
+            // create_DatatableTOtalStudent('#totalStudentTable1');
+            create_DatatableTOtalStudentTradeWiseValidationAndPrintPdf('#totalStudentTable1');
             $('.modal-content').addClass('resumeModal');
             viewMoreFunctionForStudent1(arr);
           }
@@ -136,13 +136,17 @@
       dom: 'Bfrtip',
       buttons: [{
           extend: 'print',
-          text: 'Print all'
+          text: 'Print all',
+          exportOptions: {
+            columns: [0,1, 2, 3, 4, 5, 6]
+          }
         },
         {
           extend: 'print',
           text: 'Print selected',
           exportOptions: {
             columns: ':visible:not(.not-exported)',
+            columns: [0,1, 2, 3, 4, 5, 6],
             modifier: {
               selected: true
             }
@@ -151,8 +155,10 @@
         {
           extend: 'pdf',
           text: 'Save As PDF',
+          title: 'All_Selected_Student_PDF_List.',
           exportOptions: {
             columns: ':visible:not(.not-exported)',
+            columns: [0,1, 2, 3, 4, 5, 6],
             modifier: {
               selected: true
             }
@@ -162,8 +168,10 @@
       select: {
         style: 'multi'
       },
+      "scrollX": true,
+      scrollCollapse: true,
+      "autoWidth": true
     });
     // $('.dt-button').addClass('btn btn-primary');
   }
-
 </script>
