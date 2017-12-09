@@ -1,5 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
 const nodemailer = require('nodemailer');
 const xoauth2 = require('xoauth2');
 var config = require('../config/config.js');

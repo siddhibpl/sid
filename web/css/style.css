@@ -104,11 +104,19 @@ body {
 }
 
 .iti-title {
-  /*border-bottom: 2px solid #ccc;*/
-  color: #71a1ed;
+  color: #000;
   font-size: 20px;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: cursive;
+  /*border-bottom: 1px solid #202020;*/
+  /*font-weight: bold;*/
+  /*font-style: italic;*/
+}
+
+.contactUsPara{
+  color: #202020;
+  line-height: 150%;
+  margin-bottom: 10px;
 }
 
 .margin-top {
@@ -416,7 +424,7 @@ body {
 .nav-item a:hover {
   color: #fff !important;
   cursor: pointer;
-  font-size: 17px !important;
+  text-decoration: underline !important;
 }
 
 .myTable {

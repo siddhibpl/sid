@@ -4,10 +4,6 @@
 
 /*----------- common device -----------*/
 
-/*@media only screen and (min-width: 768px){
-
-  } */
-
 @media (max-width: 768px) {
   .iti-fdoc {
     font-size: 9px !important;
@@ -65,86 +61,73 @@
   .login-logo {
     font-size: 20px;
   }
+  .iti-title{
+    font-size: 15px;
+  }
+  .total-css{
+    font-size: 20px;
+  }
+  .iti-stitle{
+    font-size: 10px !important;
+  }
+  .carouselImage{
+    height: 180px;
+    width: 100%;
+  }
+  .img-rounded{
+    height: 35px;
+    width: 35px;
+  }
+  .col-xs-4{
+    width: auto;
+  }
+  .page-header{
+    font-size: 15px !important;
+  }
+  .contactUsPara{
+    font-size: 10px !important;
+  }
 }
 
 /* Large Devices, Wide Screens */
-
 @media only screen and (min-width: 1200px) {
   body {
     font-size: 16px !important;
   }
-  .btn-custom1, .btn-custom2 {
-    font-size: 10px !important;
-  }
 }
 
 /* Medium Devices, Desktops */
-
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   body {
     font-size: 16px !important;
   }
-  .btn-custom1, .btn-custom2 {
-    font-size: 10px !important;
+}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 320px) and (min-width: 0px) {
+  .iti-stitle{
+    /*font-size: 10px;*/
   }
 }
-
 /* Small Devices, Tablets */
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   body {
     font-size: 15px !important;
   }
-  .box_titleMedia {
-    font-size: 15px !important;
-  }
-  .form-control {
-    font-size: 15px !important;
-  }
-  .btn-custom1, .btn-custom2 {
-    font-size: 8px !important;
-  }
 }
-
 /* Extra Small Devices, Phones */
-
-@media only screen and (min-width: 321px) and (max-width: 767px) {
+@media only screen and (min-width: 321px) and (max-width: 400px) {
   body {
-    font-size: 12px !important;
+    font-size: 14px;
   }
-  .box_titleMedia {
-    font-size: 12px !important;
-  }
-  .form-control {
-    font-size: 12px !important;
-  }
-  .btn-custom1, .btn-custom2 {
-    font-size: 8px !important;
-  }
-  .spanCss {
-    font-size: 10px !important;
+  .col-xs-4{
+      width: 120px;
   }
 }
-
-/* Custom, iPhone Retina */
-
-@media only screen and (max-width: 320px) and (min-width: 0px) {
+@media only screen and (min-width: 401px) and (max-width: 768px) {
   body {
-    font-size: 10px !important;
+    font-size: 14px;
   }
-  .box_titleMedia {
-    font-size: 10px !important;
-  }
-  .formCreateemployee_Css {
-    width: 100%;
-  }
-  .form-control {
-    font-size: 10px !important;
-  }
-  .btn-custom1, .btn-custom2 {
-    font-size: 8px !important;
-  }
-  .spanCss {
-    font-size: 8px !important;
+  .col-xs-4{
+    width: 136px;
   }
 }
