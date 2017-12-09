@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var pool = require('../config/dbconfig.js');
 var moment = require('moment');
+var pool = require('../config/dbconfig.js');
 var config = require('../config/config.js');
 var date;
 date = new Date();
@@ -32,9 +32,7 @@ router.get('/total', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -52,7 +50,6 @@ router.get('/getTradeLists', function(req, res, next) {
           return res.json({
             "resCode": "OK",
             "results": result
-            // "trade": result.trade
           });
         } else {
           return res.json({
@@ -62,9 +59,7 @@ router.get('/getTradeLists', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -82,7 +77,6 @@ router.get('/getCollegeLists', function(req, res, next) {
           return res.json({
             "resCode": "OK",
             "results": result
-            // "trade": result.trade
           });
         } else {
           return res.json({
@@ -92,9 +86,7 @@ router.get('/getCollegeLists', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -112,7 +104,6 @@ router.get('/getExperienceLists', function(req, res, next) {
           return res.json({
             "resCode": "OK",
             "results": result
-            // "trade": result.trade
           });
         } else {
           return res.json({
@@ -122,9 +113,7 @@ router.get('/getExperienceLists', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -143,7 +132,6 @@ router.post('/getCollegeWiseTradeLists', function(req, res, next) {
           return res.json({
             "resCode": "OK",
             "results": result
-            // "trade": result.trade
           });
         } else {
           return res.json({
@@ -153,9 +141,7 @@ router.post('/getCollegeWiseTradeLists', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -213,9 +199,7 @@ router.post('/login', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -276,7 +260,6 @@ router.post("/newAdmin", function(req, res, next) {
                 }
               }
             });
-
           } else {
             return res.json({
               "resCode": "Error",
@@ -286,9 +269,7 @@ router.post("/newAdmin", function(req, res, next) {
         }
       });
     }
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -343,7 +324,6 @@ router.post("/newStudent", function(req, res, next) {
                 }
               }
             });
-
           } else {
             return res.json({
               "resCode": "Error",
@@ -353,9 +333,7 @@ router.post("/newStudent", function(req, res, next) {
         }
       });
     }
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -412,7 +390,6 @@ router.post("/newCompany", function(req, res, next) {
                 }
               }
             });
-
           } else {
             return res.json({
               "resCode": "Error",
@@ -422,9 +399,7 @@ router.post("/newCompany", function(req, res, next) {
         }
       });
     }
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -495,7 +470,6 @@ router.post("/newIti", function(req, res, next) {
                 }
               }
             });
-
           } else {
             return res.json({
               "resCode": "Error",
@@ -505,9 +479,7 @@ router.post("/newIti", function(req, res, next) {
         }
       });
     }
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -645,9 +617,7 @@ router.get('/totalCompany', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -674,9 +644,7 @@ router.post('/viewMoreCompanyByName', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -703,9 +671,7 @@ router.get('/totalCollege', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -732,9 +698,7 @@ router.post('/viewMoreCollegeByName', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -787,9 +751,7 @@ router.post('/studentTradeWiseFilter', function(req, res, next) {
           }
         });
     }
-
     connection.release();
-
     if (err) {
       console.log(err);
     }
@@ -827,9 +789,7 @@ router.post('/viewMoreStudentByName', function(req, res, next) {
         }
       }
     });
-
     connection.release();
-
     if (err) {
       console.log(err);
     }

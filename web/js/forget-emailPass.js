@@ -43,7 +43,8 @@ $.validator.setDefaults({
 });
 
 $(document).ready(function() {
-  setTimeout(function() {
+ sessionStorage.clear();
+ setTimeout(function() {
       $('#containerDiv').removeClass('hide');
       $('.bodyloading').addClass('hide');
     }, 100);

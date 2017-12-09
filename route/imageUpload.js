@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const fileUpload = require('express-fileupload');
-// // default options
 router.use(fileUpload());
 
 router.post('/uploadCompanyLogo', function(req, res, next) {

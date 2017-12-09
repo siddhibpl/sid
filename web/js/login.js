@@ -1,5 +1,6 @@
 $(document).ready(function() {
   // $("#gallery").unitegallery();
+  sessionStorage.clear();
   var obj;
   $.when(Gethandler("/route/total", obj, true)).done(function(res) {
     console.log(res);
