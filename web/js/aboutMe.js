@@ -9,6 +9,7 @@ function aboutMeFunction() {
   $('.editDetails').removeClass('hide');
   $('.bodyloading').removeClass('hide');
   $('.modal-content').removeClass('resumeModal');
+  $('.resumePdf').addClass('hide');
   aboutMe = {
     "Role": urole,
     "Name": uname,

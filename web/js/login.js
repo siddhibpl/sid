@@ -173,10 +173,9 @@ function myFunction() {
   var em1 = document.getElementById("mobi").value;
   var pas1 = document.getElementById("password").value;
   var encodePass = btoa(pas1).toString();
-  var decodedString = atob(encodePass);
   var obj = {
     "username": em1,
-    "password": decodedString
+    "password": encodePass
   };
   console.log(obj);
   if (em1 == "") {
@@ -198,7 +197,7 @@ function myFunction() {
         // storagesetItem("login", login);
         sessionsetItem("login", login);
         window.location.replace("dashboard.html");
-      } else if (res.resCode == 'Error') {
+      } else if (res.resCode === 'Error') {
         console.log(res.msg);
         swal("Error!", res.msg, "error");
       }

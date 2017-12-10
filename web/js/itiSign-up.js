@@ -35,6 +35,7 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       $('#itiTPOEmail').val(arr[0]["TPO_Email"]);
       $('#itiTPOMobile').val(arr[0]["TPO_Mobile"]);
       $("#itiTPOMobile").attr("disabled", "disabled");
+      $("#itiTPOEmail").attr("disabled", "disabled");
 
       // $('.bodyloading').addClass('hide');
       $('#formITI').removeClass('hide');

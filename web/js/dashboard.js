@@ -71,6 +71,7 @@ $(document).ready(function() {
   $('.profile').click(function() {
     $('.modal-content').removeClass('resumeModal');
     $('.editDetails').addClass('hide');
+    $('.resumePdf').addClass('hide');
     $('#exampleModalLongTitle').html("Profile");
     $('.modal-body').html("<div style='text-align: center';><img src='img/student.png' style='border-radius: 50%' alt='Profile Image' height='102' width='102'><br><br><table class='myTable table-striped table-bordered'><tr><td>Name</td><td>" + uname + "</td></tr><tr><td>Number</td><td>" + unumber + "</td></tr><tr><td>Role</td><td>" + urole + "</td></tr><table></div>");
   });

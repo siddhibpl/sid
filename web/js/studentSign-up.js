@@ -381,10 +381,14 @@ $(document).ready(function() {
   });
 });
 function extraInputWhileUpdateStudent() {
-    if (secret.Key == "Edit") {
+    if (secret.Key === "Edit") {
+      // $('#containerDiv').removeClass('hide');
+      // $('.bodyloading').addClass('hide');
       var secretData = sessiongetItem("secretData");
-      console.log(secretData[0]['College']);
-      $("#studentCollege option[value=" + secretData[0]['College'] + "]").prop('selected', true);
+      console.log(">>>>>>>>>>>>>>>",secretData[0]['College']);
+      $("#studentCollege").html(" ");
+      // $("#studentCollege option[value=" + secretData[0]['College'] + "]").prop('selected', true);
+      $("#studentCollege").append('<option value="' + secretData[0]['College'] + '">' + secretData[0]['College'] + '</option>');
       $.when(Posthandler("/route/getCollegeWiseTradeLists", {
         "Name": secretData[0]['College']
       }, true)).done(function(res) {
@@ -395,6 +399,7 @@ function extraInputWhileUpdateStudent() {
           }
           $("#trade option[value=" + secretData[0]['Trade'] + "]").prop('selected', true);
           $("#studentCollege").attr("disabled", "disabled");
+          $('#studentEmail').attr("disabled", "disabled");
           if(secretData[0]['Job'] == "Yes"){
             if(secretData[0]['Experience'] != "Fresher"){
               $('input[name="checkedEx"]').prop("checked", true);
