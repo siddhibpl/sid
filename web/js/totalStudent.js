@@ -6,6 +6,7 @@ function totalStudentFunction() {
   $('.tablecontainerDiv').html('');
   $('.editDetails').addClass('hide');
   $('.modal-content').removeClass('resumeModal');
+  $('.resumePdf').addClass('hide');
   var obj = {};
   if (login.Role != "College") {
     console.log('Not College Api');

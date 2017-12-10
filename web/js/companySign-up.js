@@ -33,6 +33,7 @@ if((secret == null)||(secret == "")||(secret == undefined)){
       $('#comHREmail').val(arr[0]["HR_Email"]);
       $('#comHRMobile').val(arr[0]["HR_Mobile"]);
       $("#comHRMobile").attr("disabled", "disabled");
+      $("#comHREmail").attr("disabled", "disabled");
 
       $('#formCompany').removeClass('hide');
       $('#containerDiv').removeClass('hide');

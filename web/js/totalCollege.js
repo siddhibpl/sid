@@ -2,6 +2,7 @@ function totalCollegeFunction(){
   $('.anchLegend').html("Total ITI College");
   $('.anchPara').addClass('hide');
   $('.tablecontainerDiv').removeClass('hide');
+  $('.resumePdf').addClass('hide');
   $('.editDetails').addClass('hide');
   $('.bodyloading').removeClass('hide');
   $('.modal-content').removeClass('resumeModal');
