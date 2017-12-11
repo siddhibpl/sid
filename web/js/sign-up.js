@@ -3,15 +3,15 @@ $(document).ready(function() {
     if ($(this).val() == 's') {
       $('.bodyloading').removeClass('hide');
       $("#containerload").load("studentSign-up.html");
-      $('.headerSpan1').html('Student Registration Form');
+      $('.headerSpan1').html('Candidate Registration Form');
     } else if ($(this).val() == 'i') {
       $('.bodyloading').removeClass('hide');
       $("#containerload").load("itiSign-up.html");
-      $('.headerSpan1').html('ITI Institute Registration Form');
+      $('.headerSpan1').html('ITI Registration Form');
     } else if ($(this).val() == 'c') {
       $('.bodyloading').removeClass('hide');
       $("#containerload").load("companySign-up.html");
-      $('.headerSpan1').html('Company Registration Form');
+      $('.headerSpan1').html('Employers Registration Form');
     } else if ($(this).val() == 'a') {
       $('.bodyloading').removeClass('hide');
       $("#containerload").load("adminSign-up.html");
